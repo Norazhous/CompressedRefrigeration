@@ -18,21 +18,21 @@ Cb = 0.03
 # calcu1 = 0
 
 
-# def counter(count):
-#     for count in range(10):
-#         count += 1
-#         # time.sleep(1)
-#         # print (count)
-#     return count
+def counter(count):
+    for i in range(10): 
+        count += 1
+        # time.sleep(1)
+        # print (count)
+    return count
 
 # print(counter(0))
 
 def number(*numbers):
     for number in numbers:
-        print(number)
+        return number
 
 
-number(2,3,4,5)
+# number(2,3,4,5)
 
 
 def CALCU():

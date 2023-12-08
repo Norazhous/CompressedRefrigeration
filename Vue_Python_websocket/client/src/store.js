@@ -18,7 +18,8 @@ const store = createStore({
       ph: 0,
       url: 'ws://127.0.0.1:8181/test',
       websocket: null,
-      receivedData: null
+      receivedData: null,
+      // msg:null,
 
     }
   },
@@ -75,7 +76,17 @@ const store = createStore({
       // console.log(JSON.parse(this.state.receivedData).time.currentTime)
     },
 
-
+    //send text
+    SENDCA(state) {
+      state.ca = 3;
+    },
+    SENDCOMMAND(state){
+      this.state.websocket.send(JSON.stringify({
+        cmd: "setCa",
+        param: "3",
+      })
+      );
+    },
 
 
     increment(state) {
@@ -124,7 +135,19 @@ const store = createStore({
     GETDATA(context) {
       context.commit("SETCA");
       context.commit("SETTIME");
-    }
+    },
+
+    SETDATA(context) {
+      // let msg =JSON.stringify(sendData);
+      context.commit("SENDCA");
+      let msg = JSON.stringify({cmd:"setCa",param:"3"})
+      this.state.websocket.send(msg);
+      // this.state.websocket.onmessage = function (callBack) {
+      //   context.commit("SENDCA");
+      // }
+
+    },
+
 
 
   }

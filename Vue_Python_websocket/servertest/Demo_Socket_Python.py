@@ -7,8 +7,9 @@ import threading
 import time
 import datetime
 
-from Simulation_Test import x,Va,Ca,Vb,Cb,ka1,ka2,ka3,Kw,CALCU
 
+from Simulation_Test import x,Va,Ca,Vb,Cb,ka1,ka2,ka3,Kw,CALCU,counter,number
+# import Simulation_Test
 
 # counter()
 # permit_user = False
@@ -24,13 +25,8 @@ from Simulation_Test import x,Va,Ca,Vb,Cb,ka1,ka2,ka3,Kw,CALCU
 
 # asyncio.run(display_date())
 
-
-# regularly send message to client(2s), the loop will break until check client failed
-async def send_data(ws):
-    while True:
-        try:
-            # if permit_check == True:
-            print("send check...")
+# class datatest:
+def dataset(data):
             data_info ={}
             data = json.loads(json.dumps(data_info))
 
@@ -51,12 +47,62 @@ async def send_data(ws):
             cb = {"name": "cb", "value": Cb}
             data['concentration']['cb'] = cb
 
-            calculation = {"ka1":ka1,"ka2":ka2,"ka3":ka3}
+            calculation = {"ka1":ka1,"ka2":ka2,"ka3":ka3,"test": counter(0),"test1":number(2,3,4,5)}
             data['calculation'] =calculation
+            return data
 
-            dataPh = json.dumps(data,ensure_ascii= False)
-            await ws.send(dataPh)
+
+# def data_set(cmd,param):
+#     if cmd == "setCa":
+#        Ca 
+        
+
+# dataset = {
+#     "time": {"currentTime": time.ctime()}, 
+#     "volume": {
+#         "va": {"name": "va", "value": Va}, 
+#         "vb": {"name": "vb", "value": Vb}},
+#     "concentration": {
+#         "ca": {"name": "ca", "value": Ca}, 
+#         "cb": {"name": "cb", "value": Cb}}, 
+#     "calculation": {
+#         "ka1": ka1, 
+#         "ka2": ka2, 
+#         "ka3": ka3, 
+#         "test": counter(0), 
+#         "test1": number}
+#     }
+
+# dataset = {
+#     "time": {"currentTime": 1}, 
+#     "volume": {
+#         "va": {"name": "va", "value": 1}, 
+#         "vb": {"name": "vb", "value": 1}},
+#     "concentration": {
+#         "ca": {"name": "ca", "value": 1}, 
+#         "cb": {"name": "cb", "value": 1}}, 
+#     "calculation": {
+#         "ka1": 1, 
+#         "ka2": 1, 
+#         "ka3": 1, 
+#         "test": 1, 
+#         "test1": 1}
+#     }
+
+# regularly send message to client(2s), the loop will break until check client failed
+async def send_data(websocket):
+    while True:
+        try:
+            # recv_str = await websocket.recv()
+            # set_cmd = json.loads(json.dumps(recv_str))
+            # print(set_cmd)
+            print("send data...")
+            dataset_rev = dataset({})
+            dataPh = json.dumps(dataset_rev,ensure_ascii= False)
+            # dataPh = json.loads(json.dumps(dataset))
+            await websocket.send(dataPh)
             await asyncio.sleep(2)
+            
             # elif permit_check ==False: 
             #     print("permit not yet approved",permit_user)
             #     await asyncio.sleep(5)
@@ -67,7 +113,26 @@ async def send_data(ws):
             break
 
     # await websocket.send(json.dumps(dataPh)) 
-    
+
+async def set_data_value(websocket):
+    while True:
+        recv_str = await websocket.recv()            
+        set_cmd = json.loads(json.dumps(recv_str))
+        dataset_rev = dataset({})
+        print(set_cmd)
+        if recv_str["cmd"] == "setCa" and recv_str["param"] == "3":
+            global Ca 
+            Ca = 3
+            dataset_rev = dataset({})
+            dataPh = json.dumps(dataset_rev.data,ensure_ascii= False)
+            await websocket.send(dataPh)
+            print("new data send..")
+            # permit_user = True
+            # print(permit_user)
+        else:
+            response_str = "the command is not correct"
+            print("the command is not correct")
+            await websocket.send(response_str)
         
 
 
@@ -81,7 +146,9 @@ async def check_user_permit(websocket):
     print("websocket_users list:", websocket_users)
     while True:
         recv_str = await websocket.recv()
-        cred_dict = recv_str.split(":")
+        cred_dict = recv_str.split(":")            
+        set_cmd = json.loads(json.dumps(recv_str))
+        print(set_cmd)
         if cred_dict[0] == "admin" and cred_dict[1] == "123456":
             response_str = "Congratulation, you have connect with server..."
             await websocket.send(response_str)
@@ -111,6 +178,7 @@ async def run(websocket, path):
         try:
             await check_user_permit(websocket)
             asyncio.gather(send_data(websocket)) # asyncio.gather(func1(),func2()) can gather different function and run together # seems just can be run once
+            # await set_data_value(websocket)
             await recv_user_msg(websocket)
         except websockets.ConnectionClosed:
             print("ConnectionClosed...", path)    # ConnectionClosed

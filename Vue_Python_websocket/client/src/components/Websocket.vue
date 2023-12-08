@@ -13,6 +13,7 @@
     <button @click="disconnect()">disconnect</button>
     <button @click="sendMeg();">sendMsg</button>
     <button @click="getData()">getdata</button>
+    <button @click="setData()">setData</button>
     <br>
     <br>
 
@@ -114,6 +115,11 @@ export default {
         },
         getData(){
             this.$store.dispatch('GETDATA')   
+        },
+
+        setData(){
+            this.$store.dispatch("SETDATA")
+
         }
       
 
