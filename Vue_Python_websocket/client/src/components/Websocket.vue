@@ -1,66 +1,55 @@
 <template>
-    <textarea rows="3" cols="30" id="showMes" style="width:300px;height:500px;"></textarea>
-    <div>{{ websockMsg }}</div>
-    <br />
-    <label>名称</label>
-    <input type="text" id="name" value="admin" />
-    <br />
-    <label>消息</label>
-    <input type="text" id="mes" value="123456"/>
-    <br />
+    <div>{{ array }}</div>
     <br>
     <button @click="connect()" >connect</button>
     <button @click="disconnect()">disconnect</button>
     <button @click="sendMeg();">sendMsg</button>
-    <button @click="getData()">getdata</button>
-    <button @click="setData()">setData</button>
+    <button @click="getArray()">getdata</button>
     <br>
     <br>
 
-    <table class="table">
+    <table class="table table-borderless -sm" style=" font-size:small;">
         <thead>
             <tr>
-                <th>time</th>
-                <th>ca</th>
-                <th>cb</th>
-                <th>va</th>
-                <th>ca</th>
-                <th>k1</th>
-                <th>k2</th>
-                <th>k3</th>
-                <th>ph</th>
+                <th scope="col">T1(°C)</th>
+                <th scope="col">T2(°C)</th>
+                <th scope="col">T3(°C)</th>
+                <th scope="col">T4(°C)</th>
+                <th scope="col">T5(°C)</th>
+                <th scope="col">P1(bar)</th>
+                <th scope="col">P2(bar)</th>
+                <th scope="col">P3(bar)</th>
+                <th scope="col">F(L/h)</th>
+                <th scope="col">E(W)</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-            <td>{{ currenttime }}</td>
-            <td>{{ ca }}</td>
-            <td>{{ cb }}</td>
-            <td>{{ va }}</td>
-            <td>{{ vb }}</td>
-            <td>{{ k1 }}</td>
-            <td>{{ k2 }}</td>
-            <td>{{ k3 }}</td>
-            <td>{{ ph }}</td>
-        </tr>
+                <td>{{ T1 }}</td>
+                <td>{{ T2 }}</td>
+                <td>{{ T3 }}</td>
+                <td>{{ T4 }}</td>
+                <td>{{ T5 }}</td>
+                <td>{{ P1 }}</td>
+                <td>{{ P2 }}</td>
+                <td>{{ P3 }}</td>
+                <td>{{ F }}</td>
+                <td>{{ E }}</td>
+            </tr>
         </tbody>
     </table>
+
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+// import websocketstore from './modules/websocketsStore.js'
+
 export default {
-    name: "websocket",
+    name: "websockets",
+    // websocketstore,
     data() {
         return {
-            
-            // ca: 0.01,
-            cb: 0.01,
-            va: 0.01,
-            vb: 0.01,
-            k1: 0,
-            k2: 0,
-            k3: 0,
-            ph: 0,
 
 
         }
@@ -69,28 +58,59 @@ export default {
         this.connect();
     },
     watch() {
-        this.currenttime();
     },
     computed: {
+
+        ...mapGetters([
+            'GetCurrentTS1',
+            'GetCurrentTS2',
+        ]),
+
         websockMsg() {
+            // return websocketstore.getters.GETreceivedData;
             return this.$store.getters.GETreceivedData;
         },
-        ca(){
-            return this.$store.getters.GETCA;
+        T1(){
+            return this.GetCurrentTS1
         },
-        currenttime(){
-            return this.$store.getters.GETTIME;
+        T2(){
+            return this.GetCurrentTS2
         },
-
-
+        T3(){
+            return this.$store.state.websockets.TS3_value
+        },
+        T4(){
+            return this.$store.state.websockets.TS4_value
+        },
+        T5(){
+            return this.$store.state.websockets.TS5_value
+        },
+        P1(){
+            return this.$store.state.websockets.PS1_value
+        },
+        P2(){
+            return this.$store.state.websockets.PS2_value
+        },
+        P3(){
+            return this.$store.state.websockets.PS3_value
+        },
+        F(){
+            return this.$store.state.websockets.Flow_value
+        },
+        E(){
+            return this.$store.state.websockets.Power_value
+        },
+        array(){
+            return this.$store.state.websockets.PS1_Array
+        },
         
-
     },
 
     methods: {
         connect() {
             if ("WebSocket" in window) {
-                this.$store.dispatch('WEBSOCKET_INIT_ACTION')
+                this.$store.dispatch('WEBSOCKET_INIT_ACTION');
+                console.log(this.$store.state.websockets.TS1_value);
             } else {
                 alert("The browser is not support WebSocket");
             }
@@ -113,13 +133,9 @@ export default {
                 document.getElementById("showMes").value += this.websockMsg + "\n";
             }, 500)
         },
-        getData(){
-            this.$store.dispatch('GETDATA')   
-        },
-
-        setData(){
-            this.$store.dispatch("SETDATA")
-
+        getArray(){
+            // this.$store.dispatch('GETARRAY')  
+            console.log(this.$store.state.websockets.PS1_Array) 
         }
       
 

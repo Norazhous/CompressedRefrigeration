@@ -8,114 +8,208 @@ import time
 import datetime
 
 
-from Simulation_Test import x, Va, Ca, Vb, Cb, ka1, ka2, ka3, Kw, CALCU, counter, number
-# import Simulation_Test
-
-# counter()
-# permit_user = False
-
-# async def display_date():
-#     loop = asyncio.get_running_loop()
-#     end_time = loop.time() + 5.0
-#     while True:
-#         print(datetime.datetime.now())
-#         if (loop.time() + 1.0) >= end_time:
-#             break
-#         await asyncio.sleep(1)
-
-# asyncio.run(display_date())
-
-# class datatest:
-
-
+# generate Json data set
 def dataset():
 
     data = {}
 
-    currenttime = {"currentTime": time.ctime()}
+    currenttime = {"currentTime":time.time()}
+    
     data['time'] = currenttime
 
-    volume = {"va": Va, "vb": Vb}
-    data['volume'] = volume
-    va = {"name": "va", "value": Va}
-    data['volume']['va'] = va
-    vb = {"name": "vb", "value": Vb}
-    data['volume']['vb'] = vb
+    valves = {
+        "V1":1,
+        "V2":0,
+        "V3":0,
+        "V4":0,
+        "V5":0,
+        "V6":0,
+    }
+    data["valves"] = valves
 
-    concentration = {"ca": Ca, "cb": Cb}
-    data['concentration'] = concentration
-    ca = {"name": "ca", "value": Ca}
-    data['concentration']['ca'] = ca
-    cb = {"name": "cb", "value": Cb}
-    data['concentration']['cb'] = cb
+    power_relays = {
+        "W1": False,
+        "W2": False,
+        "Comp": False,
+    } 
+    data["power_relays"] = power_relays
 
-    calculation = {"ka1": ka1, "ka2": ka2, "ka3": ka3,
-                   "test": counter(0), "test1": number(2, 3, 4, 5)}
-    data['calculation'] = calculation
+    sensors = {
+        "pressure": {},
+        "temperature": {},
+        "misc": {},
+    }
+    data["sensors"] = sensors
+
+    pressure = {
+        "PS1" : { },
+        "PS2" : { },
+        "PS3" : { },
+    }
+    data["sensors"]["pressure"] = pressure
+
+    PS1 = {
+        "value": 1,
+        "dxdt":0,
+        "avg":0,
+        "lms":0,
+        "min":0,
+        "max":0
+    }
+    data["sensors"]["pressure"]["PS1"] = PS1
+
+    PS2 = {
+        "value": 1,
+        "dxdt":0,
+        "avg":0,
+        "lms":0,
+        "min":0,
+        "max":0
+    }
+    data["sensors"]["pressure"]["PS2"] = PS2
+
+    PS3 = {
+        "value": 1,
+        "dxdt":0,
+        "avg":0,
+        "lms":0,
+        "min":0,
+        "max":0
+    }
+    data["sensors"]["pressure"]["PS3"] = PS3
+
+    temperature = {
+        "TS1" : { },
+        "TS2" : { },
+        "TS3" : { },
+        "TS4" : { },
+        "TS5" : { },
+    }
+    data["sensors"]["temperature"] = temperature
+
+    TS1 = {
+        "value":1,
+        "dxdt":0,
+        "avg":0,
+        "lms":0,
+        "min":0,
+        "max":0
+    }
+    data["sensors"]["temperature"]["TS1"] = TS1
+
+    TS2 = {
+        "value":1,
+        "dxdt":0,
+        "avg":0,
+        "lms":0,
+        "min":0,
+        "max":0
+    }
+    data["sensors"]["temperature"]["TS2"] = TS2
+
+    TS3 = {
+        "value":1,
+        "dxdt":0,
+        "avg":0,
+        "lms":0,
+        "min":0,
+        "max":0
+    }
+    data["sensors"]["temperature"]["TS3"] = TS3
+
+    TS4 = {
+        "value":1,
+        "dxdt":0,
+        "avg":0,
+        "lms":0,
+        "min":0,
+        "max":0
+    }
+    data["sensors"]["temperature"]["TS4"] = TS4
+
+    TS5 = {
+        "value":1,
+        "dxdt":0,
+        "avg":0,
+        "lms":0,
+        "min":0,
+        "max":0
+    }
+    data["sensors"]["temperature"]["TS5"] = TS5
+
+    misc = {
+        "flow": { },
+        "power" : { },
+        "APS" : { },
+        "ATS" : { }, 
+    }
+    data["sensors"]["misc"] = misc
+
+    flow = {
+        "value":1,
+        "dxdt":0,
+        "avg":0,
+        "lms":0,
+        "min":0,
+        "max":0
+    }
+    data["sensors"]["misc"]["flow"] = flow
+
+    power = {
+        "value":1,
+        "dxdt":0,
+        "avg":0,
+        "lms":0,
+        "min":0,
+        "max":0
+    }
+    data["sensors"]["misc"]["power"] = power
+
+    APS = {
+        "value":1,
+        "dxdt":0,
+        "avg":0,
+        "lms":0,
+        "min":0,
+        "max":0
+    }
+    data["sensors"]["misc"]["APS"] = APS
+
+    ATS = {
+        "value":1,
+        "dxdt":0,
+        "avg":0,
+        "lms":0,
+        "min":0,
+        "max":0
+    }
+    data["sensors"]["misc"]["ATS"] = ATS
+
+    status = {
+      "ok": True,
+      "state": " ",
+      "code":0,
+      "message":" "
+    }
+    data["status"] = status
+
     return data
 
-
-# def data_set(cmd,param):
-#     if cmd == "setCa":
-#        Ca
-
-
-# dataset = {
-#     "time": {"currentTime": time.ctime()},
-#     "volume": {
-#         "va": {"name": "va", "value": Va},
-#         "vb": {"name": "vb", "value": Vb}},
-#     "concentration": {
-#         "ca": {"name": "ca", "value": Ca},
-#         "cb": {"name": "cb", "value": Cb}},
-#     "calculation": {
-#         "ka1": ka1,
-#         "ka2": ka2,
-#         "ka3": ka3,
-#         "test": counter(0),
-#         "test1": number}
-#     }
-
-# dataset = {
-#     "time": {"currentTime": 1},
-#     "volume": {
-#         "va": {"name": "va", "value": 1},
-#         "vb": {"name": "vb", "value": 1}},
-#     "concentration": {
-#         "ca": {"name": "ca", "value": 1},
-#         "cb": {"name": "cb", "value": 1}},
-#     "calculation": {
-#         "ka1": 1,
-#         "ka2": 1,
-#         "ka3": 1,
-#         "test": 1,
-#         "test1": 1}
-#     }
+print(dataset())
 
 # regularly send message to client(2s), the loop will break until check client failed
 async def send_data(websocket):
     while True:
         try:
-            # recv_str = await websocket.recv()
-            # set_cmd = json.loads(json.dumps(recv_str))
-            # print(set_cmd)
             print("send data...")
             dataset_rev = dataset()
             dataPh = json.dumps(dataset_rev, ensure_ascii=False)
-            # dataPh = json.loads(json.dumps(dataset))
             await websocket.send(dataPh)
             await asyncio.sleep(2)
-
-            # elif permit_check ==False:
-            #     print("permit not yet approved",permit_user)
-            #     await asyncio.sleep(5)
-            # else:
-            #     print('check client failed')
         except:
             print("check client failed")
             break
 
-    # await websocket.send(json.dumps(dataPh))
 
 
 async def set_data_value(websocket):
@@ -131,8 +225,6 @@ async def set_data_value(websocket):
             dataPh = json.dumps(dataset_rev, ensure_ascii=False)
             await websocket.send(dataPh)
             print("new data send..")
-            # permit_user = True
-            # print(permit_user)
         else:
             response_str = "the command is not correct"
             print("the command is not correct")
@@ -142,28 +234,28 @@ async def set_data_value(websocket):
 websocket_users = set()
 
 
-# check client Authority
-async def check_user_permit(websocket):
-    print("new websocket_users:", websocket)
-    websocket_users.add(websocket)
-    print("websocket_users list:", websocket_users)
-    while True:
-        recv_str = await websocket.recv()
-        cred_dict = recv_str.split(":")
-        set_cmd = recv_str
-        print(set_cmd)
-        if cred_dict[0] == "admin" and cred_dict[1] == "123456":
-            msg = {'msg': "Congratulation, you have connect with server..."}
-            response_str = json.dumps(msg)
-            await websocket.send(response_str)
-            print("Password is ok...")
-            # permit_user = True
-            # print(permit_user)
-            return True
-        else:
-            response_str = "Sorry, please input the username or password..."
-            print("Password is wrong...")
-            await websocket.send(response_str)
+# check client Authority, not appliable in this case. every student will have a random UUID(which generate accoding to the device, means one device has one UUID), then every UUID will get a different URL to connect the experiment, so no account in this case
+# async def check_user_permit(websocket):
+    # print("new websocket_users:", websocket)
+    # websocket_users.add(websocket)
+    # print("websocket_users list:", websocket_users)
+    # while True:
+    #     recv_str = await websocket.recv()
+    #     cred_dict = recv_str.split(":")
+    #     set_cmd = recv_str
+    #     print(set_cmd)
+    #     if cred_dict[0] == "admin" and cred_dict[1] == "123456":
+    #         msg = {'msg': "Congratulation, you have connect with server..."}
+    #         response_str = json.dumps(msg)
+    #         await websocket.send(response_str)
+    #         print("Password is ok...")
+    #         # permit_user = True
+    #         # print(permit_user)
+    #         return True
+    #     else:
+    #         response_str = "Sorry, please input the username or password..."
+    #         print("Password is wrong...")
+    #         await websocket.send(response_str)
 
 
 # receive msg from client and send the string back
@@ -180,7 +272,7 @@ async def recv_user_msg(websocket):
 async def run(websocket, path):
     while True:
         try:
-            await check_user_permit(websocket)
+            # await check_user_permit(websocket)
             # asyncio.gather(func1(),func2()) can gather different function and run together # seems just can be run once
             asyncio.gather(send_data(websocket))
             await set_data_value(websocket)
