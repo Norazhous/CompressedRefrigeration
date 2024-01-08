@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<!-- Vue_Python_websocket\client\public\images\ET-411C-Compression-refrigeration-system2.jpg -->
+<html>
+<head>
+  <title>Adaptive Image Highlighter with Twinkling Effect</title>
+  <style>
+    /* CSS for highlighting */
+    .image-container {
+      position: relative;
+      width: 100%;
+      max-width: 800px; /* Adjust max-width as needed */
+    }
+
+    .highlight {
+      border: 10px solid red;
+      box-sizing: border-box;
+      position: absolute;
+      animation: twinkling 1s infinite alternate; /* Twinkling effect animation */
+    }
+
+    @keyframes twinkling {
+      0% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0.5;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Adaptive Image Highlighter with Twinkling Effect</h1>
+  
+  <div class="image-container">
+    <img src=" Vue_Python_websocket\client\public\images\ET-411C-Compression-refrigeration-system2.jpg" id="mainImage" alt="Main Image" style="width: 100%; height: auto;">
+    <!-- Adjust width, height, or use CSS classes for responsive design -->
+    
+    <div>
+      <button onmousemove="highlightPosition(0.3, 0.2)">Highlight Position 1</button>
+      <button onclick="highlightPosition(0.6, 0.7)">Highlight Position 2</button>
+      <!-- Add more buttons for different positions -->
+    </div>
+  </div>
+
+  <script>
+    function highlightPosition(xPercentage, yPercentage) {
+      // Get the image element
+      var image = document.getElementById('mainImage');
+      
+      // Calculate the position based on percentages
+      var x = xPercentage * image.width;
+      var y = yPercentage * image.height;
+      
+      // Create a div element for the highlight
+      var highlightDiv = document.createElement('div');
+      highlightDiv.classList.add('highlight');
+      
+      // Set position and size of the highlight
+      highlightDiv.style.left = x + 'px';
+      highlightDiv.style.top = y + 'px';
+      // highlightDiv.style.width = '50px'; // Adjust width and height as needed
+      // highlightDiv.style.height = '50px'; // Adjust width and height as needed
+      highlightDiv.style.width = '5%'; // Initial width as a percentage
+      highlightDiv.style.height = '5%'; // Initial height as a percentage
+      
+      
+      // Append the highlight div to the image container
+      image.parentNode.appendChild(highlightDiv);
+
+      // Listen for window resize event to adjust highlights
+      // window.addEventListener('resize', function() {
+      //   var newX = xPercentage * image.width;
+      //   var newY = yPercentage * image.height;
+        
+      //   var imageWidth = image.offsetWidth;
+      //   var imageHeight = image.offsetHeight;
+        
+      //   var highlightWidth = (50 / image.width) * imageWidth; // Adjust initial width to image width
+      //   var highlightHeight = (50 / image.height) * imageHeight; // Adjust initial height to image height
+
+      //   highlightDiv.style.left = newX + 'px';
+      //   highlightDiv.style.top = newY + 'px';
+      //   highlightDiv.style.width = highlightWidth + 'px';
+      //   highlightDiv.style.height = highlightHeight + 'px';
+      // });
+      window.addEventListener('resize', function() {
+        var imageRect = image.getBoundingClientRect();
+        
+        var newX = xPercentage * imageRect.width;
+        var newY = yPercentage * imageRect.height;
+        
+        highlightDiv.style.left = newX + 'px';
+        highlightDiv.style.top = newY + 'px';
+        highlightDiv.style.width = '5%'; // Adjust highlight width as a percentage
+        highlightDiv.style.height = '5%'; // Adjust highlight height as a percentage
+      });
+    }
+  </script>
+
+</body>
+</html>
+
+<!-- The image is set to occupy the full width of its container, making it responsive.
+Buttons are included to trigger the highlightPosition() function with percentage-based coordinates (xPercentage and yPercentage) relative to the image size.
+JavaScript calculates the actual pixel coordinates based on the percentage values and adds the highlight div accordingly.
+Adjust the max-width, percentages, and dimensions to suit your needs. This allows the highlighter and twinkling effect to work with an adaptive image while maintaining responsiveness. -->

@@ -6,19 +6,26 @@ import json
 import threading
 import time
 import datetime
+import random
 
+
+globalv1 = 0
+globalv2 = 0
 
 # generate Json data set
 def dataset():
 
     data = {}
 
-    currenttime = {"currentTime":time.time()}
+    currenttime = {
+        "currentTime":time.time(),
+        "currentDate":time.ctime(),
+        }
     
     data['time'] = currenttime
 
     valves = {
-        "V1":1,
+        "V1":globalv1,
         "V2":0,
         "V3":0,
         "V4":0,
@@ -49,7 +56,7 @@ def dataset():
     data["sensors"]["pressure"] = pressure
 
     PS1 = {
-        "value": 1,
+        "value": random.randrange(1,10),
         "dxdt":0,
         "avg":0,
         "lms":0,
@@ -59,7 +66,7 @@ def dataset():
     data["sensors"]["pressure"]["PS1"] = PS1
 
     PS2 = {
-        "value": 1,
+        "value": random.randrange(1,10),
         "dxdt":0,
         "avg":0,
         "lms":0,
@@ -69,7 +76,7 @@ def dataset():
     data["sensors"]["pressure"]["PS2"] = PS2
 
     PS3 = {
-        "value": 1,
+        "value": random.randrange(1,10),
         "dxdt":0,
         "avg":0,
         "lms":0,
@@ -88,7 +95,7 @@ def dataset():
     data["sensors"]["temperature"] = temperature
 
     TS1 = {
-        "value":1,
+        "value":random.randrange(1,30),
         "dxdt":0,
         "avg":0,
         "lms":0,
@@ -98,7 +105,7 @@ def dataset():
     data["sensors"]["temperature"]["TS1"] = TS1
 
     TS2 = {
-        "value":1,
+        "value":random.randrange(1,100),
         "dxdt":0,
         "avg":0,
         "lms":0,
@@ -108,7 +115,7 @@ def dataset():
     data["sensors"]["temperature"]["TS2"] = TS2
 
     TS3 = {
-        "value":1,
+        "value":random.randrange(1,100),
         "dxdt":0,
         "avg":0,
         "lms":0,
@@ -118,7 +125,7 @@ def dataset():
     data["sensors"]["temperature"]["TS3"] = TS3
 
     TS4 = {
-        "value":1,
+        "value":random.randrange(1,20),
         "dxdt":0,
         "avg":0,
         "lms":0,
@@ -128,7 +135,7 @@ def dataset():
     data["sensors"]["temperature"]["TS4"] = TS4
 
     TS5 = {
-        "value":1,
+        "value":random.randrange(1,30),
         "dxdt":0,
         "avg":0,
         "lms":0,
@@ -146,7 +153,7 @@ def dataset():
     data["sensors"]["misc"] = misc
 
     flow = {
-        "value":1,
+        "value":random.randrange(1,9),
         "dxdt":0,
         "avg":0,
         "lms":0,
@@ -156,7 +163,7 @@ def dataset():
     data["sensors"]["misc"]["flow"] = flow
 
     power = {
-        "value":1,
+        "value":random.randrange(150,220),
         "dxdt":0,
         "avg":0,
         "lms":0,
@@ -218,13 +225,22 @@ async def set_data_value(websocket):
         set_cmd = json.loads(recv_str)
 
         print(recv_str)
-        if set_cmd["cmd"] == "setCa" and set_cmd["param"] == "3":
-            global Ca
-            Ca = 3
+        global globalv1
+
+        if set_cmd["cmd"] == "setV1off" and set_cmd["param"] == "0":
+            globalv1 = 0
             dataset_rev = dataset()
-            dataPh = json.dumps(dataset_rev, ensure_ascii=False)
-            await websocket.send(dataPh)
-            print("new data send..")
+            data = json.dumps(dataset_rev, ensure_ascii=False)
+            await websocket.send(data)
+            print("setV1off data send..")
+
+        elif set_cmd["cmd"] == "setV1on" and set_cmd["param"] == "1":
+            globalv1 = 1
+            dataset_rev = dataset()
+            data = json.dumps(dataset_rev, ensure_ascii=False)
+            await websocket.send(data)
+            print("setV1on data send..")
+
         else:
             response_str = "the command is not correct"
             print("the command is not correct")
@@ -259,13 +275,13 @@ websocket_users = set()
 
 
 # receive msg from client and send the string back
-async def recv_user_msg(websocket):
-    while True:
-        recv_text = await websocket.recv()
-        print("recv_text:", websocket.pong, recv_text)
-        response_text = f"Server return: {recv_text}"
-        print("response_text:", response_text)
-        await websocket.send(response_text)
+# async def recv_user_msg(websocket):
+#     while True:
+#         recv_text = await websocket.recv()
+#         print("recv_text:", websocket.pong, recv_text)
+#         response_text = f"Server return: {recv_text}"
+#         print("response_text:", response_text)
+#         await websocket.send(response_text)
 
 
 # server main
@@ -276,7 +292,10 @@ async def run(websocket, path):
             # asyncio.gather(func1(),func2()) can gather different function and run together # seems just can be run once
             asyncio.gather(send_data(websocket))
             await set_data_value(websocket)
-            await recv_user_msg(websocket)
+             # await send_data(websocket)
+            
+            
+            # await recv_user_msg(websocket)
         except websockets.ConnectionClosed:
             print("ConnectionClosed...", path)    # ConnectionClosed
             print("websocket_users old:", websocket_users)

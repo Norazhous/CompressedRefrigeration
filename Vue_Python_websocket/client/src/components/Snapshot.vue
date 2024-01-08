@@ -10,17 +10,22 @@
                     </tr>
                 </thead>
 
-                <tr v-for="row in snaps" :id="row.t" :key="row.t">
+                <tr v-for="row in snaps" :id="row.i" :key="row.i">
                     <td v-for='key in Object.keys(row)' :key="key">{{ row[key]}}</td>
                 </tr>
 
                 <tr class='current' id='current-row'>
-                    
+                    <td>{{ GETCurrentDate }}</td>
                     <td>{{ GetCurrentTS1 }}</td>
                     <td>{{ GetCurrentTS2 }}</td>
                     <td>{{ GetCurrentTS3 }}</td>
                     <td>{{ GetCurrentTS4 }}</td>
                     <td>{{ GetCurrentTS5 }}</td>
+                    <td>{{ GetCurrentPS1 }}</td>
+                    <td>{{ GetCurrentPS2 }}</td>
+                    <td>{{ GetCurrentPS3 }}</td>
+                    <td>{{ GetCurrentFlow }}</td>
+                    <td>{{ GetCurrentPower }}</td>
 
                 </tr>
 
@@ -117,6 +122,7 @@ export default {
             'GetCurrentPS3',
             'GetCurrentFlow',
             'GetCurrentPower',
+            'GETCurrentDate',
         ])
     },
     methods: {
@@ -125,8 +131,8 @@ export default {
         ]),
         snapshot() {
 
-            let snap_object = { id: this.getNumData, t: this.getTime, T1: this.GetCurrentTS1, T2: this.GetCurrentTS2, T3: 
-                this.GetCurrentTS3, T4: this.GetCurrentTS4, T5: this.GetCurrentTS5 }; 
+            let snap_object = { t: this.GETCurrentDate, T1: this.GetCurrentTS1, T2: this.GetCurrentTS2, T3: 
+                this.GetCurrentTS3, T4: this.GetCurrentTS4, T5: this.GetCurrentTS5, P1: this.GetCurrentPS1, P2: this.GetCurrentPS2, P3: this.GetCurrentPS3, Flow: this.GetCurrentFlow, Power: this.GetCurrentPower}; 
             //gets added to the data for plotting
             this.addSnapData(snap_object);
             //gets added to the snaps list
@@ -150,9 +156,10 @@ export default {
             let csv = '';
             let filename = '';
             let date = new Date();
+            let data =  this.snaps;
             filename = 'SNAPSHOTs_' + date.getDate().toString() + (date.getMonth() + 1).toString() + date.getFullYear().toString();
 
-            csv ='Time/s,T1/C,T2/C\n';
+            csv ='Time,T1/C,T2/C,T3/C,T4/C,T5/C,P1/bar,P2/bar,P2/bar,Flowrate/(L/h),Power/W\n';
 
             data.forEach(function (d) {
                 csv += d.t.toString();
@@ -166,6 +173,16 @@ export default {
                 csv += d.T4.toString();
                 csv += ",";
                 csv += d.T5.toString();
+                csv += ",";
+                csv += d.P1.toString();
+                csv += ',';
+                csv += d.P2.toString();
+                csv += ",";
+                csv += d.P3.toString();
+                csv += ",";
+                csv += d.Flow.toString();
+                csv += ",";
+                csv += d.Power.toString();
                 csv += "\n";
             });
 

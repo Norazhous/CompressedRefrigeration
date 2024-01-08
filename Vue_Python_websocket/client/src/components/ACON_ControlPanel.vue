@@ -8,9 +8,15 @@
 			<div class="col-3 offset-2">
 				<!-- <button id="V1" class="button-lg button-primary"> V1 </button> -->
 				<div class="form-check form-switch">
-					<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" @click="V1switch()" >
+					<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"
+						:checked="V1SwitchControllor" :disabled="V1SwitchDisabled" @click="valve1ColorChange()">
 					<label class="form-check-label" for="flexSwitchCheckDefault">V1 {{ V1state }}</label>
-					
+
+				</div>
+				<div class="form-check form-switch">
+					<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+					<label class="form-check-label" for="flexSwitchCheckDefault">V4 controller</label>
+
 				</div>
 				<div class="form-check form-switch">
 					<input class="form-check-input" type="checkbox" id="flexSwitchCheckDisabled" disabled>
@@ -20,19 +26,34 @@
 			</div>
 			<div class="col-3">
 				<div class="form-check form-switch">
-					<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" @click="V2switch()">
-					<label class="form-check-label" for="flexSwitchCheckDefault">V2 controller</label>
+					<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"
+						:checked="V2SwitchControllor" :disabled="V2SwitchDisabled" @click="valve2ColorChange()">
+					<label class="form-check-label" for="flexSwitchCheckDefault">V2 {{ V2state }}</label>
 				</div>
 				<div class="form-check form-switch">
-					<input class="form-check-input" type="checkbox" id="flexSwitchCheckCheckedDisabled" checked disabled>
-					<label class="form-check-label" for="flexSwitchCheckCheckedDisabled">Disabled V8</label>
+					<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+					<label class="form-check-label" for="flexSwitchCheckDefault">V5 controller</label>
 				</div>
 			</div>
 			<div class="col-3">
 				<div class="form-check form-switch">
-					<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-					<label class="form-check-label" for="flexSwitchCheckDefault">V3 controller</label>
+					<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"
+						:checked="V3SwitchControllor" :disabled="V3SwitchDisabled" @click="valve3ColorChange()">
+					<label class="form-check-label" for="flexSwitchCheckDefault">V3 {{ V3state }}</label>
 				</div>
+				<div class="form-check form-switch">
+					<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+					<label class="form-check-label" for="flexSwitchCheckDefault">V6 controller</label>
+				</div>
+			</div>
+
+			<div class="btn-group btn-group-toggle" data-toggle="buttons">
+				<label class="btn btn-secondary active">
+					<input type="radio" name="options" id="option1" autocomplete="off" checked> ON
+				</label>
+				<label class="btn btn-secondary">
+					<input type="radio" name="options" id="option2" autocomplete="off"> OFF
+				</label>
 			</div>
 		</div>
 
@@ -43,13 +64,8 @@
 <script>
 import PID from "./ACON_PID.vue"
 // import dataTestStore from "../modules/ACON_dataTestStore"
-
-
-import { SmoothieChart } from 'smoothie';
-import { TimeSeries } from 'smoothie';
-
 //import Tooltip from "./Tooltip.vue";
-
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
 	name: "ControlPanel",
@@ -63,12 +79,27 @@ export default {
 	},
 	data() {
 		return {
-	
+			V1state: "OFF",
+			V1SwitchControllor: false,
+			V1SwitchDisabled: false,
+			V1msg: "msg",
+
+			V2state: "OFF",
+			V2SwitchControllor: false,
+			V2SwitchDisabled: false,
+			V2msg: "msg",
+
+			V3state: "OFF",
+			V3SwitchControllor: false,
+			V3SwitchDisabled: false,
+			V3msg: "msg",
+
+
 		}
 	},
 	computed: {
-		
-		
+
+
 
 	},
 	watch: {
@@ -81,6 +112,218 @@ export default {
 
 	},
 	methods: {
+		...mapActions([
+			'setV1color',// set the color of the valve,setV1color(2)-waiting, setV1color(1)-on,setV1color(0)-off
+			'SENDV1CONTROL',//send command to server,SENDV1CONTROL(1)-open,SENDV1CONTROL(1)-close
+			'setV2color',
+			'SENDV2CONTROL',
+			'setV3color',
+			'SENDV3CONTROL',
+		]),
+
+		//send command first, and the state changes to opening. waith 1 -2 second, check the state again, if the state become opened, then UI change. otherwise, alert and UI keep original.
+		valve1ColorChange() {
+
+			if (this.V1SwitchControllor == false && this.$store.state.websockets.V1 == 0) {
+
+				this.setV1color(2);
+				this.V1state = "opening";
+				this.SENDV1CONTROL(1);
+				this.V1msg = "V1opening";
+				console.log(this.V1msg);
+				this.V1SwitchDisabled = true;
+
+				setTimeout(() => {
+					if (this.$store.state.websockets.V1 == 1) {
+						this.V1SwitchDisabled = false;
+						this.setV1color(1);
+						this.V1state = "ON";
+						this.V1msg = "V1opened";
+						console.log(this.V1msg);
+						this.V1SwitchControllor = true;
+					}
+					else if (this.$store.state.websockets.V1 == 1) {
+						this.V1SwitchDisabled = false;
+						this.setV1color(0);
+						this.V1state = "OFF";
+						this.V1msg = "V1_not_opened_success";
+						console.log(this.V1msg);
+						this.V1SwitchControllor = false;
+					}
+				}, 1000);
+
+			} else if (this.V1SwitchControllor == true && this.$store.state.websockets.V1 == 1) {
+
+				this.setV1color(2);
+				this.V1state = "closing";
+				this.SENDV1CONTROL(0);
+				this.V1msg = "V1closing";
+				console.log(this.V1msg);
+				this.V1SwitchDisabled = true;
+
+				setTimeout(() => {
+					if (this.$store.state.websockets.V1 == 0) {
+						this.V1SwitchDisabled = false;
+						this.setV1color(0);
+						this.V1state = "OFF";
+						this.V1msg = "V1closed";
+						console.log(this.V1msg);
+						this.V1SwitchControllor = false;
+					}
+					else if (this.$store.state.websockets.V1 == 1) {
+						this.V1SwitchDisabled = false;
+						this.setV1color(1);
+						this.V1state = "ON";
+						this.V1msg = "V1_not_closed_success";
+						console.log(this.V1msg);
+						this.V1SwitchControllor = true;
+					}
+				}, 1000);
+
+			} else {
+				// this.V1SwitchControllor = this.V1SwitchControllor;
+				alert(this.V1msg);
+				console.log("error");
+				console.log(this.V1state);
+				console.log(this.$store.state.websockets.V1);
+			}
+		},
+
+
+		valve2ColorChange() {
+
+			if (this.V2SwitchControllor == false && this.$store.state.websockets.V2 == 0) {
+
+				this.setV2color(2);
+				this.V2state = "opening";
+				this.SENDV2CONTROL(1);
+				this.V2msg = "V2opening";
+				console.log(this.V2msg);
+				this.V2SwitchDisabled = true;
+
+				setTimeout(() => {
+					if (this.$store.state.websockets.V2 == 1) {
+						this.V2SwitchDisabled = false;
+						this.setV2color(1);
+						this.V2state = "ON";
+						this.V2msg = "V2opened";
+						console.log(this.V2msg);
+						this.V2SwitchControllor = true;
+					}
+					else if (this.$store.state.websockets.V2 == 1) {
+						this.V2SwitchDisabled = false;
+						this.setV2color(0);
+						this.V2state = "OFF";
+						this.V2msg = "V2_not_opened_success";
+						console.log(this.V2msg);
+						this.V2SwitchControllor = false;
+					}
+				}, 1000);
+
+			} else if (this.V2SwitchControllor == true && this.$store.state.websockets.V2 == 1) {
+
+				this.setV2color(2);
+				this.V2state = "closing";
+				this.SENDV2CONTROL(0);
+				this.V2msg = "V2closing";
+				console.log(this.V2msg);
+				this.V2SwitchDisabled = true;
+
+				setTimeout(() => {
+					if (this.$store.state.websockets.V2 == 0) {
+						this.V2SwitchDisabled = false;
+						this.setV2color(0);
+						this.V2state = "OFF";
+						this.V2msg = "V2closed";
+						console.log(this.V2msg);
+						this.V2SwitchControllor = false;
+					}
+					else if (this.$store.state.websockets.V2 == 1) {
+						this.V2SwitchDisabled = false;
+						this.setV2color(1);
+						this.V2state = "ON";
+						this.V2msg = "V2_not_closed_success";
+						console.log(this.V2msg);
+						this.V2SwitchControllor = true;
+					}
+				}, 1000);
+
+			} else {
+				// this.V1SwitchControllor = this.V1SwitchControllor;
+				alert(this.V2msg);
+				console.log("error");
+				console.log(this.V2state);
+				console.log(this.$store.state.websockets.V2);
+			}
+		},
+
+
+		valve3ColorChange() {
+
+			if (this.V3SwitchControllor == false && this.$store.state.websockets.V3 == 0) {
+
+				this.setV3color(2);
+				this.V3state = "opening";
+				this.SENDV3CONTROL(1);
+				this.V3msg = "V3opening";
+				console.log(this.V3msg);
+				this.V3SwitchDisabled = true;
+
+				setTimeout(() => {
+					if (this.$store.state.websockets.V3 == 1) {
+						this.V3SwitchDisabled = false;
+						this.setV3color(1);
+						this.V3state = "ON";
+						this.V3msg = "V3opened";
+						console.log(this.V3msg);
+						this.V3SwitchControllor = true;
+					}
+					else if (this.$store.state.websockets.V3 == 1) {
+						this.V3SwitchDisabled = false;
+						this.setV3color(0);
+						this.V3state = "OFF";
+						this.V3msg = "V3_not_opened_success";
+						console.log(this.V3msg);
+						this.V3SwitchControllor = false;
+					}
+				}, 1000);
+
+			} else if (this.V3SwitchControllor == true && this.$store.state.websockets.V3 == 1) {
+
+				this.setV3color(2);
+				this.V3state = "closing";
+				this.SENDV3CONTROL(0);
+				this.V3msg = "V3closing";
+				console.log(this.V3msg);
+				this.V3SwitchDisabled = true;
+
+				setTimeout(() => {
+					if (this.$store.state.websockets.V3 == 0) {
+						this.V3SwitchDisabled = false;
+						this.setV3color(0);
+						this.V3state = "OFF";
+						this.V3msg = "V3closed";
+						console.log(this.V3msg);
+						this.V3SwitchControllor = false;
+					}
+					else if (this.$store.state.websockets.V3 == 1) {
+						this.V3SwitchDisabled = false;
+						this.setV3color(1);
+						this.V3state = "ON";
+						this.V3msg = "V3_not_closed_success";
+						console.log(this.V3msg);
+						this.V3SwitchControllor = true;
+					}
+				}, 1000);
+
+			} else {
+				// this.V1SwitchControllor = this.V1SwitchControllor;
+				alert(this.V3msg);
+				console.log("error");
+				console.log(this.V3state);
+				console.log(this.$store.state.websockets.V3);
+			}
+		},
 
 
 		// test() {
@@ -148,7 +391,7 @@ export default {
 		// 	this.dataSocket.onmessage = (event) => {
 
 		// 		try {
-			//delay of timestamp from device and UI
+		//delay of timestamp from device and UI
 		// 			var obj = JSON.parse(event.data);
 		// 			var msgTime = obj.time;
 		// 			var thisDelay = new Date().getTime() - msgTime;

@@ -1,12 +1,12 @@
 <template>
-    <div>{{ array }}</div>
-    <br>
+    <!-- <div>{{ array }}</div> -->
+    <!-- <br>
     <button @click="connect()" >connect</button>
     <button @click="disconnect()">disconnect</button>
     <button @click="sendMeg();">sendMsg</button>
     <button @click="getArray()">getdata</button>
     <br>
-    <br>
+    <br> -->
 
     <table class="table table-borderless -sm" style=" font-size:small;">
         <thead>

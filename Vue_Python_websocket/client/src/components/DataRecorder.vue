@@ -37,7 +37,7 @@ export default {
     
   },
   mounted(){
-    this.set_start_time();
+    // this.set_start_time();
   },
   created(){
 		
@@ -47,7 +47,7 @@ export default {
       'getIsRecording',
       'getNumData',
       'getTime',
-      // 'getCurrentTime',
+      'getCurrentTime',
       'GetCurrentTS1',
       'GetCurrentTS2',
       'GetCurrentTS3',
@@ -59,6 +59,7 @@ export default {
       'GetCurrentFlow',
       'GetCurrentPower',
       "GETCurrentTime",
+      'GETCurrentDate',
       
     ]),
       hasData(){
@@ -69,7 +70,7 @@ export default {
       },
       showRedLight(){
         return this.getNumData % 20 > 10 ? true : false;
-      }
+      },
   },
   watch:{
       newTime(){
@@ -80,6 +81,7 @@ export default {
             this.max_reached = true;
         }
     },
+    
   },
   methods: {
     ...mapActions([
@@ -91,7 +93,7 @@ export default {
     ]),
       record(){
           // this.$store.dispatch('setCurrentTime', new Date().getTime());
-          this.$store.dispatch('setStartTime', this.GETCurrentTime);//getCurrentTime
+          this.$store.dispatch('setStartTime', this.GETCurrentTime);
           console.log(this.$store.state.data.current_time);
           
           this.data_points_count = 0;
@@ -109,19 +111,25 @@ export default {
           this.setIsRecording(false);
       },
       plot(){
+          this.updategetCurrentTime();
           this.data_points_count++;
-          let time = this.getTime;
+          let time = this.GETCurrentDate;
           let T1 = this.GetCurrentTS1;
           let T2 = this.GetCurrentTS2;
           let T3 = this.GetCurrentTS3;
           let T4 = this.GetCurrentTS4;
           let T5 = this.GetCurrentTS5;
+          let P1 = this.GetCurrentPS1;
+          let P2 = this.GetCurrentPS2;
+          let P3 = this.GetCurrentPS3;
+          let Flow = this.GetCurrentFlow;
+          let Power = this.GetCurrentPower;
           
-          let data_object = {id: this.getNumData, t: parseFloat(time), T1:T1 , T2: T2, T3: T3, T4: T4, T5: T5};
+          let data_object = {id: this.getNumData, t: time, T1: T1 , T2: T2, T3: T3, T4: T4, T5: T5, P1: P1, P2:P2, P3:P3, Flow:Flow, Power:Power};
           this.addData(data_object);
           this.hasPlotted = true;
           console.log(data_object);
-
+          
       },
       clearGraph(){
           this.clearAllData();
@@ -129,21 +137,31 @@ export default {
           this.hasPlotted = false;
       },
       outputToCSV(){
-          let csv = 'Time/s,T1/C,T2/C,T3/C,T4/C,T5/C\n';
+          let csv = 'Time,T1/C,T2/C,T3/C,T4/C,T5/C,P1/bar,P2/bar,P2/bar,Flowrate/(L/h),Power/W\n';
           let data = this.$store.getters.getData;
           data.forEach(function(d){
-              csv += d.t.toString();
-              csv += ",";
-              csv += d.T1.toString();
-              csv += ',';
-              csv += d.T2.toString();
-              csv += ",";
-              csv += d.T3.toString();
-              csv += ",";
-              csv += d.T4.toString();
-              csv += ",";
-              csv += d.T5.toString();
-              csv += "\n";
+            csv += d.t.toString();
+                csv += ",";
+                csv += d.T1.toString();
+                csv += ',';
+                csv += d.T2.toString();
+                csv += ",";
+                csv += d.T3.toString();
+                csv += ",";
+                csv += d.T4.toString();
+                csv += ",";
+                csv += d.T5.toString();
+                csv += ",";
+                csv += d.P1.toString();
+                csv += ',';
+                csv += d.P2.toString();
+                csv += ",";
+                csv += d.P3.toString();
+                csv += ",";
+                csv += d.Flow.toString();
+                csv += ",";
+                csv += d.Power.toString();
+                csv += "\n";
           });
           console.log(csv);
           let hiddenElement = document.createElement('a');
@@ -153,10 +171,10 @@ export default {
           hiddenElement.click();
       },
 
-      set_start_time(){
-       // this.$store.dispatch('setStartTime', new Date().getTime());
-        console.log(this.$store.state.data.start_time);
-      }
+      updategetCurrentTime(){
+        this.$store.dispatch('setCurrentTime', this.GETCurrentTime);
+        // console.log(this.getCurrentTime);
+      },
   }
 }
 </script>

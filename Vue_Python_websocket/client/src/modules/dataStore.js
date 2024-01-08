@@ -96,7 +96,8 @@ const dataStore = {
       //   return state.current_ang_vel;
       // },
       getTime(state){
-         return (state.current_time - state.start_time)/1000;    //in seconds
+         return state.current_time - state.start_time;    //in seconds
+        
       },
       getMaxTime(state){
          let time_max = -Infinity;

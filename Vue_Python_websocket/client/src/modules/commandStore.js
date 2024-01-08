@@ -3,6 +3,7 @@
 
 const commandStore = {
     state: () => ({
+        
         dataSocket: null,
         currentMode: '',
         drive: 50,
