@@ -160,17 +160,21 @@
             <path
                 style="fill:#ff0000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.25;stroke-dasharray:none;stroke-opacity:1"
                 d="m 98.205778,97.521596 7.629842,-0.0483" id="path380" />
-            <path
+            
+            <g>
+            <title>Receiver</title>
+            <path v-on:click="highlightValve(0.8, 0.75,'5%','15%')" 
                 style="fill:#ff0000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.25;stroke-dasharray:none;stroke-opacity:1"
                 d="m 101.37533,107.0321 c -0.33356,-0.0265 -0.51054,-0.0451 -0.69051,-0.0723 -0.709822,-0.10743 -1.576802,-0.42984 -2.115182,-0.78657 -0.15694,-0.10399 -0.16019,-0.10746 -0.1779,-0.19005 -0.056,-0.26088 -0.0592,-0.52092 -0.0551,-4.44543 0.002,-2.131974 0.006,-3.878124 0.008,-3.880314 0.002,-0.002 1.47391,-0.0121 3.270182,-0.022 1.79627,-0.01 3.45013,-0.0214 3.67523,-0.0254 l 0.40928,-0.007 v 4.171204 4.17121 l -0.20257,0.14962 c -0.51636,0.38137 -0.85215,0.53524 -1.55856,0.71416 -0.47172,0.11947 -0.86603,0.18149 -1.3808,0.2172 -0.21655,0.015 -1.01836,0.0192 -1.18236,0.006 z"
                 id="path381" />
+            </g>
             <g id="g383" transform="translate(-14.999999,-7.6622272)">
 
                 <title>Valve 1</title>
 
                 <g id="g2-8-5" transform="matrix(1,0,0,-1,903.31208,-86.870338)">
                     <!-- V1 -->
-                    <path v-on:click="highlightValve(0.55, 0.22)" :fill="this.valve1Color" stroke-width="0.25"
+                    <path v-on:click="highlightValve(0.55, 0.22,'5%','5%')" :fill="this.valve1Color" stroke-width="0.25"
                         stroke-linecap="round" stroke-linejoin="round" stroke="#000000" stroke-opacity="1"
                         stroke-miterlimit="4"
                         d="m -800.30842,-122.04517 4.99953,-2.49976 v 4.99952 l -10.00043,-4.99952 v 4.99952 z m 0,0"
@@ -193,7 +197,7 @@
 
                 <g id="g2-8-5-4" transform="matrix(1,0,0,-1,903.31208,-86.870338)">
                     <!-- V2 -->
-                    <path v-on:click="highlightValve(0.55, 0.30)" :fill="this.valve2Color" stroke-width="0.25" stroke-linecap="round"
+                    <path v-on:click="highlightValve(0.55, 0.30,'5%','5%')" :fill="this.valve2Color" stroke-width="0.25" stroke-linecap="round"
                         stroke-linejoin="round" stroke="#000000" stroke-opacity="1" stroke-miterlimit="4"
                         d="m -800.30842,-122.04517 4.99953,-2.49976 v 4.99952 l -10.00043,-4.99952 v 4.99952 z m 0,0"
                         id="path3073-2-2-08" />
@@ -215,7 +219,7 @@
 
                 <g id="g2-8-5-9" transform="matrix(1,0,0,-1,903.31208,-86.870338)">
                     <!-- V3 -->
-                    <path v-on:click="highlightValve(0.55, 0.36)" :fill="this.valve3Color" stroke-width="0.25" stroke-linecap="round"
+                    <path v-on:click="highlightValve(0.55, 0.36,'5%','5%')" :fill="this.valve3Color" stroke-width="0.25" stroke-linecap="round"
                         stroke-linejoin="round" stroke="#000000" stroke-opacity="1" stroke-miterlimit="4"
                         d="m -800.30842,-122.04517 4.99953,-2.49976 v 4.99952 l -10.00043,-4.99952 v 4.99952 z m 0,0"
                         id="path3073-2-2-40" />
@@ -237,7 +241,7 @@
 
                 <g id="g2-8-5-33" transform="matrix(1,0,0,-1,903.31208,-86.870338)">
                     <!-- V4 -->
-                    <path v-on:click="highlightValve(0.55, 0.44)" fill="#808080" stroke-width="0.25" stroke-linecap="round"
+                    <path v-on:click="highlightValve(0.55, 0.44,'5%','5%')" fill="#808080" stroke-width="0.25" stroke-linecap="round"
                         stroke-linejoin="round" stroke="#000000" stroke-opacity="1" stroke-miterlimit="4"
                         d="m -800.30842,-122.04517 4.99953,-2.49976 v 4.99952 l -10.00043,-4.99952 v 4.99952 z m 0,0"
                         id="path3073-2-2-1" />
@@ -256,7 +260,8 @@
             <g id="g383-54" transform="rotate(90,74.045307,51.129528)">
                 <g id="g2-8-5-0" transform="matrix(1,0,0,-1,903.31208,-86.870338)">
                     <!-- V5 -->
-                    <path fill="#808080" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round" stroke="#000000"
+                    <title> Valve 5</title>
+                    <path v-on:click="highlightValve(0.71, 0.65,'4%','5%')" fill="#808080" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round" stroke="#000000"
                         stroke-opacity="1" stroke-miterlimit="4"
                         d="m -800.30842,-122.04517 4.99953,-2.49976 v 4.99952 l -10.00043,-4.99952 v 4.99952 z m 0,0"
                         id="path3073-2-2-10" />
@@ -293,7 +298,8 @@
             <g id="g383-96" transform="translate(14.996344,60.162938)">
                 <g id="g2-8-5-91" transform="matrix(1,0,0,-1,903.31208,-86.870338)">
                     <!-- V6 -->
-                    <path fill="#808080" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round" stroke="#000000"
+                    <title> Valve 6</title>
+                    <path v-on:click="highlightValve(0.79, 0.63,'5%','5%')" fill="#808080" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round" stroke="#000000"
                         stroke-opacity="1" stroke-miterlimit="4"
                         d="m -800.30842,-122.04517 4.99953,-2.49976 v 4.99952 l -10.00043,-4.99952 v 4.99952 z m 0,0"
                         id="path3073-2-2-2" />
@@ -417,7 +423,7 @@
             <g id="g220" transform="translate(-14.999999,-7.6622272)">
                 <g id="g6435-8" transform="matrix(0,0.3220929,-0.3220929,0,357.93393,-81.08826)"
                     style="stroke-width:0.666667;stroke-miterlimit:4;stroke-dasharray:none">
-                    <rect y="942.36218" x="445" height="45" width="40" id="rect6433-8"
+                    <rect v-on:click="highlightValve(0.1, 0.1,'30%','30%')" y="942.36218" x="445" height="45" width="40" id="rect6433-8"
                         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.666667;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
                     <g transform="rotate(-90,706.7536,277.16853)" inkscape:label="Layer 1" id="layer1-6-5-9"
                         style="stroke-width:0.666667;stroke-miterlimit:4;stroke-dasharray:none">
@@ -874,17 +880,18 @@ export default {
 
         ]),
         //highlight corresponding in Rig component 
-        highlightValve(xPercentage, yPercentage) {
+        //hightlight width 5% , hightlight height 5% for valves
+        highlightValve(xPercentage, yPercentage,highlightwidth, highlightheight) {
             // this.removeHighlight;
             // this.updateHighlight({ xPercentage, yPercentage });
             if (this.positioncount == 0) {
-                RigElement.methods.highlightPosition(xPercentage, yPercentage);
+                RigElement.methods.highlightPosition(xPercentage, yPercentage,highlightwidth, highlightheight);
                 this.positioncount++;
                 // console.log(this.positioncount);
             } else if (this.positioncount == 1) {
                 RigElement.methods.removeHighlightPosition();
                 this.positioncount = 0;
-                RigElement.methods.highlightPosition(xPercentage, yPercentage);
+                RigElement.methods.highlightPosition(xPercentage, yPercentage,highlightwidth, highlightheight);
                 this.positioncount++;
                 // console.log(this.positioncount);              
             } else {

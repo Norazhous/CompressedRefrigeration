@@ -363,18 +363,18 @@ const websocketstore = {
         SENDV1CONTROL({ state, commit }, value) { 
             if (value == 0) {
                 //connect to the server
-                // let msg = JSON.stringify({ cmd: "setV1off", param: "0" })
-                // state.websocket.send(msg);
-                // commit("SETV1");
+                let msg = JSON.stringify({ cmd: "setV1off", param: "0" })
+                state.websocket.send(msg);
+                commit("SETV1");
 
                 //test on the  UI
-                commit("SETV1OFF");
+                // commit("SETV1OFF");
             
             } else if (value == 1) {
-                // let msg = JSON.stringify({ cmd: "setV1on", param: "1" })
-                // state.websocket.send(msg);
-                // commit("SETV1");
-                commit("SETV1ON");
+                let msg = JSON.stringify({ cmd: "setV1on", param: "1" })
+                state.websocket.send(msg);
+                commit("SETV1");
+                // commit("SETV1ON");
             }
         },
         SENDV2CONTROL({ state, commit }, value) { 

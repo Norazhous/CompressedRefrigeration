@@ -57,7 +57,7 @@ export default {
     //   this.highlightPosition(this.xPercentage, this.yPercentage);
     // },
 
-    highlightPosition(xPercentage, yPercentage) {
+    highlightPosition(xPercentage, yPercentage,highlightwidth, highlightheight) {
       // Get the image element
       var image = document.getElementById('mainImage');
 
@@ -73,8 +73,8 @@ export default {
       // Set position and size of the highlight
       highlightDiv.style.left = x + 'px';
       highlightDiv.style.top = y + 'px';
-      highlightDiv.style.width = '5%'; // Initial width as a percentage
-      highlightDiv.style.height = '5%'; // Initial height as a percentage
+      highlightDiv.style.width = highlightwidth; // Initial width as a percentage
+      highlightDiv.style.height = highlightheight; // Initial height as a percentage
 
 
       // Append the highlight div to the image container
@@ -88,8 +88,8 @@ export default {
 
         highlightDiv.style.left = newX + 'px';
         highlightDiv.style.top = newY + 'px';
-        highlightDiv.style.width = '5%'; // Adjust highlight width as a percentage
-        highlightDiv.style.height = '5%'; // Adjust highlight height as a percentage
+        highlightDiv.style.width = highlightwidth; // Adjust highlight width as a percentage
+        highlightDiv.style.height = highlightheight; // Adjust highlight height as a percentage
       });
 
     },
