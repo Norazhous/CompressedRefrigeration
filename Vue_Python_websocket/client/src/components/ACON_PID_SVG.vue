@@ -881,6 +881,7 @@ export default {
         ]),
         //highlight corresponding in Rig component 
         //hightlight width 5% , hightlight height 5% for valves
+        // now has 9
         highlightValve(xPercentage, yPercentage,highlightwidth, highlightheight) {
             // this.removeHighlight;
             // this.updateHighlight({ xPercentage, yPercentage });
