@@ -6,44 +6,45 @@
 		</div>
 		<div id="buttons" class="row">
 			<div class="col-3 offset-2">
-				<!-- <button id="V1" class="button-lg button-primary"> V1 </button> -->
+				<!-- <button id="V1" class="button-lg button-primary" > V1 </button>  -->
+				<!-- id="flexSwitchCheckDefault" in the input, and  for="flexSwitchCheckDefault" in the label-->
 				<div class="form-check form-switch">
-					<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"
+					<input class="form-check-input" type="checkbox" 
 						:checked="V1SwitchControllor" :disabled="V1SwitchDisabled" @click="valve1ColorChange()">
-					<label class="form-check-label" for="flexSwitchCheckDefault">V1 {{ V1state }}</label>
+					<label class="form-check-label"  :style="{color:valve1Color}">V1 {{ V1state }}</label>
 
 				</div>
 				<div class="form-check form-switch">
-					<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-					<label class="form-check-label" for="flexSwitchCheckDefault">V4 controller</label>
+					<input class="form-check-input" type="checkbox" >
+					<label class="form-check-label" >V4 controller</label>
 
 				</div>
 				<div class="form-check form-switch">
-					<input class="form-check-input" type="checkbox" id="flexSwitchCheckDisabled" disabled>
-					<label class="form-check-label" for="flexSwitchCheckDisabled">Disabled V7</label>
+					<input class="form-check-input" type="checkbox"  disabled>
+					<label class="form-check-label" >Disabled V7</label>
 				</div>
 
 			</div>
 			<div class="col-3">
 				<div class="form-check form-switch">
-					<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"
+					<input class="form-check-input" type="checkbox" 
 						:checked="V2SwitchControllor" :disabled="V2SwitchDisabled" @click="valve2ColorChange()">
-					<label class="form-check-label" for="flexSwitchCheckDefault">V2 {{ V2state }}</label>
+					<label class="form-check-label"  :style="{color:valve2Color}">V2 {{ V2state }}</label>
 				</div>
 				<div class="form-check form-switch">
-					<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-					<label class="form-check-label" for="flexSwitchCheckDefault">V5 controller</label>
+					<input class="form-check-input" type="checkbox" >
+					<label class="form-check-label" >V5 controller</label>
 				</div>
 			</div>
 			<div class="col-3">
 				<div class="form-check form-switch">
-					<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"
+					<input class="form-check-input" type="checkbox" 
 						:checked="V3SwitchControllor" :disabled="V3SwitchDisabled" @click="valve3ColorChange()">
-					<label class="form-check-label" for="flexSwitchCheckDefault">V3 {{ V3state }}</label>
+					<label class="form-check-label"  :style="{color:valve3Color}">V3 {{ V3state }}</label>
 				</div>
 				<div class="form-check form-switch">
-					<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-					<label class="form-check-label" for="flexSwitchCheckDefault">V6 controller</label>
+					<input class="form-check-input" type="checkbox" >
+					<label class="form-check-label" >V6 controller</label>
 				</div>
 			</div>
 
@@ -98,6 +99,15 @@ export default {
 		}
 	},
 	computed: {
+		valve1Color() {
+            return this.$store.state.ui.v1color;
+        },
+        valve2Color() {
+            return this.$store.state.ui.v2color;
+        },
+        valve3Color() {
+            return this.$store.state.ui.v3color;
+        }
 
 
 

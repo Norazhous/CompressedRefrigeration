@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Real-time Chart</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.3.2"></script>
+<script src="https://cdn.jsdelivr.net/npm/luxon@1.27.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@1.0.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-streaming@2.0.0"></script>
+</head>
+<body>
+    <div style="width: 200; height: 200;">
+        <canvas id="realTimeChart" width="600" height="400"></canvas>
+        <!-- <button onclick="getCurrentTime()"> getCurrentTime</button> -->
+    </div>
+    
+
+    <script>
+        var startTime = Date.now();
+        console.log(startTime);
+
+        // function getCurrentTime(){
+        //     currentTime = Date.now(); 
+            
+        // };
+        // getCurrentTime();
+        
+        // Initialize Chart.js
+        var ctx = document.getElementById('realTimeChart').getContext('2d');
+        var realTimeChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [], // Fixed x-axis labels
+                datasets: [{
+                    label: 'Fixed Axes Data',
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1,
+                    data: []  // Initialize with empty data
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        type: 'linear', // Fixed x-axis scale
+                        position: 'bottom', // Position x-axis at the bottom
+                        ticks: {
+                            stepSize: 10, // Step size for x-axis
+                            min: 0,      // Minimum value for x-axis
+                            max: 60      // Maximum value for x-axis
+                        },
+                    },
+                    // x: {
+                    //     type: 'realtime',
+                    //     realtime: {
+                    //         duration: 20000, // Data will be removed after 20 seconds
+                    //         refresh: 1000, // Refresh data every 1 second
+                    //         delay: 1000, // Delay of 1 second
+                    //         pause: false, // No pause
+                    //         ttl: undefined, // Time-to-live (in ms) for data point, undefined means data points do not expire
+                    //     }
+                    // },
+                    y: {
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Value'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Function to update chart data
+        function updateChartData() {
+            // Update chart with new data
+            var currentTime = (Date.now() -startTime)/1000;
+            realTimeChart.data.datasets.forEach(function(dataset) {
+                dataset.data.push({
+                    x: currentTime,
+                    y: Math.random() * 100
+                });
+                console.log(dataset.data);
+            });
+            // Remove data if more than 20 seconds old
+            realTimeChart.data.datasets.forEach(function(dataset) {
+                dataset.data = dataset.data.filter(function(data) {
+                    return data.x > currentTime - 100;
+                });
+            });
+            // Update the chart
+            realTimeChart.update();
+            
+        }
+
+
+        // function updateChartData() {
+        //     // Add new data point
+        //     var currentTime = realTimeChart.data.labels.length;
+        //     realTimeChart.data.labels.push(currentTime);
+        //     realTimeChart.data.datasets[0].data.push(Math.random() * 100);
+
+        //     // Remove first data point if more than 60 points
+        //     // if (realTimeChart.data.labels.length > 60) {
+        //     //     realTimeChart.data.labels.shift();
+        //     //     realTimeChart.data.datasets[0].data.shift();
+        //     // }
+
+        //     // Update the chart
+        //     realTimeChart.update();
+        // }
+
+
+        // Call updateChartData every second
+        setInterval(updateChartData, 1000);
+
+        // manual: https://nagix.github.io/chartjs-plugin-streaming/master/guide/getting-started.html#installation
+    </script>
+</body>
+</html>

@@ -1,5 +1,5 @@
-//Store for sending commands through the dataSocket
 
+////Store for sending commands through the dataSocket
 
 const commandStore = {
     state: () => ({

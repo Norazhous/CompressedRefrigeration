@@ -10,9 +10,9 @@
 
        <consent v-if='showConsentModal && getIsLoggingOn' @consentset="closeConsentModal"/>
 
-        <div v-if="isWorkspaceOn">
+        <!-- <div v-if="isWorkspaceOn">
           <workspace :protractorAdded="protractorAdded" :rulerAdded="rulerAdded"/>
-        </div>
+        </div> -->
 
         <streams id='streams' />
         
