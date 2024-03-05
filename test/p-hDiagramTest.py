@@ -4,7 +4,7 @@ import csv
 import numpy as np
 
 
-filename = './data/Book1.csv'
+filename = '../test/phdata/Book1.csv'
 
 df = pd.read_csv(filename)
 
