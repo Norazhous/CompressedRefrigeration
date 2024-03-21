@@ -5,15 +5,16 @@
 				<RigElement />
 			</div>
 			<div class="col-4" id="video" style="margin: auto;">
-				<video-element :url="url" />
+				<video-element :url="url1" />
 			</div>
-			<!-- <div class="col-4" id="video" style="margin: auto;">
-				<video-element :url="url" />
+			<div class="col-4" id="video" style="margin: auto;">
+				<video-element :url="url2" />
 			</div>
-			<div class="col-4" id="video" style="margin: auto;">	
+			<!-- <div class="col-4" id="video" style="margin: auto;">	
 				<video-element :url="url" />
 			</div> -->
-			<button @click="CheckURL()">checkURL</button>
+			<button @click="CheckURL1()">checkURL1</button>
+			<button @click="CheckURL2()">checkURL2</button>
 			<!-- <div class="row">
 				<websockets />
 			</div> -->
@@ -42,7 +43,7 @@
 import axios from "axios";
 import VideoElement from "./ACON_VideoElement.vue";
 import RigElement from "./ACON_RigElement.vue";
-import websockets from "./Websocket.vue";
+// import websockets from "./Websocket.vue";
 
 export default {
 	name: "WebcamStream",
@@ -54,54 +55,119 @@ export default {
 	data() {
 		return {
 			// player: null,
-			stream: Object,
+			stream1: Object,
+			stream2: Object,
 		}
 	},
 	computed: {
-		urlOK() {
-			return this.$store.getters.getVideoURLObtained;
-		},
-		streamOK() {
+		// url1OK() {
+		// 	return this.$store.getters.getVideoURLObtained;
+		// },
+		// url2OK() {
+		// 	return this.$store.getters.videoAltURLObtained;
+		// },
+		streamOK1() {
 			return this.$store.getters.getStream("video");
 		},
-		url() {
+		streamOK2() {
+			return this.$store.getters.getStream("video-alt");
+		},
+		url1() {
 			return this.$store.getters.getVideoURL;
 
 		},
+		url2() {
+			return this.$store.getters.getVideoAltURL;
+
+		},
+		// url2() {
+		// 	return this.$store.getters.getVideoAltURL;
+
+		// },
 
 	},
 	mounted() {
 		var _this = this;
 		var reconnect = function () {
-			_this.accessVideo();
+			_this.accessVideo1();
+			_this.accessVideo2();
 		};
 		//make second and subsequent connections
 		document.addEventListener("streams:dropped", reconnect);
 	},
 	methods: {
-		accessVideo() {
-			this.stream = this.$store.getters.getStream("video");
-			var accessURL = this.stream.url;
-			var token = this.stream.token;
+		// accessVideo() {
+		// 	this.stream1 = this.$store.getters.getStream("video");
+		// 	var accessURL1 = this.stream1.url;
+		// 	this.stream2 = this.$store.getters.getStream("video-alt");
+		// 	var accessURL2 = this.stream2.url;
+		// 	var token1 = this.stream1.token;
+		// 	var token2 = this.stream2.token;
+		// 	var store = this.$store;
+		// 	store.dispatch("deleteVideoURL");		////THIS HAS BEEN ADDED
+		// 	store.dispatch("deleteVideoAltURL");		////THIS HAS BEEN ADDED
+		// 	axios.all([
+		// 		axios.post(accessURL1, {}, { headers: { Authorization: token1 } }),
+		// 		axios.post(accessURL2, {}, { headers: { Authorization: token2 } })
+		// 	])
+		// 	.then(axios.spread((response1,response2) => {
+		// 			store.dispatch("setVideoURL", response1.data.uri);
+		// 			store.dispatch("setVideoAltURL", response2.data.uri);
+		// 		}))
+		// 	.catch((err) => console.log(err))	
+		// },
+		// CheckURL() {
+		// 	console.log(this.$store.getters.getVideoURL);
+		// 	console.log(this.$store.getters.getVideoAltURL);
+		// }
+
+		accessVideo1() {
+			this.stream1 = this.$store.getters.getStream("video");
+			var accessURL1 = this.stream1.url;
+			var token1 = this.stream1.token;
 			var store = this.$store;
 			store.dispatch("deleteVideoURL");		////THIS HAS BEEN ADDED
 			axios
-				.post(accessURL, {}, { headers: { Authorization: token } })
-				.then((response) => {
-					store.dispatch("setVideoURL", response.data.uri);
+			.post(accessURL1, {}, { headers: { Authorization: token1 } })
+			.then((response1) => {
+					store.dispatch("setVideoURL", response1.data.uri);
 				})
-				.catch((err) => console.log(err));
+			.catch((err) => console.log(err))	
 		},
-		CheckURL() {
+		CheckURL1() {
 			console.log(this.$store.getters.getVideoURL);
+		},
+
+		accessVideo2() {
+			this.stream2 = this.$store.getters.getStream("video-alt");
+			var accessURL2 = this.stream2.url;
+			var token2 = this.stream2.token;
+			var store = this.$store;
+			store.dispatch("deleteVideoAltURL");		////THIS HAS BEEN ADDED
+			axios
+			.post(accessURL2, {}, { headers: { Authorization: token2 } })
+			.then((response2) => {
+					store.dispatch("setVideoAltURL", response2.data.uri);
+				})
+			.catch((err) => console.log(err))	
+		},
+		CheckURL2() {
+			console.log(this.$store.getters.getVideoAltURL);
 		}
 	},
 	watch: {
-		streamOK: function (is) {
+		streamOK1: function (is) {
 			if (is) {
-				this.accessVideo();
+				this.accessVideo1();
 			} else {
-				console.log("no stream");
+				console.log("no A stream");
+			}
+		},
+		streamOK2: function (is) {
+			if (is) {
+				this.accessVideo2();
+			} else {
+				console.log("no B stream");
 			}
 		},
 		// urlOK(is) {

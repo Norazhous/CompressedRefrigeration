@@ -10,9 +10,9 @@ import rawDataStore from './modules/rawDataStore.js'
 const store = createStore({
     modules:{
       rawData: rawDataStore,
-      websockets:websocketstore,
+      // websockets:websocketstore,
       stream: streamStore,
-      data: dataStore,
+      // data: dataStore,
       ui: uiStore,
       command: commandStore,
       logging: loggingStore,

@@ -10,6 +10,10 @@ const uiStore = {
       v1color: '#808080',  //valves color change
       v2color: '#808080',
       v3color: '#808080',
+      v4color: '#808080',  
+      v5color: '#808080',
+      v6color: '#808080',
+      v7color: '#808080',
       // highlightedPositions: {},
       // isHighlightVisiable: false,
 
@@ -73,6 +77,50 @@ const uiStore = {
          state.v3color = "#ff0000";
       },
 
+      SETV4openedcolor(state) {
+         state.v4color = "#008000";
+      },
+      SETV4closecolor(state) {
+         state.v4color = "#808080";
+      },
+      SETV4waitcolor(state) {
+         state.v4color = "#ff0000";
+      },
+
+
+      SETV5openedcolor(state) {
+         state.v5color = "#008000";
+      },
+      SETV5closecolor(state) {
+         state.v5color = "#808080";
+      },
+      SETV5waitcolor(state) {
+         state.v5color = "#ff0000";
+      },
+
+
+      SETV6openedcolor(state) {
+         state.v6color = "#008000";
+      },
+      SETV6closecolor(state) {
+         state.v6color = "#808080";
+      },
+      SETV6waitcolor(state) {
+         state.v6color = "#ff0000";
+      },
+
+
+      SETV7openedcolor(state) {
+         state.v7color = "#008000";
+      },
+      SETV7closecolor(state) {
+         state.v7color = "#808080";
+      },
+      SETV7waitcolor(state) {
+         state.v7color = "#ff0000";
+      },
+
+
    },
    actions: {
 
@@ -120,6 +168,51 @@ const uiStore = {
             context.commit("SETV3waitcolor");
          } else {
             console.log("V3 controllor error");
+         }
+      },
+
+      setV4color(context, value) {
+         if (value == 1) {
+            context.commit("SETV4openedcolor");
+         } else if (value == 0) {
+            context.commit("SETV4closecolor");
+         } else if (value == 2) {
+            context.commit("SETV4waitcolor");
+         } else {
+            console.log("V4 controllor error");
+         }
+      },
+      setV5color(context, value) {
+         if (value == 1) {
+            context.commit("SETV5openedcolor");
+         } else if (value == 0) {
+            context.commit("SETV5closecolor");
+         } else if (value == 2) {
+            context.commit("SETV5waitcolor");
+         } else {
+            console.log("V5 controllor error");
+         }
+      },
+      setV6color(context, value) {
+         if (value == 1) {
+            context.commit("SETV6openedcolor");
+         } else if (value == 0) {
+            context.commit("SETV6closecolor");
+         } else if (value == 2) {
+            context.commit("SETV6waitcolor");
+         } else {
+            console.log("V6 controllor error");
+         }
+      },
+      setV7color(context, value) {
+         if (value == 1) {
+            context.commit("SETV7openedcolor");
+         } else if (value == 0) {
+            context.commit("SETV7closecolor");
+         } else if (value == 2) {
+            context.commit("SETV7waitcolor");
+         } else {
+            console.log("V7 controllor error");
          }
       },
 

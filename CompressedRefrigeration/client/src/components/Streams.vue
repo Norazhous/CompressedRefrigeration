@@ -41,6 +41,9 @@ export default {
     videoStream() {
       return this.$store.getters.getStream("video");
     },
+    videoAltStream() {
+      return this.$store.getters.getStream("video-alt");
+    },
     dataStream() {
       return this.$store.getters.getStream("data");
     },

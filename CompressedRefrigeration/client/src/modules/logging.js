@@ -7,7 +7,7 @@ const loggingStore = {
         isLoggingOn: false,                  //manually set for different UI versions
         logging_consent_given: false,        //SET to false in production
         hardware: '',                       //will be set from the LoggingStream.vue component
-        exp: 'pendulum',                     //Hardcoded for this UI
+        exp: 'refrigeration',                     //Hardcoded for this UI
         course: '',                    //set in Streams.vue from query param
         saved: [],
 

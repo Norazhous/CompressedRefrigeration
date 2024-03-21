@@ -9,53 +9,50 @@
 				<!-- <button id="V1" class="button-lg button-primary" > V1 </button>  -->
 				<!-- id="flexSwitchCheckDefault" in the input, and  for="flexSwitchCheckDefault" in the label-->
 				<div class="form-check form-switch">
-					<input class="form-check-input" type="checkbox" 
-						:checked="V1SwitchControllor" :disabled="V1SwitchDisabled" @click="valve1ColorChange()">
-					<label class="form-check-label"  :style="{color:valve1Color}">V1 {{ V1state }}</label>
+					<input class="form-check-input" type="checkbox" :checked="V1SwitchControllor"
+						:disabled="V1SwitchDisabled" @click="valve1ColorChange()">
+					<label class="form-check-label" :style="{ color: valve1Color }">V1 {{ V1state }}</label>
 
 				</div>
 				<div class="form-check form-switch">
-					<input class="form-check-input" type="checkbox" >
-					<label class="form-check-label" >V4 controller</label>
+					<input class="form-check-input" type="checkbox" :checked="V4SwitchControllor"
+						:disabled="V4SwitchDisabled" @click="valve4ColorChange()">
+					<label class="form-check-label" :style="{ color: valve4Color }">V4 {{ V4state }}</label>
 
 				</div>
 				<div class="form-check form-switch">
-					<input class="form-check-input" type="checkbox"  disabled>
-					<label class="form-check-label" >Disabled V7</label>
+					<input class="form-check-input" type="checkbox" :checked="V7SwitchControllor"
+						:disabled="V7SwitchDisabled" @click="valve7ColorChange()">
+					<label class="form-check-label" :style="{ color: valve7Color }"> V7 {{ V4state }}</label>
 				</div>
 
 			</div>
 			<div class="col-3">
 				<div class="form-check form-switch">
-					<input class="form-check-input" type="checkbox" 
-						:checked="V2SwitchControllor" :disabled="V2SwitchDisabled" @click="valve2ColorChange()">
-					<label class="form-check-label"  :style="{color:valve2Color}">V2 {{ V2state }}</label>
+					<input class="form-check-input" type="checkbox" :checked="V2SwitchControllor"
+						:disabled="V2SwitchDisabled" @click="valve2ColorChange()">
+					<label class="form-check-label" :style="{ color: valve2Color }">V2 {{ V2state }}</label>
 				</div>
 				<div class="form-check form-switch">
-					<input class="form-check-input" type="checkbox" >
-					<label class="form-check-label" >V5 controller</label>
+					<input class="form-check-input" type="checkbox" :checked="V5SwitchControllor"
+						:disabled="V5SwitchDisabled" @click="valve5ColorChange()">
+					<label class="form-check-label" :style="{ color: valve5Color }">V5 {{ V5state }}</label>
 				</div>
 			</div>
 			<div class="col-3">
 				<div class="form-check form-switch">
-					<input class="form-check-input" type="checkbox" 
-						:checked="V3SwitchControllor" :disabled="V3SwitchDisabled" @click="valve3ColorChange()">
-					<label class="form-check-label"  :style="{color:valve3Color}">V3 {{ V3state }}</label>
+					<input class="form-check-input" type="checkbox" :checked="V3SwitchControllor"
+						:disabled="V3SwitchDisabled" @click="valve3ColorChange()">
+					<label class="form-check-label" :style="{ color: valve3Color }">V3 {{ V3state }}</label>
 				</div>
 				<div class="form-check form-switch">
-					<input class="form-check-input" type="checkbox" >
-					<label class="form-check-label" >V6 controller</label>
+					<input class="form-check-input" type="checkbox" :checked="V6SwitchControllor"
+						:disabled="V6SwitchDisabled" @click="valve6ColorChange()">
+					<label class="form-check-label" :style="{ color: valve6Color }">V6 {{ V6state }}</label>
 				</div>
 			</div>
 
-			<div class="btn-group btn-group-toggle" data-toggle="buttons">
-				<label class="btn btn-secondary active">
-					<input type="radio" name="options" id="option1" autocomplete="off" checked> ON
-				</label>
-				<label class="btn btn-secondary">
-					<input type="radio" name="options" id="option2" autocomplete="off"> OFF
-				</label>
-			</div>
+
 		</div>
 
 
@@ -81,59 +78,92 @@ export default {
 	data() {
 		return {
 			dataSocket: null,
-			canvas: null,
+			// canvas: null,
 
 			V1state: "OFF",
 			V1SwitchControllor: false,
 			V1SwitchDisabled: false,
-			V1msg: "msg",
+			V1msg: "V1 error",
 
 			V2state: "OFF",
 			V2SwitchControllor: false,
 			V2SwitchDisabled: false,
-			V2msg: "msg",
+			V2msg: "V2 error",
 
 			V3state: "OFF",
 			V3SwitchControllor: false,
 			V3SwitchDisabled: false,
-			V3msg: "msg",
+			V3msg: "V3 error",
+
+			V4state: "OFF",
+			V4SwitchControllor: false,
+			V4SwitchDisabled: false,
+			V4msg: "V4 error",
+
+			V5state: "OFF",
+			V5SwitchControllor: false,
+			V5SwitchDisabled: false,
+			V5msg: "V5 error",
+
+			V6state: "OFF",
+			V6SwitchControllor: false,
+			V6SwitchDisabled: false,
+			V6msg: "V6 error",
+
+			V7state: "OFF",
+			V7SwitchControllor: false,
+			V7SwitchDisabled: false,
+			V7msg: "V7 error",
 
 
 		}
 	},
 	computed: {
 		...mapGetters([
-		'getDataURLObtained',
-	]),
+			'getDataURLObtained',
+		]),
 		valve1Color() {
-            return this.$store.state.ui.v1color;
-        },
-        valve2Color() {
-            return this.$store.state.ui.v2color;
-        },
-        valve3Color() {
-            return this.$store.state.ui.v3color;
-        }
+			return this.$store.state.ui.v1color;
+		},
+		valve2Color() {
+			return this.$store.state.ui.v2color;
+		},
+		valve3Color() {
+			return this.$store.state.ui.v3color;
+		},
+		valve4Color() {
+			return this.$store.state.ui.v4color;
+		},
+		valve5Color() {
+			return this.$store.state.ui.v5color;
+		},
+		valve6Color() {
+			return this.$store.state.ui.v6color;
+		},
+		valve7Color() {
+			return this.$store.state.ui.v7color;
+		},
+
 
 
 
 	},
 	watch: {
-		url(){
-            try{
-				if(this.url != '' && this.getDataURLObtained){
-					this.connect();	
-				} else{
+		url() {
+			try {
+				if (this.url != '' && this.getDataURLObtained) {
+					this.connect();
+				} else {
 					console.log('disconnecting: ' + this.url);
 				}
-				
-			} catch(e){
+
+			} catch (e) {
 				console.log(e);
 			}
-            
-			
+
+
 		},
-		
+
 
 	},
 	mounted() {
@@ -149,12 +179,20 @@ export default {
 			'SENDV2CONTROL',
 			'setV3color',
 			'SENDV3CONTROL',
+			'setV4color',
+			'SENDV4CONTROL',
+			'setV5color',
+			'SENDV5CONTROL',
+			'setV6color',
+			'SENDV6CONTROL',
+			'setV7color',
+			'SENDV7CONTROL',
 		]),
 
 		//send command first, and the state changes to opening. waith 1 -2 second, check the state again, if the state become opened, then UI change. otherwise, alert and UI keep original.
 		valve1ColorChange() {
 
-			if (this.V1SwitchControllor == false && this.$store.state.websockets.V1 == 0) {
+			if (this.V1SwitchControllor == false && this.$store.state.command.V1 == 0) {
 
 				this.setV1color(2);
 				this.V1state = "opening";
@@ -164,7 +202,7 @@ export default {
 				this.V1SwitchDisabled = true;
 
 				setTimeout(() => {
-					if (this.$store.state.websockets.V1 == 1) {
+					if (this.$store.state.command.V1 == 1) {
 						this.V1SwitchDisabled = false;
 						this.setV1color(1);
 						this.V1state = "ON";
@@ -172,7 +210,7 @@ export default {
 						console.log(this.V1msg);
 						this.V1SwitchControllor = true;
 					}
-					else if (this.$store.state.websockets.V1 == 1) {
+					else if (this.$store.state.command.V1 == 0) {
 						this.V1SwitchDisabled = false;
 						this.setV1color(0);
 						this.V1state = "OFF";
@@ -182,7 +220,7 @@ export default {
 					}
 				}, 1000);
 
-			} else if (this.V1SwitchControllor == true && this.$store.state.websockets.V1 == 1) {
+			} else if (this.V1SwitchControllor == true && this.$store.state.command.V1 == 1) {
 
 				this.setV1color(2);
 				this.V1state = "closing";
@@ -192,7 +230,7 @@ export default {
 				this.V1SwitchDisabled = true;
 
 				setTimeout(() => {
-					if (this.$store.state.websockets.V1 == 0) {
+					if (this.$store.state.command.V1 == 0) {
 						this.V1SwitchDisabled = false;
 						this.setV1color(0);
 						this.V1state = "OFF";
@@ -200,7 +238,7 @@ export default {
 						console.log(this.V1msg);
 						this.V1SwitchControllor = false;
 					}
-					else if (this.$store.state.websockets.V1 == 1) {
+					else if (this.$store.state.command.V1 == 1) {
 						this.V1SwitchDisabled = false;
 						this.setV1color(1);
 						this.V1state = "ON";
@@ -211,18 +249,17 @@ export default {
 				}, 1000);
 
 			} else {
-				// this.V1SwitchControllor = this.V1SwitchControllor;
 				alert(this.V1msg);
-				console.log("error");
-				console.log(this.V1state);
-				console.log(this.$store.state.websockets.V1);
+				console.log("error:" + "V1 is" + this.V1state + "; its code is" + this.$store.state.command.V1 + ";" + "V2 is" + this.V2state + "; its code is" + this.$store.state.command.V2 + ";"
+					+ "V3 is" + this.V3state + "; its code is" + this.$store.state.command.V3 + ";" + "V4 is" + this.V4state + "; its code is" + this.$store.state.command.V4 + ";" + "V5 is" + this.V5state + "; its code is" + this.$store.state.command.V5 + ";"
+					+ "V6 is" + this.V6state + "; its code is" + this.$store.state.command.V6 + ";" + "V7 is" + this.V7state + "; its code is" + this.$store.state.command.V7 + ";");
 			}
 		},
 
 
 		valve2ColorChange() {
 
-			if (this.V2SwitchControllor == false && this.$store.state.websockets.V2 == 0) {
+			if (this.V2SwitchControllor == false && this.$store.state.command.V2 == 0) {
 
 				this.setV2color(2);
 				this.V2state = "opening";
@@ -232,7 +269,7 @@ export default {
 				this.V2SwitchDisabled = true;
 
 				setTimeout(() => {
-					if (this.$store.state.websockets.V2 == 1) {
+					if (this.$store.state.command.V2 == 1) {
 						this.V2SwitchDisabled = false;
 						this.setV2color(1);
 						this.V2state = "ON";
@@ -240,7 +277,7 @@ export default {
 						console.log(this.V2msg);
 						this.V2SwitchControllor = true;
 					}
-					else if (this.$store.state.websockets.V2 == 1) {
+					else if (this.$store.state.command.V2 == 0) {
 						this.V2SwitchDisabled = false;
 						this.setV2color(0);
 						this.V2state = "OFF";
@@ -250,7 +287,7 @@ export default {
 					}
 				}, 1000);
 
-			} else if (this.V2SwitchControllor == true && this.$store.state.websockets.V2 == 1) {
+			} else if (this.V2SwitchControllor == true && this.$store.state.command.V2 == 1) {
 
 				this.setV2color(2);
 				this.V2state = "closing";
@@ -260,7 +297,7 @@ export default {
 				this.V2SwitchDisabled = true;
 
 				setTimeout(() => {
-					if (this.$store.state.websockets.V2 == 0) {
+					if (this.$store.state.command.V2 == 0) {
 						this.V2SwitchDisabled = false;
 						this.setV2color(0);
 						this.V2state = "OFF";
@@ -268,7 +305,7 @@ export default {
 						console.log(this.V2msg);
 						this.V2SwitchControllor = false;
 					}
-					else if (this.$store.state.websockets.V2 == 1) {
+					else if (this.$store.state.command.V2 == 1) {
 						this.V2SwitchDisabled = false;
 						this.setV2color(1);
 						this.V2state = "ON";
@@ -279,18 +316,17 @@ export default {
 				}, 1000);
 
 			} else {
-				// this.V1SwitchControllor = this.V1SwitchControllor;
 				alert(this.V2msg);
-				console.log("error");
-				console.log(this.V2state);
-				console.log(this.$store.state.websockets.V2);
+				console.log("error:" + "V1 is" + this.V1state + "; its code is" + this.$store.state.command.V1 + ";" + "V2 is" + this.V2state + "; its code is" + this.$store.state.command.V2 + ";"
+					+ "V3 is" + this.V3state + "; its code is" + this.$store.state.command.V3 + ";" + "V4 is" + this.V4state + "; its code is" + this.$store.state.command.V4 + ";" + "V5 is" + this.V5state + "; its code is" + this.$store.state.command.V5 + ";"
+					+ "V6 is" + this.V6state + "; its code is" + this.$store.state.command.V6 + ";" + "V7 is" + this.V7state + "; its code is" + this.$store.state.command.V7 + ";");
 			}
 		},
 
 
 		valve3ColorChange() {
 
-			if (this.V3SwitchControllor == false && this.$store.state.websockets.V3 == 0) {
+			if (this.V3SwitchControllor == false && this.$store.state.command.V3 == 0) {
 
 				this.setV3color(2);
 				this.V3state = "opening";
@@ -300,7 +336,7 @@ export default {
 				this.V3SwitchDisabled = true;
 
 				setTimeout(() => {
-					if (this.$store.state.websockets.V3 == 1) {
+					if (this.$store.state.command.V3 == 1) {
 						this.V3SwitchDisabled = false;
 						this.setV3color(1);
 						this.V3state = "ON";
@@ -308,7 +344,7 @@ export default {
 						console.log(this.V3msg);
 						this.V3SwitchControllor = true;
 					}
-					else if (this.$store.state.websockets.V3 == 1) {
+					else if (this.$store.state.command.V3 == 0) {
 						this.V3SwitchDisabled = false;
 						this.setV3color(0);
 						this.V3state = "OFF";
@@ -318,7 +354,7 @@ export default {
 					}
 				}, 1000);
 
-			} else if (this.V3SwitchControllor == true && this.$store.state.websockets.V3 == 1) {
+			} else if (this.V3SwitchControllor == true && this.$store.state.command.V3 == 1) {
 
 				this.setV3color(2);
 				this.V3state = "closing";
@@ -328,7 +364,7 @@ export default {
 				this.V3SwitchDisabled = true;
 
 				setTimeout(() => {
-					if (this.$store.state.websockets.V3 == 0) {
+					if (this.$store.state.command.V3 == 0) {
 						this.V3SwitchDisabled = false;
 						this.setV3color(0);
 						this.V3state = "OFF";
@@ -336,7 +372,7 @@ export default {
 						console.log(this.V3msg);
 						this.V3SwitchControllor = false;
 					}
-					else if (this.$store.state.websockets.V3 == 1) {
+					else if (this.$store.state.command.V3 == 1) {
 						this.V3SwitchDisabled = false;
 						this.setV3color(1);
 						this.V3state = "ON";
@@ -347,13 +383,285 @@ export default {
 				}, 1000);
 
 			} else {
-				// this.V1SwitchControllor = this.V1SwitchControllor;
 				alert(this.V3msg);
-				console.log("error");
-				console.log(this.V3state);
-				console.log(this.$store.state.websockets.V3);
+				console.log("error:" + "V1 is" + this.V1state + "; its code is" + this.$store.state.command.V1 + ";" + "V2 is" + this.V2state + "; its code is" + this.$store.state.command.V2 + ";"
+					+ "V3 is" + this.V3state + "; its code is" + this.$store.state.command.V3 + ";" + "V4 is" + this.V4state + "; its code is" + this.$store.state.command.V4 + ";" + "V5 is" + this.V5state + "; its code is" + this.$store.state.command.V5 + ";"
+					+ "V6 is" + this.V6state + "; its code is" + this.$store.state.command.V6 + ";" + "V7 is" + this.V7state + "; its code is" + this.$store.state.command.V7 + ";");
 			}
 		},
+
+		valve4ColorChange() {
+
+			if (this.V4SwitchControllor == false && this.$store.state.command.V4 == 0) {
+
+				this.setV4color(2);
+				this.V4state = "opening";
+				this.SENDV4CONTROL(1);
+				this.V4msg = "V4opening";
+				console.log(this.V4msg);
+				this.V4SwitchDisabled = true;
+
+				setTimeout(() => {
+					if (this.$store.state.command.V4 == 1) {
+						this.V4SwitchDisabled = false;
+						this.setV4color(1);
+						this.V4state = "ON";
+						this.V4msg = "V4opened";
+						console.log(this.V4msg);
+						this.V4SwitchControllor = true;
+					}
+					else if (this.$store.state.command.V4 == 0) {
+						this.V4SwitchDisabled = false;
+						this.setV4color(0);
+						this.V4state = "OFF";
+						this.V4msg = "V4_not_opened_success";
+						console.log(this.V4msg);
+						this.V4SwitchControllor = false;
+					}
+				}, 1000);
+
+			} else if (this.V4SwitchControllor == true && this.$store.state.command.V4 == 1) {
+
+				this.setV4color(2);
+				this.V4state = "closing";
+				this.SENDV4CONTROL(0);
+				this.V4msg = "V4closing";
+				console.log(this.V4msg);
+				this.V4SwitchDisabled = true;
+
+				setTimeout(() => {
+					if (this.$store.state.command.V4 == 0) {
+						this.V4SwitchDisabled = false;
+						this.setV4color(0);
+						this.V4state = "OFF";
+						this.V4msg = "V4closed";
+						console.log(this.V4msg);
+						this.V4SwitchControllor = false;
+					}
+					else if (this.$store.state.command.V4 == 1) {
+						this.V4SwitchDisabled = false;
+						this.setV4color(1);
+						this.V4state = "ON";
+						this.V4msg = "V4_not_closed_success";
+						console.log(this.V4msg);
+						this.V4SwitchControllor = true;
+					}
+				}, 1000);
+
+			} else {
+				alert(this.V4msg);
+				console.log("error:" + "V1 is" + this.V1state + "; its code is" + this.$store.state.command.V1 + ";" + "V2 is" + this.V2state + "; its code is" + this.$store.state.command.V2 + ";"
+					+ "V3 is" + this.V3state + "; its code is" + this.$store.state.command.V3 + ";" + "V4 is" + this.V4state + "; its code is" + this.$store.state.command.V4 + ";" + "V5 is" + this.V5state + "; its code is" + this.$store.state.command.V5 + ";"
+					+ "V6 is" + this.V6state + "; its code is" + this.$store.state.command.V6 + ";" + "V7 is" + this.V7state + "; its code is" + this.$store.state.command.V7 + ";");
+			}
+		},
+
+
+		valve5ColorChange() {
+
+			if (this.V5SwitchControllor == false && this.$store.state.command.V5 == 0) {
+
+				this.setV5color(2);
+				this.V5state = "opening";
+				this.SENDV5CONTROL(1);
+				this.V5msg = "V5opening";
+				console.log(this.V5msg);
+				this.V5SwitchDisabled = true;
+
+				setTimeout(() => {
+					if (this.$store.state.command.V5 == 1) {
+						this.V5SwitchDisabled = false;
+						this.setV5color(1);
+						this.V5state = "ON";
+						this.V5msg = "V5opened";
+						console.log(this.V5msg);
+						this.V5SwitchControllor = true;
+					}
+					else if (this.$store.state.command.V5 == 0) {
+						this.V5SwitchDisabled = false;
+						this.setV5color(0);
+						this.V5state = "OFF";
+						this.V5msg = "V5_not_opened_success";
+						console.log(this.V5msg);
+						this.V5SwitchControllor = false;
+					}
+				}, 1000);
+
+			} else if (this.V5SwitchControllor == true && this.$store.state.command.V5 == 1) {
+
+				this.setV5color(2);
+				this.V5state = "closing";
+				this.SENDV5CONTROL(0);
+				this.V5msg = "V5closing";
+				console.log(this.V5msg);
+				this.V5SwitchDisabled = true;
+
+				setTimeout(() => {
+					if (this.$store.state.command.V5 == 0) {
+						this.V5SwitchDisabled = false;
+						this.setV5color(0);
+						this.V5state = "OFF";
+						this.V5msg = "V5closed";
+						console.log(this.V5msg);
+						this.V5SwitchControllor = false;
+					}
+					else if (this.$store.state.command.V5 == 1) {
+						this.V5SwitchDisabled = false;
+						this.setV5color(1);
+						this.V5state = "ON";
+						this.V5msg = "V5_not_closed_success";
+						console.log(this.V5msg);
+						this.V5SwitchControllor = true;
+					}
+				}, 1000);
+
+			} else {
+				alert(this.V5msg);
+				console.log("error:" + "V1 is" + this.V1state + "; its code is" + this.$store.state.command.V1 + ";" + "V2 is" + this.V2state + "; its code is" + this.$store.state.command.V2 + ";"
+					+ "V3 is" + this.V3state + "; its code is" + this.$store.state.command.V3 + ";" + "V4 is" + this.V4state + "; its code is" + this.$store.state.command.V4 + ";" + "V5 is" + this.V5state + "; its code is" + this.$store.state.command.V5 + ";"
+					+ "V6 is" + this.V6state + "; its code is" + this.$store.state.command.V6 + ";" + "V7 is" + this.V7state + "; its code is" + this.$store.state.command.V7 + ";");
+			}
+		},
+
+
+
+		valve6ColorChange() {
+
+			if (this.V6SwitchControllor == false && this.$store.state.command.V6 == 0) {
+
+				this.setV6color(2);
+				this.V6state = "opening";
+				this.SENDV6CONTROL(1);
+				this.V6msg = "V6opening";
+				console.log(this.V6msg);
+				this.V6SwitchDisabled = true;
+
+				setTimeout(() => {
+					if (this.$store.state.command.V6 == 1) {
+						this.V6SwitchDisabled = false;
+						this.setV6color(1);
+						this.V6state = "ON";
+						this.V6msg = "V6opened";
+						console.log(this.V6msg);
+						this.V6SwitchControllor = true;
+					}
+					else if (this.$store.state.command.V6 == 0) {
+						this.V6SwitchDisabled = false;
+						this.setV6color(0);
+						this.V6state = "OFF";
+						this.V6msg = "V6_not_opened_success";
+						console.log(this.V6msg);
+						this.V6SwitchControllor = false;
+					}
+				}, 1000);
+
+			} else if (this.V6SwitchControllor == true && this.$store.state.command.V6 == 1) {
+
+				this.setV6color(2);
+				this.V6state = "closing";
+				this.SENDV6CONTROL(0);
+				this.V6msg = "V6closing";
+				console.log(this.V6msg);
+				this.V6SwitchDisabled = true;
+
+				setTimeout(() => {
+					if (this.$store.state.command.V6 == 0) {
+						this.V6SwitchDisabled = false;
+						this.setV6color(0);
+						this.V6state = "OFF";
+						this.V6msg = "V6closed";
+						console.log(this.V6msg);
+						this.V6SwitchControllor = false;
+					}
+					else if (this.$store.state.command.V6 == 1) {
+						this.V6SwitchDisabled = false;
+						this.setV6color(1);
+						this.V6state = "ON";
+						this.V6msg = "V6_not_closed_success";
+						console.log(this.V6msg);
+						this.V6SwitchControllor = true;
+					}
+				}, 1000);
+
+			} else {
+				alert(this.V6msg);
+				console.log("error:" + "V1 is" + this.V1state + "; its code is" + this.$store.state.command.V1 + ";" + "V2 is" + this.V2state + "; its code is" + this.$store.state.command.V2 + ";"
+					+ "V3 is" + this.V3state + "; its code is" + this.$store.state.command.V3 + ";" + "V4 is" + this.V4state + "; its code is" + this.$store.state.command.V4 + ";" + "V5 is" + this.V5state + "; its code is" + this.$store.state.command.V5 + ";"
+					+ "V6 is" + this.V6state + "; its code is" + this.$store.state.command.V6 + ";" + "V7 is" + this.V7state + "; its code is" + this.$store.state.command.V7 + ";");
+			}
+		},
+
+
+
+		valve7ColorChange() {
+
+			if (this.V7SwitchControllor == false && this.$store.state.command.V7 == 0) {
+
+				this.setV7color(2);
+				this.V7state = "opening";
+				this.SENDV7CONTROL(1);
+				this.V7msg = "V7opening";
+				console.log(this.V7msg);
+				this.V7SwitchDisabled = true;
+
+				setTimeout(() => {
+					if (this.$store.state.command.V7 == 1) {
+						this.V7SwitchDisabled = false;
+						this.setV7color(1);
+						this.V7state = "ON";
+						this.V7msg = "V7opened";
+						console.log(this.V7msg);
+						this.V7SwitchControllor = true;
+					}
+					else if (this.$store.state.command.V7 == 0) {
+						this.V7SwitchDisabled = false;
+						this.setV7color(0);
+						this.V7state = "OFF";
+						this.V7msg = "V7_not_opened_success";
+						console.log(this.V7msg);
+						this.V7SwitchControllor = false;
+					}
+				}, 1000);
+
+			} else if (this.V7SwitchControllor == true && this.$store.state.command.V7 == 1) {
+
+				this.setV7color(2);
+				this.V7state = "closing";
+				this.SENDV7CONTROL(0);
+				this.V7msg = "V7closing";
+				console.log(this.V7msg);
+				this.V7SwitchDisabled = true;
+
+				setTimeout(() => {
+					if (this.$store.state.command.V7 == 0) {
+						this.V7SwitchDisabled = false;
+						this.setV7color(0);
+						this.V7state = "OFF";
+						this.V7msg = "V7closed";
+						console.log(this.V7msg);
+						this.V7SwitchControllor = false;
+					}
+					else if (this.$store.state.command.V7 == 1) {
+						this.V7SwitchDisabled = false;
+						this.setV7color(1);
+						this.V7state = "ON";
+						this.V7msg = "V7_not_closed_success";
+						console.log(this.V7msg);
+						this.V7SwitchControllor = true;
+					}
+				}, 1000);
+
+			} else {
+				alert(this.V7msg);
+				console.log("error:" + "V1 is" + this.V1state + "; its code is" + this.$store.state.command.V1 + ";" + "V2 is" + this.V2state + "; its code is" + this.$store.state.command.V2 + ";"
+					+ "V3 is" + this.V3state + "; its code is" + this.$store.state.command.V3 + ";" + "V4 is" + this.V4state + "; its code is" + this.$store.state.command.V4 + ";" + "V5 is" + this.V5state + "; its code is" + this.$store.state.command.V5 + ";"
+					+ "V6 is" + this.V6state + "; its code is" + this.$store.state.command.V6 + ";" + "V7 is" + this.V7state + "; its code is" + this.$store.state.command.V7 + ";");
+			}
+		},
+
+
+
+
 
 
 		// test() {
@@ -377,11 +685,11 @@ export default {
 			let a;
 			let b;
 			let debug = false;
-			let wrapEncoder = true;
+			// let wrapEncoder = true;
 
 			var initialSamplingCount = 1200 // 2 mins at 10Hz
 			var delayWeightingFactor = 60  // 1 minute drift in 1 hour
-			let encoderPPR = 2400
+			// let encoderPPR = 2400
 
 			let responsiveSmoothie = true;
 			let thisTime;
@@ -422,16 +730,44 @@ export default {
 			this.dataSocket.onmessage = (event) => {
 
 				try {
-		//delay of timestamp from device and UI
-		
-					var obj = JSON.parse(event.data);
-					var msgTime = obj.time;//timestamp
-					var thisDelay = new Date().getTime() - msgTime;
+					//delay of timestamp from device and UI
 
-					var enc = obj.enc;
+					var obj = JSON.parse(event.data);
+					var msgTime = obj.timestamp;//timestamp
+					var thisDelay = new Date().getTime() - msgTime;
+					//var enc = obj.enc;
+
+					// Measure data from refrigeration
+					var PS1 = obj.sensors.pressure.PS1;
+					var PS2 = obj.sensors.pressure.PS2;
+					var PS3 = obj.sensors.pressure.PS3;
+					var TS1 = obj.sensors.temperature.TS1;
+					var TS2 = obj.sensors.temperature.TS2;
+					var TS3 = obj.sensors.temperature.TS3;
+					var TS4 = obj.sensors.temperature.TS4;
+					var TS5 = obj.sensors.temperature.TS5;
+					var flow = obj.sensors.misc.flow;
+					var power = obj.sensors.misc.power;
+					var TSA = obj.sensors.misc.TSA;
+					var PSA = obj.sensors.misc.PSA;
+					var HSA = obj.sensors.misc.HSA;
+
+					//controller data from refrigeration
+					var V1 = obj.valves.V1;
+					var V2 = obj.valves.V2;
+					var V3 = obj.valves.V3;
+					var V4 = obj.valves.V4;
+					var V5 = obj.valves.V5;
+					var V6 = obj.valves.V6;
+					var V7 = obj.valves.V7;
+					// var V8 = obj.valves.V7;
+					var W1 = obj.relays.W1; //fan1
+					var W2 = obj.relays.W2; //fan2
+					var comp = obj.relays.comp; //compressor
+
 					//check the Data obj:{enc: -204, time: 867251805}
 					//enc: -204 time: 867251805
-					console.log("0"+obj);
+					console.log("0" + obj);
 					if (messageCount == 0) {
 						_this.$store.dispatch('setStartTime', msgTime);
 						delay = thisDelay
@@ -463,33 +799,61 @@ export default {
 					messageCount += 1
 
 					//https://stackoverflow.com/questions/4633177/c-how-to-wrap-a-float-to-the-interval-pi-pi
-					if (wrapEncoder) { //wrap and convert to degrees
-						// enc = Math.atan2(Math.sin(obj.enc / (encoderPPR / 2) * Math.PI), Math.cos(obj.enc / (encoderPPR / 2) * Math.PI)) / Math.PI * 180
-						// enc = Math.min(135, enc)
-						// enc = Math.max(-135, enc)
-						
-						// check om message function
-						console.log("1"+obj);
-					}
-					else { //convert to degrees only
-						// enc = enc * 360.0 / encoderPPR;
-						// console.log(obj);
-					}
+					//if (wrapEncoder) { //wrap and convert to degrees
+					// enc = Math.atan2(Math.sin(obj.enc / (encoderPPR / 2) * Math.PI), Math.cos(obj.enc / (encoderPPR / 2) * Math.PI)) / Math.PI * 180
+					// enc = Math.min(135, enc)
+					// enc = Math.max(-135, enc)
+
+					// check om message function
+					//console.log("1"+obj);
+					//}
+					//else { //convert to degrees only
+					// enc = enc * 360.0 / encoderPPR;
+					// console.log(obj);
+					//}
 
 					thisTime = msgTime + thisDelay
 
-					if (!isNaN(thisTime) && !isNaN(enc)) {
-						series.append(msgTime + thisDelay, enc)
+					if (!isNaN(thisTime) && !isNaN(PS1)) {
+						series.append(msgTime + thisDelay, PS1) // for chart
 
 						//Calculate angular velocity using new data sent through as well as currently stored values - before updating those values
 						// let values = { theta_1: enc * Math.PI / 180, theta_0: _this.$store.getters.getCurrentAngle, t_1: msgTime, t_0: _this.$store.getters.getCurrentTime }
-						//dispatch value to datastore here
-
 						// _this.$store.dispatch('setCurrentAngVel', values)
-
 						// _this.$store.dispatch('setCurrentAngle', enc * Math.PI / 180);		//for output graph, convert to radians
 						// _this.$store.dispatch('setCurrentTime', msgTime);			//for output graph
-						console.log("2"+obj);
+
+						//dispatch value to rawdatastore_sensors
+						_this.$store.dispatch('SETPS1_value', PS1);
+						_this.$store.dispatch('SETPS2_value', PS2);
+						_this.$store.dispatch('SETPS3_value', PS3);
+						_this.$store.dispatch('SETTS1_value', TS1);
+						_this.$store.dispatch('SETTS2_value', TS2);
+						_this.$store.dispatch('SETTS3_value', TS3);
+						_this.$store.dispatch('SETTS4_value', TS4);
+						_this.$store.dispatch('SETTS5_value', TS5);
+						_this.$store.dispatch('SETFlow_value', flow);
+						_this.$store.dispatch('SETPower_value', power);
+						_this.$store.dispatch('SETTSA_value', TSA);
+						_this.$store.dispatch('SETPSA_value', PSA);
+						_this.$store.dispatch('SETHSA_value', HSA);
+						//dispatch value to rawdatastore_controllers
+						_this.$store.dispatch('SETV1', V1);
+						_this.$store.dispatch('SETV2', V2);
+						_this.$store.dispatch('SETV3', V3);
+						_this.$store.dispatch('SETV4', V4);
+						_this.$store.dispatch('SETV5', V5);
+						_this.$store.dispatch('SETV6', V6);
+						_this.$store.dispatch('SETV7', V7);
+						// _this.$store.dispatch('SETV8',V7);
+						_this.$store.dispatch('SETW1', W1);
+						_this.$store.dispatch('SETW2', W2);
+						_this.$store.dispatch('SETComp', comp);
+
+						_this.$store.dispatch('setCurrentTime', msgTime);			//for output graph
+
+
+						console.log("2" + obj);
 						if (debug) {
 							console.log(delay, thisDelay, msgTime, enc)
 						}

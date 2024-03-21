@@ -243,7 +243,7 @@
 
                 <g id="g2-8-5-33" transform="matrix(1,0,0,-1,903.31208,-86.870338)">
                     <!-- V4 -->
-                    <path v-on:click="highlightValve(0.55, 0.44, '5%', '5%')" fill="#808080" stroke-width="0.25"
+                    <path v-on:click="highlightValve(0.55, 0.44, '5%', '5%')" :fill="this.valve4Color" stroke-width="0.25"
                         stroke-linecap="round" stroke-linejoin="round" stroke="#000000" stroke-opacity="1"
                         stroke-miterlimit="4"
                         d="m -800.30842,-122.04517 4.99953,-2.49976 v 4.99952 l -10.00043,-4.99952 v 4.99952 z m 0,0"
@@ -261,10 +261,11 @@
                     d="m 101,30.999998 h 4" id="path383-15" />
             </g>
             <g id="g383-54" transform="rotate(90,74.045307,51.129528)">
+                <title>Valve 5</title>
                 <g id="g2-8-5-0" transform="matrix(1,0,0,-1,903.31208,-86.870338)">
                     <!-- V5 -->
                     <title> Valve 5</title>
-                    <path v-on:click="highlightValve(0.71, 0.65, '4%', '5%')" fill="#808080" stroke-width="0.25"
+                    <path v-on:click="highlightValve(0.71, 0.65, '4%', '5%')" :fill="this.valve5Color" stroke-width="0.25"
                         stroke-linecap="round" stroke-linejoin="round" stroke="#000000" stroke-opacity="1"
                         stroke-miterlimit="4"
                         d="m -800.30842,-122.04517 4.99953,-2.49976 v 4.99952 l -10.00043,-4.99952 v 4.99952 z m 0,0"
@@ -282,8 +283,10 @@
                     d="m 101,30.999998 h 4" id="path383-06" />
             </g>
             <g id="g383-3" transform="rotate(90,94.495241,71.466412)">
+                <title>Valve 7</title>
+                <!-- V7 -->
                 <g id="g2-8-5-781" transform="matrix(1,0,0,-1,903.31208,-86.870338)">
-                    <path fill="#808080" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round" stroke="#000000"
+                    <path v-on:click="highlightValve(0.65, 0.65, '4%', '5%')" :fill="this.valve7Color" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round" stroke="#000000"
                         stroke-opacity="1" stroke-miterlimit="4"
                         d="m -800.30842,-122.04517 4.99953,-2.49976 v 4.99952 l -10.00043,-4.99952 v 4.99952 z m 0,0"
                         id="path3073-2-2-3" />
@@ -303,7 +306,7 @@
                 <g id="g2-8-5-91" transform="matrix(1,0,0,-1,903.31208,-86.870338)">
                     <!-- V6 -->
                     <title> Valve 6</title>
-                    <path v-on:click="highlightValve(0.79, 0.63, '5%', '5%')" fill="#808080" stroke-width="0.25"
+                    <path v-on:click="highlightValve(0.79, 0.63, '5%', '5%')" :fill="this.valve6Color" stroke-width="0.25"
                         stroke-linecap="round" stroke-linejoin="round" stroke="#000000" stroke-opacity="1"
                         stroke-miterlimit="4"
                         d="m -800.30842,-122.04517 4.99953,-2.49976 v 4.99952 l -10.00043,-4.99952 v 4.99952 z m 0,0"
@@ -882,7 +885,19 @@ export default {
         },
         valve3Color() {
             return this.$store.state.ui.v3color;
-        }
+        },
+        valve4Color() {
+            return this.$store.state.ui.v4color;
+        },
+        valve5Color() {
+            return this.$store.state.ui.v5color;
+        },
+        valve6Color() {
+            return this.$store.state.ui.v6color;
+        },
+        valve7Color() {
+            return this.$store.state.ui.v7color;
+        },
 
     },
     methods: {

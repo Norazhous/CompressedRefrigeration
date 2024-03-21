@@ -64,6 +64,15 @@ export default {
         ...mapGetters([
             'GetCurrentTS1',
             'GetCurrentTS2',
+            'GetCurrentTS3',
+            'GetCurrentTS4',
+            'GetCurrentTS5',
+            'GetCurrentPS1',
+            'GetCurrentPS2',
+            'GetCurrentPS3',
+            'GetCurrentFlow',
+            'GetCurrentPower',
+            
         ]),
 
         websockMsg() {
@@ -77,66 +86,66 @@ export default {
             return this.GetCurrentTS2
         },
         T3(){
-            return this.$store.state.websockets.TS3_value
+            return this.GetCurrentTS3
         },
         T4(){
-            return this.$store.state.websockets.TS4_value
+            return this.GetCurrentTS4
         },
         T5(){
-            return this.$store.state.websockets.TS5_value
+            return this.GetCurrentTS5
         },
         P1(){
-            return this.$store.state.websockets.PS1_value
+            return this.GetCurrentPS1
         },
         P2(){
-            return this.$store.state.websockets.PS2_value
+            return this.GetCurrentPS2
         },
         P3(){
-            return this.$store.state.websockets.PS3_value
+            return this.GetCurrentPS3
         },
         F(){
-            return this.$store.state.websockets.Flow_value
+            return this.GetCurrentFlow
         },
         E(){
-            return this.$store.state.websockets.Power_value
+            return this.GetCurrentPower
         },
-        array(){
-            return this.$store.state.websockets.PS1_Array
-        },
+        // array(){
+        //     return this.$store.state.websockets.PS1_Array
+        // },
         
     },
 
     methods: {
-        connect() {
-            if ("WebSocket" in window) {
-                this.$store.dispatch('WEBSOCKET_INIT_ACTION');
-                console.log(this.$store.state.websockets.TS1_value);
-            } else {
-                alert("The browser is not support WebSocket");
-            }
-        },
-        disconnect(){
-            if (this.$store.state.websocket.readyState=== WebSocket.OPEN){
-                this.$store.dispatch('WEBSOCKET_CLOSE')
-                console.log("closing...")
-            }
-            else{
-                console.log("already closed")
-            }
+        // connect() {
+        //     if ("WebSocket" in window) {
+        //         this.$store.dispatch('WEBSOCKET_INIT_ACTION');
+        //         console.log(this.$store.state.websockets.TS1_value);
+        //     } else {
+        //         alert("The browser is not support WebSocket");
+        //     }
+        // },
+        // disconnect(){
+        //     if (this.$store.state.websocket.readyState=== WebSocket.OPEN){
+        //         this.$store.dispatch('WEBSOCKET_CLOSE')
+        //         console.log("closing...")
+        //     }
+        //     else{
+        //         console.log("already closed")
+        //     }
             
-        },
-        sendMeg() {
-            let message = document.getElementById("name").value + ":" + document.getElementById("mes").value;
-            document.getElementById("showMes").value += message + "\n\n";
-            this.$store.dispatch("WEBSOCKET_REIVE_ACTION", message);
-            setTimeout(() => {
-                document.getElementById("showMes").value += this.websockMsg + "\n";
-            }, 500)
-        },
-        getArray(){
-            // this.$store.dispatch('GETARRAY')  
-            console.log(this.$store.state.websockets.PS1_Array) 
-        }
+        // },
+        // sendMeg() {
+        //     let message = document.getElementById("name").value + ":" + document.getElementById("mes").value;
+        //     document.getElementById("showMes").value += message + "\n\n";
+        //     this.$store.dispatch("WEBSOCKET_REIVE_ACTION", message);
+        //     setTimeout(() => {
+        //         document.getElementById("showMes").value += this.websockMsg + "\n";
+        //     }, 500)
+        // },
+        // getArray(){
+        //     // this.$store.dispatch('GETARRAY')  
+        //     console.log(this.$store.state.websockets.PS1_Array) 
+        // }
       
 
     }
