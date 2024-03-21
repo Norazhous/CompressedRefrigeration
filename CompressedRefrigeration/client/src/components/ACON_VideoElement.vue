@@ -2,7 +2,7 @@
 
 <div v-if='getSessionExpired' class='row'>
   <div class='col-12'>
-        <img id='session-end-image' src='https://assets.practable.io/images/common/thank-you-screen.svg' alt='session ended'>
+        <img id='session-end-image' src='https://app.practable.io/ed0/static/images/common/thank-you-screen.svg' alt='session ended'>
     </div>
 </div>
 <div v-else>
@@ -11,6 +11,7 @@
         <canvas id="video-canvas"></canvas>
         <toolbar parentCanvasID="video-canvas" parentComponentName="webcam" parentDivID='video-element' :showDownload='true' :showPopupHelp='false' :showOptions="false"></toolbar>
       </div>
+      
     </div>
 </div>    
     
@@ -70,6 +71,7 @@ export default {
     //   chunkSize: 10 * 1024 * 1024,
     // });
   },
+
 };
 
 

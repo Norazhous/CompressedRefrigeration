@@ -41,7 +41,7 @@ const websocketstore = {
         ATS_Array: [],
         APS_Array: [],
 
-        url: 'ws://127.0.0.1:8181/test',
+        url: '', //'ws://127.0.0.1:8181/test'
         websocket: null,
         receivedData: null,
         jsonValue: null,
@@ -362,19 +362,19 @@ const websocketstore = {
         // 0- turn off, 1- turn on
         SENDV1CONTROL({ state, commit }, value) { 
             if (value == 0) {
-                //connect to the server
-                let msg = JSON.stringify({ cmd: "setV1off", param: "0" })
-                state.websocket.send(msg);
-                commit("SETV1");
+                // //connect to the server
+                // let msg = JSON.stringify({ cmd: "setV1off", param: "0" })
+                // state.websocket.send(msg);
+                // commit("SETV1");
 
                 //test on the  UI
-                // commit("SETV1OFF");
+                commit("SETV1OFF");
             
             } else if (value == 1) {
-                let msg = JSON.stringify({ cmd: "setV1on", param: "1" })
-                state.websocket.send(msg);
-                commit("SETV1");
-                // commit("SETV1ON");
+                // let msg = JSON.stringify({ cmd: "setV1on", param: "1" })
+                // state.websocket.send(msg);
+                // commit("SETV1");
+                commit("SETV1ON");
             }
         },
         SENDV2CONTROL({ state, commit }, value) { 

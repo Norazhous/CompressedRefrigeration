@@ -1,7 +1,7 @@
 <template>
 	<div>
-		
 		<div><control-panel :url="url" /></div>
+		<button @click="CheckURL()">Check Data URL</button>
 	</div>
 </template>
 
@@ -67,6 +67,9 @@ export default {
 					store.dispatch("setDataURL", response.data.uri);
 				})
 				.catch((err) => console.log(err));
+		},
+		CheckURL() {
+			console.log(this.$store.getters.getDataURL);
 		}
 	},
 
@@ -84,7 +87,8 @@ export default {
 		// 	}
 		// },
 
-	}
+	},
+
 }
 
 

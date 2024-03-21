@@ -61,7 +61,7 @@ import Consent from "./components/Consent.vue"
 import RealtimeChart from "./components/ACON_RealtimeChart.vue";
 import R134aChart from "./components/R134aChart.vue"
 
-import Websocket from './components/Websocket.vue';
+// import Websocket from './components/Websocket.vue';
 
 import { mapGetters } from 'vuex'
 import { v4 as uuidv4 } from 'uuid';
@@ -71,7 +71,7 @@ export default {
   components: {
     R134aChart,
     RealtimeChart,
-    Websocket,
+    //Websocket,
     Streams,
     WebcamStream,
     DataStream,

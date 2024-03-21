@@ -1,19 +1,23 @@
 <template>
 	<div class='container-fluid m-2 background-white border rounded'>
 		<div class="row">
-			<div class="col-8" id="rigImage">
+			<div class="col-12" id="rigImage">
 				<RigElement />
-				
 			</div>
 			<div class="col-4" id="video" style="margin: auto;">
 				<video-element :url="url" />
-				<br>
+			</div>
+			<!-- <div class="col-4" id="video" style="margin: auto;">
 				<video-element :url="url" />
 			</div>
-			<div class="row" >
-				<websockets/>
-			</div>
-			
+			<div class="col-4" id="video" style="margin: auto;">	
+				<video-element :url="url" />
+			</div> -->
+			<button @click="CheckURL()">checkURL</button>
+			<!-- <div class="row">
+				<websockets />
+			</div> -->
+
 		</div>
 
 
@@ -45,7 +49,7 @@ export default {
 	components: {
 		VideoElement,
 		RigElement,
-		websockets,
+		// websockets,
 	},
 	data() {
 		return {
@@ -87,6 +91,9 @@ export default {
 					store.dispatch("setVideoURL", response.data.uri);
 				})
 				.catch((err) => console.log(err));
+		},
+		CheckURL() {
+			console.log(this.$store.getters.getVideoURL);
 		}
 	},
 	watch: {
@@ -102,8 +109,8 @@ export default {
 		// 		console.log("get videoURL", this.urlOK, this.url);
 		// 	}
 		// },
+	},
 
-	}
 }
 
 
