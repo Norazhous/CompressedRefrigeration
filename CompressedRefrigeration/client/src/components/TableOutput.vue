@@ -19,6 +19,9 @@
                         <th scope="col">P3(bar)</th>
                         <th scope="col">F(L/h)</th>
                         <th scope="col">E(W)</th>
+                        <th scope="col">TSA(°C)</th>
+                        <th scope="col">PSA(bar)</th>
+                        <th scope="col">HSA(%rh)</th>
                     </tr>
                 </thead>
                 <!-- <tr v-for="row in tableData" :id="row.id" :key="row.id"
@@ -41,6 +44,9 @@
                     <td>{{ row.P3 }}</td>
                     <td>{{ row.Flow }}</td>
                     <td>{{ row.Power }}</td>
+                    <td>{{ row.TSA }}</td>
+                    <td>{{ row.PSA }}</td>
+                    <td>{{ row.HSA }}</td>
                     <!-- <td>{{ T3 }}</td>
                     <td>{{ T4 }}</td>
                     <td>{{ T5 }}</td>
@@ -110,7 +116,7 @@ export default {
             // let T1Array1 = this.T1Array();
             // let T2Array1 = this.T2Array();
             // this.tableData.push(T1Array1,T2Array1);
-            
+
 
             this.tableData = [...this.getData];     //get a clone of the data, not set tableData to the getData getter
             console.log(this.tableData);

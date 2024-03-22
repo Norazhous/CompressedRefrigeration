@@ -1,14 +1,7 @@
 <template>
-    <!-- <div>{{ array }}</div> -->
-    <!-- <br>
-    <button @click="connect()" >connect</button>
-    <button @click="disconnect()">disconnect</button>
-    <button @click="sendMeg();">sendMsg</button>
-    <button @click="getArray()">getdata</button>
-    <br>
-    <br> -->
 
-    <table class="table table-borderless -sm" style=" font-size:small;">
+
+    <table class="table table-bordered" style=" font-size:small;">
         <thead>
             <tr>
                 <th scope="col">T1(°C)</th>
@@ -18,9 +11,12 @@
                 <th scope="col">T5(°C)</th>
                 <th scope="col">P1(bar)</th>
                 <th scope="col">P2(bar)</th>
-                <th scope="col">P3(bar)</th>
+                <!-- <th scope="col">P3(bar)</th>
                 <th scope="col">F(L/h)</th>
                 <th scope="col">E(W)</th>
+                <th scope="col">TSA(°C)</th>
+                <th scope="col">PSA(bar)</th>
+                <th scope="col">HSA(%rh)</th> -->
             </tr>
         </thead>
         <tbody>
@@ -32,9 +28,46 @@
                 <td>{{ T5 }}</td>
                 <td>{{ P1 }}</td>
                 <td>{{ P2 }}</td>
+                <!-- <td>{{ P3 }}</td>
+                <td>{{ F }}</td>
+                <td>{{ E }}</td>
+                <td>{{ TSA }}</td>
+                <td>{{ PSA }}</td>
+                <td>{{ HSA }}</td> -->
+            </tr>
+        </tbody>
+        <thead>
+            <tr>
+                <!-- <th scope="col">T1(°C)</th>
+                <th scope="col">T2(°C)</th>
+                <th scope="col">T3(°C)</th>
+                <th scope="col">T4(°C)</th>
+                <th scope="col">T5(°C)</th>
+                <th scope="col">P1(bar)</th>
+                <th scope="col">P2(bar)</th> -->
+                <th scope="col">P3(bar)</th>
+                <th scope="col">F(L/h)</th>
+                <th scope="col">E(W)</th>
+                <th scope="col">TSA(°C)</th>
+                <th scope="col">PSA(bar)</th>
+                <th scope="col">HSA(%rh)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <!-- <td>{{ T1 }}</td>
+                <td>{{ T2 }}</td>
+                <td>{{ T3 }}</td>
+                <td>{{ T4 }}</td>
+                <td>{{ T5 }}</td>
+                <td>{{ P1 }}</td>
+                <td>{{ P2 }}</td> -->
                 <td>{{ P3 }}</td>
                 <td>{{ F }}</td>
                 <td>{{ E }}</td>
+                <td>{{ TSA }}</td>
+                <td>{{ PSA }}</td>
+                <td>{{ HSA }}</td>
             </tr>
         </tbody>
     </table>
@@ -43,11 +76,11 @@
 
 <script>
 import { mapGetters } from 'vuex';
-// import websocketstore from './modules/websocketsStore.js'
+
 
 export default {
-    name: "websockets",
-    // websocketstore,
+    name: "realtimetable",
+
     data() {
         return {
 
@@ -55,7 +88,7 @@ export default {
         }
     },
     mounted() {
-        this.connect();
+       
     },
     watch() {
     },
@@ -72,6 +105,9 @@ export default {
             'GetCurrentPS3',
             'GetCurrentFlow',
             'GetCurrentPower',
+            'GetCurrentTSA',
+            'GetCurrentPSA',
+            'GetCurrentHSA',
             
         ]),
 
@@ -109,45 +145,20 @@ export default {
         E(){
             return this.GetCurrentPower
         },
-        // array(){
-        //     return this.$store.state.websockets.PS1_Array
-        // },
-        
+        TSA(){
+            return this.GetCurrentTSA
+        },
+        PSA(){
+            return this.GetCurrentPSA
+        },
+        HSA(){
+            return this.GetCurrentHSA
+        },
     },
 
     methods: {
-        // connect() {
-        //     if ("WebSocket" in window) {
-        //         this.$store.dispatch('WEBSOCKET_INIT_ACTION');
-        //         console.log(this.$store.state.websockets.TS1_value);
-        //     } else {
-        //         alert("The browser is not support WebSocket");
-        //     }
-        // },
-        // disconnect(){
-        //     if (this.$store.state.websocket.readyState=== WebSocket.OPEN){
-        //         this.$store.dispatch('WEBSOCKET_CLOSE')
-        //         console.log("closing...")
-        //     }
-        //     else{
-        //         console.log("already closed")
-        //     }
-            
-        // },
-        // sendMeg() {
-        //     let message = document.getElementById("name").value + ":" + document.getElementById("mes").value;
-        //     document.getElementById("showMes").value += message + "\n\n";
-        //     this.$store.dispatch("WEBSOCKET_REIVE_ACTION", message);
-        //     setTimeout(() => {
-        //         document.getElementById("showMes").value += this.websockMsg + "\n";
-        //     }, 500)
-        // },
-        // getArray(){
-        //     // this.$store.dispatch('GETARRAY')  
-        //     console.log(this.$store.state.websockets.PS1_Array) 
-        // }
+     
       
-
     }
 
 

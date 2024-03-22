@@ -102,6 +102,7 @@
                 style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#ff0000;stroke-width:0.25;stroke-dasharray:none;stroke-opacity:1"
                 d="M 82.894079,57.330512 69.927344,57.212146" id="path335" />
             <g id="g354" transform="translate(-11.820679,-7.6622272)">
+                <title>Thermostatic Expansion Valve</title>
                 <g id="g2-8" transform="translate(879.30889,157.34682)">
                     <path fill="none" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round" stroke="#000000"
                         stroke-opacity="1" stroke-miterlimit="4"
@@ -144,12 +145,14 @@
                 style="fill:#000000;fill-opacity:0;fill-rule:evenodd;stroke:#0000ff;stroke-width:0.25;stroke-dasharray:none;stroke-opacity:1"
                 d="m 28.141977,67.42718 v 62.0356" id="path366" />
             <g id="g368" transform="translate(-3.9999979,-7.6622272)">
+                <title> Compressor </title>
+                <circle cx="83.391655" cy="137" r="5.6083441" pointer-events="all" stroke-width="0.224231" id="circle4"
+                v-on:click="highlightValve(0.9, 0.9, '5%', '5%')" :fill="this.compcolor" style="stroke:#000000" />
                 <path d="m 80.352979,141.74879 c 2.634244,-0.66723 5.268413,-1.33446 7.902582,-2.00169"
                     stroke-width="0.224229" id="path3-8" style="fill:none;stroke:#000000" />
                 <path d="m 80.316355,132.23326 c 2.634244,0.66723 5.268413,1.33446 7.902582,2.00169" stroke-width="0.224229"
                     id="path4-4" style="fill:none;stroke:#000000" />
-                <circle cx="83.391655" cy="137" r="5.6083441" pointer-events="all" stroke-width="0.224231" id="circle4"
-                    style="fill:none;stroke:#000000" />
+                
             </g>
             <path
                 style="fill:#000000;fill-opacity:0;fill-rule:evenodd;stroke:#ff0000;stroke-width:0.25;stroke-dasharray:none;stroke-opacity:1"
@@ -303,9 +306,9 @@
                     d="m 101,30.999998 h 4" id="path383-7" />
             </g>
             <g id="g383-96" transform="translate(14.996344,60.162938)">
-                <g id="g2-8-5-91" transform="matrix(1,0,0,-1,903.31208,-86.870338)">
-                    <!-- V6 -->
-                    <title> Valve 6</title>
+                <!-- V6 -->                    
+                <title> Valve 6</title>
+                <g id="g2-8-5-91" transform="matrix(1,0,0,-1,903.31208,-86.870338)">                    
                     <path v-on:click="highlightValve(0.79, 0.63, '5%', '5%')" :fill="this.valve6Color" stroke-width="0.25"
                         stroke-linecap="round" stroke-linejoin="round" stroke="#000000" stroke-opacity="1"
                         stroke-miterlimit="4"
@@ -324,6 +327,7 @@
                     d="m 101,30.999998 h 4" id="path383-3" />
             </g>
             <g id="g231" transform="translate(-14.999999,-7.6622272)">
+                <title>Flow Rate</title>
                 <g transform="matrix(0,-0.14034071,0.14034071,0,127.86974,65.61854)" id="g2-85"
                     style="stroke-width:1.58626">
                     <g transform="matrix(3.7046,0,0,3.7046,-190.11,-172.63)" fill="none" stroke="#000000"
@@ -339,6 +343,7 @@
                 </text>
             </g>
             <g id="g223" transform="translate(-1.1036679,-7.587378)">
+                <title>Compressor Inlet Temperature</title>
                 <g transform="matrix(0.14034071,0,0,0.14034071,58.376781,118.79489)" id="g2-85-8-9-2"
                     style="stroke-width:1.58626">
                     <g transform="matrix(3.7046,0,0,3.7046,-190.11,-172.63)" fill="none" stroke="#000000"
@@ -365,6 +370,7 @@
                 </text>
             </g>
             <g id="g229" transform="translate(-14.999999,-7.6622272)">
+                <title>Evaporator Outlet Temperature</title>
                 <g transform="matrix(0,0.14034071,-0.14034071,0,61.130262,81.381456)" id="g2-85-8-9-2-4-9"
                     style="stroke-width:1.58626">
                     <g transform="matrix(3.7046,0,0,3.7046,-190.11,-172.63)" fill="none" stroke="#000000"
@@ -397,6 +403,7 @@
                     style="font-size:2.11667px;fill:#000000;fill-opacity:1;stroke-width:0.25" x="58.235752" y="23.853544" />
             </text>
             <g id="g228" transform="translate(-14.999999,-7.6622272)">
+                <title>Evaporation Pressure</title>
                 <g transform="matrix(0,0.14034071,-0.14034071,0,60.989487,101.93518)" id="g2-85-8-9-2-4"
                     style="stroke-width:1.58626">
                     <g transform="matrix(3.7046,0,0,3.7046,-190.11,-172.63)" fill="none" stroke="#000000"
@@ -429,11 +436,12 @@
                 <tspan sodipodi:role="line" id="tspan390" style="stroke-width:0.25" x="51.355839" y="101.78284" />
             </text>
             <g id="g220" transform="translate(-14.999999,-7.6622272)">
+                <title> Evaporator </title>
                 <g id="g6435-8" transform="matrix(0,0.3220929,-0.3220929,0,357.93393,-81.08826)"
                     style="stroke-width:0.666667;stroke-miterlimit:4;stroke-dasharray:none">
-                    <rect v-on:click="highlightValve(0.1, 0.1, '30%', '30%')" y="942.36218" x="445" height="45" width="40"
-                        id="rect6433-8"
-                        style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.666667;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                    <rect v-on:click="highlightValve(0.1, 0.1, '30%', '30%')" :fill="this.w1color" y="942.36218" x="445" height="45" width="40"
+                        id="rect6433-8" 
+                        style="fill-opacity:1;stroke:#000000;stroke-width:0.666667;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
                     <g transform="rotate(-90,706.7536,277.16853)" inkscape:label="Layer 1" id="layer1-6-5-9"
                         style="stroke-width:0.666667;stroke-miterlimit:4;stroke-dasharray:none">
                         <g transform="matrix(0.56118298,0,0,0.56118298,6.6797665,15.534764)" id="g3924-4"
@@ -489,10 +497,11 @@
                     d="m 43.132501,63.853541 -0.0075,-1.892684" id="path220" />
             </g>
             <g id="g222" transform="translate(-22.581959,-7.7542772)">
+                <title> Condenser </title>
                 <g id="g6435" transform="matrix(0,0.3220929,-0.3220929,0,468.21168,-28.239286)"
                     style="stroke-width:0.666667;stroke-miterlimit:4;stroke-dasharray:none">
                     <rect y="942.36218" x="445" height="45" width="40" id="rect6433"
-                        style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.666667;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                    v-on:click="highlightValve(0.9, 0.9, '5%', '5%')" :fill="this.w1color" style="fill-opacity:1;stroke:#000000;stroke-width:0.666667;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
                     <g transform="rotate(-90,706.7536,277.16853)" inkscape:label="Layer 1" id="layer1-6-5"
                         style="stroke-width:0.666667;stroke-miterlimit:4;stroke-dasharray:none">
                         <g transform="matrix(0.56118298,0,0,0.56118298,6.6797665,15.534764)" id="g3924"
@@ -548,6 +557,7 @@
                     d="m 153.41025,126.3653 v 1.61047" id="path222" />
             </g>
             <g id="g227" transform="translate(-14.999999,-7.6622272)">
+                <title>Compressor Outlet Pressure</title>
                 <g transform="matrix(0.14034071,0,0,0.14034071,109.38146,118.86974)" id="g2-85-8-9-6"
                     style="stroke-width:1.58626">
                     <g transform="matrix(3.7046,0,0,3.7046,-190.11,-172.63)" fill="none" stroke="#000000"
@@ -575,6 +585,7 @@
                 </g>
             </g>
             <g id="g226" transform="translate(-14.999999,-7.6622272)">
+                <title>Compressor Outlet Temperature</title>
                 <g transform="matrix(0.14034071,0,0,0.14256587,124.38146,118.58227)" id="g2-85-8-9"
                     style="stroke-width:1.57383">
                     <g transform="matrix(3.7046,0,0,3.7046,-190.11,-172.63)" fill="none" stroke="#000000"
@@ -601,6 +612,7 @@
                 </g>
             </g>
             <g id="g225" transform="translate(-14.999999,-7.6622272)">
+                <title>Condenser Outlet Temperature</title>
                 <g transform="matrix(0,-0.14034071,0.14034071,0,127.69803,111.17201)" id="g2-85-8"
                     style="stroke-width:1.58626">
                     <g transform="matrix(3.7046,0,0,3.7046,-190.11,-172.63)" fill="none" stroke="#000000"
@@ -628,6 +640,7 @@
                     </text></g>
             </g>
             <g id="g230" transform="translate(-14.999999,-7.6622272)">
+                <title>Condensation Pressure</title>
                 <g transform="matrix(0,-0.14034071,0.14034071,0,90.310218,75.51347)" id="g2-85-8-9-6-6"
                     style="stroke-width:1.58626">
                     <g transform="matrix(3.7046,0,0,3.7046,-190.11,-172.63)" fill="none" stroke="#000000"
@@ -657,6 +670,7 @@
             </g>
             <g id="g224" transform="translate(0.03778707,1.301653)" />
             <g id="g236" transform="translate(-15.198436,-6.3605762)">
+                <title>Evaporator Inlet Temperature</title>
                 <path d="M 49.995287,32.698346 V 28.483829" id="path1-6-3-8-7-5-1-9"
                     style="fill:none;stroke:#000000;stroke-width:0.218202" transform="translate(0.03778707,1.301653)" />
                 <circle cx="49.999966" cy="24.999937" r="3.4396994" id="circle1-5-4-3-7-0-7"
@@ -680,7 +694,9 @@
             <g transform="matrix(0.14034071,0,0,0.14034071,75.819027,117.0785)" id="g3-7-5-8-9-3-1-2"
                 style="stroke-width:1.58626" />
             <g id="g234" transform="translate(-3.9999979,-7.6622272)">
+                <title>Electric Power</title>
                 <g id="g233" transform="translate(-0.60366903,0.24034592)">
+                    
                     <path d="m 83.995324,131.15131 v -2.22773" id="path1-6-3-8-7-5-1-9-9"
                         style="fill:none;stroke:#000000;stroke-width:0.218202" />
                     <circle cx="84" cy="125.4397" r="3.4396994" id="circle1-5-4-3-7-0-7-3"
@@ -724,6 +740,7 @@
             <path style="fill:#000000;fill-opacity:0;fill-rule:evenodd;stroke:#000000;stroke-width:0.25"
                 d="M 28.000002,74.337769 H 19.000001" id="path244" />
             <g id="g250" transform="translate(9.7760427,-2.3756712)">
+                <title>Suction Line Receiver</title>
                 <path id="path3567"
                     d="m 28.611983,127.44543 h -3.611966 v 7.26801 l 3.611966,3.634 c 0,0 3.611976,-3.634 3.611976,-3.634 v -7.26801 z"
                     style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:6.51969;stroke-opacity:1;paint-order:normal" />
@@ -732,6 +749,7 @@
                     d="m 28.611978,128.65676 v 4.27933" id="path3577" />
             </g>
             <g id="g245" transform="matrix(0.75476828,0,0,0.75476828,116.73558,-45.48079)">
+                <title> Sight Glass</title>
                 <g id="g3142" transform="matrix(0,0.26458333,-0.25634146,0,28.188875,95.811203)"
                     style="stroke-width:1.01595">
                     <circle
@@ -750,6 +768,7 @@
             </g>
             <g id="g249" transform="matrix(0.38767919,0,0,0.61755132,70.35639,6.7124378)"
                 style="fill:#000000;fill-opacity:0;stroke-width:1.62648">
+                <title> Filter/Drier </title>
                 <path
                     style="fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.433331;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
                     d="m 151.575,55.17362 c 0,10.737165 0,10.737165 0,10.737165" id="path3471-8-6-61-9-1-3-98-4"
@@ -796,14 +815,18 @@
                 <tspan style="font-size:16px;line-height:1.25;font-family:sans-serif" y="1298.9496" x="11209.372"
                     id="tspan3814" sodipodi:role="line">1</tspan>
             </text>
+            <title>Capillary Tube (1.5m, 3m, 6m) </title>
             <path
+            
                 style="fill:#000000;fill-opacity:0;fill-rule:evenodd;stroke:#000000;stroke-width:0.944882;stroke-dasharray:none;stroke-opacity:1"
                 d="m -567.61638,141.11914 h -1.37437 l -1.37437,-11.33859 -1.37438,22.67716 -1.37437,-22.67716 -1.37437,22.67716 -1.37438,-22.67716 -1.37437,22.67716 -1.37437,-22.67716 -1.37437,22.67716 -1.37438,-22.67716 -1.37437,22.67716 -1.37437,-11.33858 h -1.37438 v 0"
                 id="path355" />
+          
             <path
                 style="fill:#000000;fill-opacity:0;fill-rule:evenodd;stroke:#000000;stroke-width:0.944882;stroke-dasharray:none;stroke-opacity:1"
                 d="m -567.61169,178.29464 h -1.37437 l -1.37438,-11.33858 -1.37437,26.45669 -1.37438,-26.45669 -1.37437,26.45669 -1.37437,-26.45669 -1.37437,26.45669 -1.37438,-26.45669 -1.37437,26.45669 -1.37437,-26.45669 -1.37437,26.45669 -1.37438,-26.45669 -1.37437,26.45669 -1.37437,-26.45669 -1.37438,26.45669 -1.37438,-26.45669 -1.37437,26.45669 -1.37437,-26.45669 -1.37438,26.45669 -1.37437,-26.45669 -1.37438,26.45669 -1.37437,-11.33858 h -1.37437"
                 id="path356" />
+            
             <path
                 style="fill:#000000;fill-opacity:0;fill-rule:evenodd;stroke:#000000;stroke-width:0.944882;stroke-dasharray:none;stroke-opacity:1"
                 d="m -567.21094,216.2363 h -1.37437 l -1.37438,-11.33858 -1.37437,22.67716 -1.37438,-22.67716 -1.37437,22.67716 -1.37437,-22.67716 -1.37437,22.67716 -1.37438,-22.67716 -1.37437,22.67716 -1.37437,-22.67716 -1.37437,22.67716 -1.37438,-22.67716 -1.37437,22.78312 -1.37437,-22.78312 -1.37438,22.67716 -1.37438,-22.67716 -1.37437,22.67716 -1.37437,-22.67716 -1.37438,22.67716 -1.37437,-22.67716 -1.37438,22.67716 -1.37437,-22.67716 -1.37437,23.02482 -1.37437,-23.02482 -1.37438,22.67716 -1.37437,-22.67716 -1.37437,22.67716 -1.37437,-22.67716 -1.37438,22.67716 -1.37437,-22.67716 -1.37437,22.67716 -1.37438,-22.67716 -1.37437,22.67716 -1.37437,-22.67716 -1.37437,11.33858 h -1.37438"
@@ -898,6 +921,15 @@ export default {
         valve7Color() {
             return this.$store.state.ui.v7color;
         },
+        w1color(){
+			return this.$store.state.ui.w1color;
+		},
+		// w2color(){
+		// 	return this.$store.state.ui.w2color;
+		// },
+		compcolor(){
+			return this.$store.state.ui.compcolor;
+		},
 
     },
     methods: {

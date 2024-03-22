@@ -14,8 +14,11 @@ const uiStore = {
       v5color: '#808080',
       v6color: '#808080',
       v7color: '#808080',
-      // highlightedPositions: {},
-      // isHighlightVisiable: false,
+
+      w1color: '#808080',
+      // w2color: '#ffffff',
+      compcolor: '#808080',
+
 
    }),
    mutations: {
@@ -121,6 +124,38 @@ const uiStore = {
       },
 
 
+      SETw1ONcolor(state) {
+         state.w1color = "#008000";
+      },
+      SETw1OFFcolor(state) {
+         state.w1color = '#808080';
+      },
+      SETw1waitcolor(state) {
+         state.w1color = "#ff0000";
+      },
+
+      
+      SETw2ONcolor(state) {
+         state.w2color = "#008000";
+      },
+      SETw2OFFcolor(state) {
+         state.w2color = '#808080';
+      },
+      SETw2waitcolor(state) {
+         state.w2color = "#ff0000";
+      },
+
+      SETcompONcolor(state) {
+         state.compcolor = "#008000";
+      },
+      SETcompOFFcolor(state) {
+         state.compcolor = '#808080';
+      },
+      SETcompwaitcolor(state) {
+         state.compcolor = "#ff0000";
+      },
+
+
    },
    actions: {
 
@@ -213,6 +248,42 @@ const uiStore = {
             context.commit("SETV7waitcolor");
          } else {
             console.log("V7 controllor error");
+         }
+      },
+
+      setW1color(context, value) {
+         if (value == 1) {
+            context.commit("SETw1ONcolor");
+         } else if (value == 0) {
+            context.commit("SETw1OFFcolor");
+         } else if (value == 2) {
+            context.commit("SETw1waitcolor");
+         } else {
+            console.log("W1 controllor error");
+         }
+      },
+
+      // setW2color(context, value) {
+      //    if (value == 1) {
+      //       context.commit("SETw2ONcolor");
+      //    } else if (value == 0) {
+      //       context.commit("SETw2OFFcolor");
+      //    } else if (value == 2) {
+      //       context.commit("SETw2waitcolor");
+      //    } else {
+      //       console.log("W2 controllor error");
+      //    }
+      // },
+
+      setCOMPcolor(context, value) {
+         if (value == 1) {
+            context.commit("SETcompONcolor");
+         } else if (value == 0) {
+            context.commit("SETcompOFFcolor");
+         } else if (value == 2) {
+            context.commit("SETcompwaitcolor");
+         } else {
+            console.log("Compressor controllor error");
          }
       },
 

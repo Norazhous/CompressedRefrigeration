@@ -18,7 +18,9 @@
 			<!-- <div class="row">
 				<websockets />
 			</div> -->
-
+			<div class="col-12" id="realTimeTable">
+				<realtimetable/>
+			</div>
 		</div>
 
 
@@ -43,14 +45,14 @@
 import axios from "axios";
 import VideoElement from "./ACON_VideoElement.vue";
 import RigElement from "./ACON_RigElement.vue";
-// import websockets from "./Websocket.vue";
+import realtimetable from "./RealtimeTable.vue"
 
 export default {
 	name: "WebcamStream",
 	components: {
 		VideoElement,
 		RigElement,
-		// websockets,
+		realtimetable,
 	},
 	data() {
 		return {

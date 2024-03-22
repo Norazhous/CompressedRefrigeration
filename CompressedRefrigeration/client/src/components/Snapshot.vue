@@ -11,7 +11,7 @@
                 </thead>
 
                 <tr v-for="row in snaps" :id="row.i" :key="row.i">
-                    <td v-for='key in Object.keys(row)' :key="key">{{ row[key]}}</td>
+                    <td v-for='key in Object.keys(row)' :key="key">{{ row[key] }}</td>
                 </tr>
 
                 <tr class='current' id='current-row'>
@@ -26,6 +26,9 @@
                     <td>{{ GetCurrentPS3 }}</td>
                     <td>{{ GetCurrentFlow }}</td>
                     <td>{{ GetCurrentPower }}</td>
+                    <td>{{ GetCurrentTSA }}</td>
+                    <td>{{ GetCurrentPSA }}</td>
+                    <td>{{ GetCurrentHSA }}</td>
 
                 </tr>
 
@@ -42,7 +45,8 @@
         <div class='d-grid gap-2 d-sm-block'>
             <button id="snapshot" type='button' class="button-sm button-primary"
                 @click="snapshot(); scrollTo('table-bottom')">Record Snapshot</button>
-            <button id="reset_snaps" type='button' class="button-sm button-danger" @click="toggleResetModal">Reset</button>
+            <button id="reset_snaps" type='button' class="button-sm button-danger"
+                @click="toggleResetModal">Reset</button>
             <button id="download_snaps" type='button' class="button-sm button-secondary" @click="outputToCSV">Download
                 Snapshots</button>
         </div>
@@ -53,7 +57,8 @@
                 <div class='row mb-2'>
                     <div class='col'>
                         <h3> Snapshot tool </h3>
-                        <p> Click 'Record Snapshot' to save the current state to the snapshot table. Every time you click a
+                        <p> Click 'Record Snapshot' to save the current state to the snapshot table. Every time you
+                            click a
                             new data set will be added. Click 'Download Snapshots'
                             to download all the snapshots as a .csv file.
                         </p>
@@ -79,8 +84,8 @@
                     <div class="modal-footer">
                         <button type="button" class="button-sm button-danger"
                             @click="resetSnaps(); toggleResetModal();">Reset</button>
-                        <button type="button" class="button-sm button-primary" data-dismiss="modal" data-bs-dismiss="modal"
-                            @click="toggleResetModal">Cancel</button>
+                        <button type="button" class="button-sm button-primary" data-dismiss="modal"
+                            data-bs-dismiss="modal" @click="toggleResetModal">Cancel</button>
                     </div>
                 </div>
             </div>
@@ -122,6 +127,9 @@ export default {
             'GetCurrentPS3',
             'GetCurrentFlow',
             'GetCurrentPower',
+            'GetCurrentTSA',
+            'GetCurrentPSA',
+            'GetCurrentHSA',
             'GETCurrentDate',
         ])
     },
@@ -131,8 +139,13 @@ export default {
         ]),
         snapshot() {
 
-            let snap_object = { t: this.GETCurrentDate, T1: this.GetCurrentTS1, T2: this.GetCurrentTS2, T3: 
-                this.GetCurrentTS3, T4: this.GetCurrentTS4, T5: this.GetCurrentTS5, P1: this.GetCurrentPS1, P2: this.GetCurrentPS2, P3: this.GetCurrentPS3, Flow: this.GetCurrentFlow, Power: this.GetCurrentPower}; 
+            let snap_object = {
+                t: this.GETCurrentDate, T1: this.GetCurrentTS1, T2: this.GetCurrentTS2,
+                T3: this.GetCurrentTS3, T4: this.GetCurrentTS4, T5: this.GetCurrentTS5,
+                P1: this.GetCurrentPS1, P2: this.GetCurrentPS2, P3: this.GetCurrentPS3,
+                Flow: this.GetCurrentFlow, Power: this.GetCurrentPower, TSA: this.GetCurrentTSA,
+                PSA: this.GetCurrentPSA, HSA: this.GetCurrentHSA
+            };
             //gets added to the data for plotting
             this.addSnapData(snap_object);
             //gets added to the snaps list
@@ -156,10 +169,10 @@ export default {
             let csv = '';
             let filename = '';
             let date = new Date();
-            let data =  this.snaps;
+            let data = this.snaps;
             filename = 'SNAPSHOTs_' + date.getDate().toString() + (date.getMonth() + 1).toString() + date.getFullYear().toString();
 
-            csv ='Time,T1/C,T2/C,T3/C,T4/C,T5/C,P1/bar,P2/bar,P2/bar,Flowrate/(L/h),Power/W\n';
+            csv = 'Time,T1/C,T2/C,T3/C,T4/C,T5/C,P1/bar,P2/bar,P2/bar,Flowrate/(L/h),Power/W\n';
 
             data.forEach(function (d) {
                 csv += d.t.toString();
@@ -183,6 +196,12 @@ export default {
                 csv += d.Flow.toString();
                 csv += ",";
                 csv += d.Power.toString();
+                csv += ",";
+                csv += d.TSA.toString();
+                csv += ",";
+                csv += d.PSA.toString();
+                csv += ",";
+                csv += d.HSA.toString();
                 csv += "\n";
             });
 

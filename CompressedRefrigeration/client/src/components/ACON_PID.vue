@@ -2,8 +2,8 @@
     <div>
         <!-- test svg dispaly  -->
         <PID_SVG/>
-
     </div>
+    
 </template>
 
 <script>

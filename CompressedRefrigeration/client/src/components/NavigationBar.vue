@@ -41,18 +41,18 @@
                   <a class="nav-link" href="#" tabindex="-1" @click='clearWorkspace'>Clear Workspace</a>
               </li> -->
 
-              <li v-if='getIsLoggingOn' class="nav-item dropdown">
+              <!-- <li v-if='getIsLoggingOn' class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="settingsdropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                    Settings
                   </a>
                   <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown2">
                     <li><a class="dropdown-item" id='toggleconsentbutton' href="#" @click='this.$emit("toggleconsent")'>Change consent</a></li>
                   </ul>
-              </li>
+              </li> -->
 
           </ul>
 
-          <div class='d-flex'>
+          <!-- <div class='d-flex'>
             <ul class="navbar-nav dropstart">
             
                 <li class="nav-item dropdown">
@@ -89,7 +89,7 @@
                 </li>
 
             </ul>
-          </div>
+          </div> -->
 
       </div>
     </div>

@@ -94,6 +94,18 @@ const rawDataStore = {
             return state.Power_value
         },
 
+        GetCurrentTSA(state){
+            return state.TSA_value
+        },
+
+        GetCurrentPSA(state){
+            return state.PSA_value
+        },
+
+        GetCurrentHSA(state){
+            return state.HSA_value
+        },
+
         GETCurrentTime(state) {
             return state.Current_time
         },
@@ -343,127 +355,6 @@ const rawDataStore = {
          deleteSnapData(context,object){
             context.commit('DELETE_SNAP_DATA', object);
          },
-        // WEBSOCKET_INIT_ACTION({ state, commit }, url) {
-        //     commit('WEBSOCKET_INIT', url);
-        //     state.websocket.onopen = function () {
-        //         console.log("connection success");
-        //         alert("connection success!");
-        //     };
-        //     state.websocket.onerror = function () {
-        //         console.log("ws error");
-
-        //     };
-        //     state.websocket.onmessage = function (callBack) {
-        //         commit("WEBSOCKET_REIVE", callBack.data);
-        //         commit("SETPS1_value");
-        //         commit("SETPS2_value");
-        //         commit("SETPS3_value");
-        //         commit("SETTS1_value");
-        //         commit("SETTS2_value");
-        //         commit("SETTS3_value");
-        //         commit("SETTS4_value");
-        //         commit("SETTS5_value");
-        //         commit("SETFlow_value");
-        //         commit("SETPower_value");
-
-        //         commit("SETCURTIME");
-        //         commit("SETCURDATE");
-
-        //         commit("SETV1");
-        //         commit("SETV2");
-        //         commit("SETV3");
-        //         commit("SETV4");                
-        //         commit("SETV5");
-        //         commit("SETV6");
-
-                // commit("SETPS1_Array");
-                // commit("SETPS2_Array");
-                // commit("SETPS3_Array");
-                // commit("SETTS1_Array");
-                // commit("SETTS2_Array");
-                // commit("SETTS3_Array");
-                // commit("SETTS4_Array");
-                // commit("SETTS5_Array");
-                // commit("SETFlow_Array");
-                // commit("SETPower_Array");
-
-        //     };
-        //     state.websocket.onclose = function () {
-        //         commit("WEBSOCKET_CLOSE")
-        //     }
-        // },
-
-        // WEBSOCKET_CLOSE(context) {
-        //     context.commit('WEBSOCKET_CLOSE');
-        // },
-
-        // WEBSOCKET_REIVE_ACTION({ state, commit }, sendData) {
-        //     // let msg =JSON.stringify(sendData);
-        //     let msg = sendData;
-        //     state.websocket.send(msg);
-        // },
-
-        // GETDATA(context) {
-        //     context.commit("SETV1");
-        // },
-
-        //send msg to server, in Vue file, use dispatch to use this function, in server side, check the JSON content and then change the parameter's value
-        // 0- turn off, 1- turn on
-        // SENDV1CONTROL({ state, commit }, value) { 
-        //     if (value == 0) {
-        //         //connect to the server
-        //         let msg = JSON.stringify({ cmd: "setV1off", param: "0" })
-        //         state.websocket.send(msg);
-        //         commit("SETV1");
-
-        //         //test on the  UI
-        //         // commit("SETV1OFF");
-            
-        //     } else if (value == 1) {
-        //         let msg = JSON.stringify({ cmd: "setV1on", param: "1" })
-        //         state.websocket.send(msg);
-        //         commit("SETV1");
-        //         // commit("SETV1ON");
-        //     }
-        // },
-        // SENDV2CONTROL({ state, commit }, value) { 
-        //     if (value == 0) {
-        //         //connect to the server
-        //         // let msg = JSON.stringify({ cmd: "setV1off", param: "0" })
-        //         // state.websocket.send(msg);
-        //         // commit("SETV1");
-
-        //         //test on the  UI
-        //         commit("SETV2OFF");
-            
-        //     } else if (value == 1) {
-        //         // let msg = JSON.stringify({ cmd: "setV1on", param: "1" })
-        //         // state.websocket.send(msg);
-        //         // commit("SETV1");
-        //         commit("SETV2ON");
-        //     }
-        // },
-
-        // SENDV3CONTROL({ state, commit }, value) { 
-        //     if (value == 0) {
-        //         //connect to the server
-        //         // let msg = JSON.stringify({ cmd: "setV1off", param: "0" })
-        //         // state.websocket.send(msg);
-        //         // commit("SETV1");
-
-        //         //test on the  UI
-        //         commit("SETV3OFF");
-            
-        //     } else if (value == 1) {
-        //         // let msg = JSON.stringify({ cmd: "setV1on", param: "1" })
-        //         // state.websocket.send(msg);
-        //         // commit("SETV1");
-        //         commit("SETV3ON");
-        //     }
-        // },
-
-
-
 
     }
 }

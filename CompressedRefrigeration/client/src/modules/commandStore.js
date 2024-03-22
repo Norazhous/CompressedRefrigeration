@@ -5,23 +5,19 @@ const commandStore = {
     state: () => ({
         
         dataSocket: null,
-        currentMode: '',
-        // drive: 50,
-        // brake: 50,
-        // start: 50,
-        // interval: 50,
-        V1: 0,//0 is closed, 1 is opened
+        // 0 is closed, 1 is opened
+        V1: 0,
         V2: 0,
         V3: 0,
         V4: 0,
         V5: 0,
         V6: 0,
         V7: 0,
-        W1: false,
-        W2: false,
-        Comp: false,
-
+        W1: 0,
+        W2: 0,
+        Comp: 0,
        }),
+
        mutations:{
         SET_DATA_SOCKET(state, socket){
             state.dataSocket = socket;
@@ -66,120 +62,7 @@ const commandStore = {
             state.Comp = value;
         },
 
-        SETV1OFF(state) {
-            state.V1 = 0;
-        },
-        SETV1ON(state) {
-            state.V1 = 1;
-        },
-
-        SETV2OFF(state) {
-            state.V2 = 0;
-        },
-        SETV2ON(state) {
-            state.V2 = 1;
-        },
-
-        SETV3OFF(state) {
-            state.V3 = 0;
-        },
-        SETV3ON(state) {
-            state.V3 = 1;
-        },
-
-        SETV4OFF(state) {
-            state.V4 = 0;
-        },
-        SETV4ON(state) {
-            state.V4 = 1;
-        },
-
-        SETV5OFF(state) {
-            state.V5 = 0;
-        },
-        SETV5ON(state) {
-            state.V5 = 1;
-        },
-
-        SETV6OFF(state) {
-            state.V6 = 0;
-        },
-        SETV6ON(state) {
-            state.V6 = 1;
-        },
-
-        SETV7OFF(state) {
-            state.V7 = 0;
-        },
-        SETV7ON(state) {
-            state.V7 = 1;
-        },
-
-
-        // START(state){
-        //     state.dataSocket.send(JSON.stringify({
-		// 		cmd: "start",
-		// 		param: state.start
-		// 	}));
-        // },
-        // BRAKE(state){
-        //     state.dataSocket.send(JSON.stringify({
-		// 		cmd: "stop",
-		// 		param: "brake"
-		// 	}));
-        // },
-        // FREE(state){
-        //     state.dataSocket.send(JSON.stringify({
-		// 		cmd: "stop",
-		// 		param: "unloaded"
-		// 	}));
-        // },
-        // LOAD(state){
-        //     state.dataSocket.send(JSON.stringify({
-		// 		cmd: "stop",
-		// 		param: "loaded"
-		// 	}));
-        // },
-        // CALIBRATE(state){
-        //     state.dataSocket.send(JSON.stringify({
-		// 		cmd: "calibrate"
-		// 	}));
-        // },
-        // UPDATE_START(state, value){
-        //     state.start = value;
-        // },
-        // UPDATE_DRIVE(state, value){
-        //     state.drive = value;
-        // },
-        // SEND_DRIVE(state){
-        //     state.dataSocket.send(JSON.stringify({
-		// 		cmd: "drive",
-		// 		param: state.drive
-		// 	}));
-        // },
-        // UPDATE_BRAKE(state, value){
-        //     state.brake = value;
-        // },
-        // SEND_BRAKE(state){
-        //     state.dataSocket.send(JSON.stringify({
-		// 		cmd: "brake",
-		// 		param: state.brake
-		// 	}));
-        // },
-        // UPDATE_INTERVAL(state, value){
-        //     state.interval = value;
-        // },
-        // SEND_INTERVAL(state){
-        //     state.dataSocket.send(JSON.stringify({
-		// 		cmd: "interval",
-		// 		param: state.interval
-		// 	}));
-        // },
-        // SET_CURRENT_MODE(state, mode){
-        //     state.currentMode = mode;
-        //  },
-            
-
+ 
        },
        actions:{
         setDataSocket(context, socket){
@@ -191,53 +74,53 @@ const commandStore = {
         SENDV1CONTROL({ state, commit }, value) { 
             if (value == 0) {
                 //connect to the server
-                // let msg = JSON.stringify({ cmd: "setV1off", param: "0" })
-                // state.websocket.send(msg);
-                // commit("SETV1");
-
+                // let msg = JSON.stringify({ "valve":1, "state":0 })
+                // state.dataSocket.send(msg);
+            
                 //test on the  UI
-                commit("SETV1OFF");
+                commit("SETV1",0);
             
             } else if (value == 1) {
-                // let msg = JSON.stringify({ cmd: "setV1on", param: "1" })
-                // state.websocket.send(msg);
-                // commit("SETV1");
-                commit("SETV1ON");
+                // let msg = JSON.stringify({ "valve":1, "state":1 })
+                // state.dataSocket.send(msg);
+            
+                 //test on the  UI
+                commit("SETV1",1);
             }
         },
         SENDV2CONTROL({ state, commit }, value) { 
             if (value == 0) {
                 //connect to the server
-                // let msg = JSON.stringify({ cmd: "setV1off", param: "0" })
-                // state.websocket.send(msg);
-                // commit("SETV1");
-
+                // let msg = JSON.stringify({ "valve":2, "state":0 })
+                // state.dataSocket.send(msg);
+            
                 //test on the  UI
-                commit("SETV2OFF");
+                commit("SETV2",0);
             
             } else if (value == 1) {
-                // let msg = JSON.stringify({ cmd: "setV1on", param: "1" })
-                // state.websocket.send(msg);
-                // commit("SETV1");
-                commit("SETV2ON");
+                // let msg = JSON.stringify({ "valve":2, "state":1 })
+                // state.dataSocket.send(msg);
+                
+                //test on the  UI
+                commit("SETV2",1);
             }
         },
 
         SENDV3CONTROL({ state, commit }, value) { 
             if (value == 0) {
                 //connect to the server
-                // let msg = JSON.stringify({ cmd: "setV1off", param: "0" })
-                // state.websocket.send(msg);
-                // commit("SETV1");
+                // let msg = JSON.stringify({ "valve":3, "state":0 })
+                // state.dataSocket.send(msg);
 
                 //test on the  UI
-                commit("SETV3OFF");
+                commit("SETV3",0);
             
             } else if (value == 1) {
-                // let msg = JSON.stringify({ cmd: "setV1on", param: "1" })
-                // state.websocket.send(msg);
-                // commit("SETV1");
-                commit("SETV3ON");
+                // let msg = JSON.stringify({ "valve":3, "state":1 })
+                // state.dataSocket.send(msg);
+
+                 //test on the  UI
+                 commit("SETV3",1);
             }
         },
 
@@ -245,18 +128,18 @@ const commandStore = {
         SENDV4CONTROL({ state, commit }, value) { 
             if (value == 0) {
                 //connect to the server
-                // let msg = JSON.stringify({ cmd: "setV1off", param: "0" })
-                // state.websocket.send(msg);
-                // commit("SETV1");
+                // let msg = JSON.stringify({ "valve":4, "state":0 })
+                // state.dataSocket.send(msg);
 
                 //test on the  UI
-                commit("SETV4OFF");
+                commit("SETV4",0);
             
             } else if (value == 1) {
-                // let msg = JSON.stringify({ cmd: "setV1on", param: "1" })
-                // state.websocket.send(msg);
-                // commit("SETV1");
-                commit("SETV4ON");
+                // let msg = JSON.stringify({ "valve":4, "state":1 })
+                // state.dataSocket.send(msg);
+
+                 //test on the  UI
+                 commit("SETV4",1);
             }
         },
 
@@ -264,18 +147,18 @@ const commandStore = {
         SENDV5CONTROL({ state, commit }, value) { 
             if (value == 0) {
                 //connect to the server
-                // let msg = JSON.stringify({ cmd: "setV1off", param: "0" })
-                // state.websocket.send(msg);
-                // commit("SETV1");
+                // let msg = JSON.stringify({ "valve":5, "state":0 })
+                // state.dataSocket.send(msg);
 
                 //test on the  UI
-                commit("SETV5OFF");
+                commit("SETV5",0);
             
             } else if (value == 1) {
-                // let msg = JSON.stringify({ cmd: "setV1on", param: "1" })
-                // state.websocket.send(msg);
-                // commit("SETV1");
-                commit("SETV5ON");
+                // let msg = JSON.stringify({ "valve":5, "state":1 })
+                // state.dataSocket.send(msg);
+
+                 //test on the  UI
+                 commit("SETV5",1);
             }
         },
 
@@ -283,18 +166,18 @@ const commandStore = {
         SENDV6CONTROL({ state, commit }, value) { 
             if (value == 0) {
                 //connect to the server
-                // let msg = JSON.stringify({ cmd: "setV1off", param: "0" })
-                // state.websocket.send(msg);
-                // commit("SETV1");
+                // let msg = JSON.stringify({ "valve":6, "state":0 })
+                // state.dataSocket.send(msg);
 
                 //test on the  UI
-                commit("SETV6OFF");
+                commit("SETV6", 0);
             
             } else if (value == 1) {
-                // let msg = JSON.stringify({ cmd: "setV1on", param: "1" })
-                // state.websocket.send(msg);
-                // commit("SETV1");
-                commit("SETV6ON");
+                // let msg = JSON.stringify({ "valve":6, "state":1 })
+                // state.dataSocket.send(msg);
+
+                 //test on the  UI
+                 commit("SETV6",1);
             }
         },
 
@@ -302,100 +185,83 @@ const commandStore = {
         SENDV7CONTROL({ state, commit }, value) { 
             if (value == 0) {
                 //connect to the server
-                // let msg = JSON.stringify({ cmd: "setV1off", param: "0" })
-                // state.websocket.send(msg);
-                // commit("SETV1");
+                // let msg = JSON.stringify({ "valve":7, "state":0 })
+                // state.dataSocket.send(msg);
 
                 //test on the  UI
-                commit("SETV7OFF");
+                commit("SETV7",0);
             
             } else if (value == 1) {
-                // let msg = JSON.stringify({ cmd: "setV1on", param: "1" })
-                // state.websocket.send(msg);
-                // commit("SETV1");
-                commit("SETV7ON");
+                // let msg = JSON.stringify({ "valve":7, "state":1 })
+                // state.dataSocket.send(msg);
+
+                 //test on the  UI
+                 commit("SETV7",1);
             }
         },
 
-        // in the logging store, it is use for data analystic
-        // start(context, value){
-        //     context.commit('START', value)
-        //     //context.dispatch('logParameters', {log:'speed', data: {set: value, kp: context.rootState.data.p, ki: context.rootState.data.i, kd: context.rootState.data.d}});
-        //     context.dispatch('logAnalytics', {log: "start", data: {set: value}})
-        // },
-        // brake(context){
-        //     context.commit('BRAKE');
-        //     context.dispatch('logAnalytics', {log: "brake"})
-        // },
-        // free(context){
-        //     context.commit('FREE');
-        //     context.dispatch('logAnalytics', {log: "free"})
-        // },
-        // load(context){
-        //     context.commit('LOAD');
-        //     context.dispatch('logAnalytics', {log: "load"})
-        // },
-        // calibrate(context){
-        //     context.commit('CALIBRATE');
-        // },
-        // updateStart(context, value){
-        //     context.commit('UPDATE_START', value);
-        // },
-        // updateDrive(context, value){
-        //     context.commit('UPDATE_DRIVE', value);
-        // },
-        // sendDrive(context, toLog = true){
-        //     context.commit('SEND_DRIVE');
-        //     if(toLog){
-        //         context.dispatch('logAnalytics', {log: "drive_perc", data: {set: context.state.drive}})
-        //     }
+        SENDW1CONTROL({ state, commit }, value) { 
+            if (value == 0) {
+                //connect to the server
+                // let msg = JSON.stringify({"fans":0})
+                // state.dataSocket.send(msg);
+
+                //test on the  UI
+                commit("SETW1",0);
             
-        // },
-        // updateBrake(context, value){
-        //     context.commit('UPDATE_BRAKE', value);
-        // },
-        // sendBrake(context, toLog = true){
-        //     context.commit('SEND_BRAKE');
-        //     if(toLog){
-        //         context.dispatch('logAnalytics', {log: "brake_perc", data: {set: context.state.brake}})
-        //     }
+            } else if (value == 1) {
+                // let msg = JSON.stringify({"fans":1})
+                // state.dataSocket.send(msg);
+
+                 //test on the  UI
+                 commit("SETW1",1);
+            }
+        },
+
+        // SENDW2CONTROL({ state, commit }, value) { 
+        //     if (value == 0) {
+        //         //connect to the server
+        //         // let msg = JSON.stringify({ "valve":7, "state":0 })
+        //         // state.dataSocket.send(msg);
+
+        //         //test on the  UI
+        //         commit("SETW2",0);
             
-        // },
-        // updateInterval(context, value){
-        //     context.commit('UPDATE_INTERVAL', value)
-        // },
-        // sendInterval(context, toLog = true){
-        //     context.commit('SEND_INTERVAL');
-        //     if(toLog){
-        //         context.dispatch('logAnalytics', {log: "sampling", data: {set: context.state.interval}})
+        //     } else if (value == 1) {
+        //         // let msg = JSON.stringify({ "valve":7, "state":1 })
+        //         // state.dataSocket.send(msg);
+
+        //          //test on the  UI
+        //          commit("SETW2",1);
         //     }
-            
-        // },
-        // setCurrentMode(context, mode){
-        //     context.commit("SET_CURRENT_MODE", mode);
         // },
 
+        SENDCOMPCONTROL({ state, commit }, value) { 
+            if (value == 0) {
+                //connect to the server
+                // let msg = JSON.stringify({"comp":0})
+                // state.dataSocket.send(msg);
+
+                //test on the  UI
+                commit("SETComp",0);
+            
+            } else if (value == 1) {
+                // let msg = JSON.stringify({"comp":1})
+                // state.dataSocket.send(msg);
+
+                 //test on the  UI
+                 commit("SETComp",1);
+            }
+        },
+
+     
 
        },
        getters:{
         getDataSocket(state){
             return state.dataSocket;
         },
-        // getCurrentMode(state){
-        //     return state.currentMode;
-        // },
-        // getDrive(state){
-        //     return state.drive;
-        // },
-        // getBrake(state){
-        //     return state.brake;
-        // },
-        // getStart(state){
-        //     return state.start;
-        // },
-        // getInterval(state){
-        //     return state.interval;
-        // },
+
           
        },  
   

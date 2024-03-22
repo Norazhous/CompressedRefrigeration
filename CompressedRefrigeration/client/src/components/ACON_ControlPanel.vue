@@ -5,6 +5,7 @@
 			<PID />
 		</div>
 		<div id="buttons" class="row">
+
 			<div class="col-3 offset-2">
 				<!-- <button id="V1" class="button-lg button-primary" > V1 </button>  -->
 				<!-- id="flexSwitchCheckDefault" in the input, and  for="flexSwitchCheckDefault" in the label-->
@@ -12,45 +13,57 @@
 					<input class="form-check-input" type="checkbox" :checked="V1SwitchControllor"
 						:disabled="V1SwitchDisabled" @click="valve1ColorChange()">
 					<label class="form-check-label" :style="{ color: valve1Color }">V1 {{ V1state }}</label>
-
 				</div>
-				<div class="form-check form-switch">
-					<input class="form-check-input" type="checkbox" :checked="V4SwitchControllor"
-						:disabled="V4SwitchDisabled" @click="valve4ColorChange()">
-					<label class="form-check-label" :style="{ color: valve4Color }">V4 {{ V4state }}</label>
-
-				</div>
-				<div class="form-check form-switch">
-					<input class="form-check-input" type="checkbox" :checked="V7SwitchControllor"
-						:disabled="V7SwitchDisabled" @click="valve7ColorChange()">
-					<label class="form-check-label" :style="{ color: valve7Color }"> V7 {{ V4state }}</label>
-				</div>
-
-			</div>
-			<div class="col-3">
 				<div class="form-check form-switch">
 					<input class="form-check-input" type="checkbox" :checked="V2SwitchControllor"
 						:disabled="V2SwitchDisabled" @click="valve2ColorChange()">
 					<label class="form-check-label" :style="{ color: valve2Color }">V2 {{ V2state }}</label>
 				</div>
 				<div class="form-check form-switch">
-					<input class="form-check-input" type="checkbox" :checked="V5SwitchControllor"
-						:disabled="V5SwitchDisabled" @click="valve5ColorChange()">
-					<label class="form-check-label" :style="{ color: valve5Color }">V5 {{ V5state }}</label>
-				</div>
-			</div>
-			<div class="col-3">
-				<div class="form-check form-switch">
 					<input class="form-check-input" type="checkbox" :checked="V3SwitchControllor"
 						:disabled="V3SwitchDisabled" @click="valve3ColorChange()">
 					<label class="form-check-label" :style="{ color: valve3Color }">V3 {{ V3state }}</label>
+				</div>
+				<div class="form-check form-switch">
+					<input class="form-check-input" type="checkbox" :checked="V4SwitchControllor"
+						:disabled="V4SwitchDisabled" @click="valve4ColorChange()">
+					<label class="form-check-label" :style="{ color: valve4Color }">V4 {{ V4state }}</label>
+				</div>
+			</div>
+
+			<div class="col-3">
+				<div class="form-check form-switch">
+					<input class="form-check-input" type="checkbox" :checked="V5SwitchControllor"
+						:disabled="V5SwitchDisabled" @click="valve5ColorChange()">
+					<label class="form-check-label" :style="{ color: valve5Color }">V5 {{ V5state }}</label>
 				</div>
 				<div class="form-check form-switch">
 					<input class="form-check-input" type="checkbox" :checked="V6SwitchControllor"
 						:disabled="V6SwitchDisabled" @click="valve6ColorChange()">
 					<label class="form-check-label" :style="{ color: valve6Color }">V6 {{ V6state }}</label>
 				</div>
+
+
+				<div class="form-check form-switch">
+					<input class="form-check-input" type="checkbox" :checked="V7SwitchControllor"
+						:disabled="V7SwitchDisabled" @click="valve7ColorChange()">
+					<label class="form-check-label" :style="{ color: valve7Color }"> V7 {{ V7state }}</label>
+				</div>
+
 			</div>
+			<div class="col-3">
+				<div class="form-check form-switch">
+					<input class="form-check-input" type="checkbox" :checked="W1SwitchControllor"
+						:disabled="W1SwitchDisabled" @click="w1ColorChange()">
+					<label class="form-check-label" :style="{ color: w1color }"> Fans {{ W1state }} </label>
+				</div>
+				<div class="form-check form-switch">
+					<input class="form-check-input" type="checkbox" :checked="COMPSwitchControllor"
+						:disabled="COMPSwitchDisabled" @click="compColorChange()">
+					<label class="form-check-label" :style="{ color: compcolor }"> Compressor {{ COMPstate }}</label>
+				</div>
+			</div>
+
 
 
 		</div>
@@ -115,6 +128,16 @@ export default {
 			V7SwitchDisabled: false,
 			V7msg: "V7 error",
 
+			W1state: "OFF",
+			W1SwitchControllor: false,
+			W1SwitchDisabled: false,
+			W1msg: "Fans error",
+
+			COMPstate: "OFF",
+			COMPSwitchControllor: false,
+			COMPSwitchDisabled: false,
+			COMPmsg: "Fans error",
+
 
 		}
 	},
@@ -142,6 +165,12 @@ export default {
 		},
 		valve7Color() {
 			return this.$store.state.ui.v7color;
+		},
+		w1color() {
+			return this.$store.state.ui.w1color;
+		},
+		compcolor() {
+			return this.$store.state.ui.compcolor;
 		},
 
 
@@ -187,6 +216,11 @@ export default {
 			'SENDV6CONTROL',
 			'setV7color',
 			'SENDV7CONTROL',
+			'setW1color',
+			'SENDW1CONTROL',
+			// 'setW2color',
+			'setCOMPcolor',
+			'SENDCOMPCONTROL',
 		]),
 
 		//send command first, and the state changes to opening. waith 1 -2 second, check the state again, if the state become opened, then UI change. otherwise, alert and UI keep original.
@@ -214,7 +248,7 @@ export default {
 						this.V1SwitchDisabled = false;
 						this.setV1color(0);
 						this.V1state = "OFF";
-						this.V1msg = "V1_not_opened_success";
+						this.V1msg = "V1_not_open_success";
 						console.log(this.V1msg);
 						this.V1SwitchControllor = false;
 					}
@@ -242,7 +276,7 @@ export default {
 						this.V1SwitchDisabled = false;
 						this.setV1color(1);
 						this.V1state = "ON";
-						this.V1msg = "V1_not_closed_success";
+						this.V1msg = "V1_not_close_success";
 						console.log(this.V1msg);
 						this.V1SwitchControllor = true;
 					}
@@ -281,7 +315,7 @@ export default {
 						this.V2SwitchDisabled = false;
 						this.setV2color(0);
 						this.V2state = "OFF";
-						this.V2msg = "V2_not_opened_success";
+						this.V2msg = "V2_not_open_success";
 						console.log(this.V2msg);
 						this.V2SwitchControllor = false;
 					}
@@ -309,7 +343,7 @@ export default {
 						this.V2SwitchDisabled = false;
 						this.setV2color(1);
 						this.V2state = "ON";
-						this.V2msg = "V2_not_closed_success";
+						this.V2msg = "V2_not_close_success";
 						console.log(this.V2msg);
 						this.V2SwitchControllor = true;
 					}
@@ -348,7 +382,7 @@ export default {
 						this.V3SwitchDisabled = false;
 						this.setV3color(0);
 						this.V3state = "OFF";
-						this.V3msg = "V3_not_opened_success";
+						this.V3msg = "V3_not_open_success";
 						console.log(this.V3msg);
 						this.V3SwitchControllor = false;
 					}
@@ -376,7 +410,7 @@ export default {
 						this.V3SwitchDisabled = false;
 						this.setV3color(1);
 						this.V3state = "ON";
-						this.V3msg = "V3_not_closed_success";
+						this.V3msg = "V3_not_close_success";
 						console.log(this.V3msg);
 						this.V3SwitchControllor = true;
 					}
@@ -414,7 +448,7 @@ export default {
 						this.V4SwitchDisabled = false;
 						this.setV4color(0);
 						this.V4state = "OFF";
-						this.V4msg = "V4_not_opened_success";
+						this.V4msg = "V4_not_open_success";
 						console.log(this.V4msg);
 						this.V4SwitchControllor = false;
 					}
@@ -442,7 +476,7 @@ export default {
 						this.V4SwitchDisabled = false;
 						this.setV4color(1);
 						this.V4state = "ON";
-						this.V4msg = "V4_not_closed_success";
+						this.V4msg = "V4_not_close_success";
 						console.log(this.V4msg);
 						this.V4SwitchControllor = true;
 					}
@@ -481,7 +515,7 @@ export default {
 						this.V5SwitchDisabled = false;
 						this.setV5color(0);
 						this.V5state = "OFF";
-						this.V5msg = "V5_not_opened_success";
+						this.V5msg = "V5_not_open_success";
 						console.log(this.V5msg);
 						this.V5SwitchControllor = false;
 					}
@@ -509,7 +543,7 @@ export default {
 						this.V5SwitchDisabled = false;
 						this.setV5color(1);
 						this.V5state = "ON";
-						this.V5msg = "V5_not_closed_success";
+						this.V5msg = "V5_not_close_success";
 						console.log(this.V5msg);
 						this.V5SwitchControllor = true;
 					}
@@ -549,7 +583,7 @@ export default {
 						this.V6SwitchDisabled = false;
 						this.setV6color(0);
 						this.V6state = "OFF";
-						this.V6msg = "V6_not_opened_success";
+						this.V6msg = "V6_not_open_success";
 						console.log(this.V6msg);
 						this.V6SwitchControllor = false;
 					}
@@ -577,7 +611,7 @@ export default {
 						this.V6SwitchDisabled = false;
 						this.setV6color(1);
 						this.V6state = "ON";
-						this.V6msg = "V6_not_closed_success";
+						this.V6msg = "V6_not_close_success";
 						console.log(this.V6msg);
 						this.V6SwitchControllor = true;
 					}
@@ -617,7 +651,7 @@ export default {
 						this.V7SwitchDisabled = false;
 						this.setV7color(0);
 						this.V7state = "OFF";
-						this.V7msg = "V7_not_opened_success";
+						this.V7msg = "V7_not_open_success";
 						console.log(this.V7msg);
 						this.V7SwitchControllor = false;
 					}
@@ -645,7 +679,7 @@ export default {
 						this.V7SwitchDisabled = false;
 						this.setV7color(1);
 						this.V7state = "ON";
-						this.V7msg = "V7_not_closed_success";
+						this.V7msg = "V7_not_close_success";
 						console.log(this.V7msg);
 						this.V7SwitchControllor = true;
 					}
@@ -656,6 +690,146 @@ export default {
 				console.log("error:" + "V1 is" + this.V1state + "; its code is" + this.$store.state.command.V1 + ";" + "V2 is" + this.V2state + "; its code is" + this.$store.state.command.V2 + ";"
 					+ "V3 is" + this.V3state + "; its code is" + this.$store.state.command.V3 + ";" + "V4 is" + this.V4state + "; its code is" + this.$store.state.command.V4 + ";" + "V5 is" + this.V5state + "; its code is" + this.$store.state.command.V5 + ";"
 					+ "V6 is" + this.V6state + "; its code is" + this.$store.state.command.V6 + ";" + "V7 is" + this.V7state + "; its code is" + this.$store.state.command.V7 + ";");
+			}
+		},
+
+
+
+
+		w1ColorChange() {
+
+			if (this.W1SwitchControllor == false && this.$store.state.command.W1 == 0) {
+
+				this.setW1color(2);
+				this.W1state = "opening";
+				this.SENDW1CONTROL(1);
+				this.W1msg = "Fans opening";
+				console.log(this.W1msg);
+				this.W1SwitchDisabled = true;
+
+				setTimeout(() => {
+					if (this.$store.state.command.W1 == 1) {
+						this.W1SwitchDisabled = false;
+						this.setW1color(1);
+						this.W1state = "ON";
+						this.W1msg = "Fans opened";
+						console.log(this.W1msg);
+						this.W1SwitchControllor = true;
+					}
+					else if (this.$store.state.command.W1 == 0) {
+						this.W1SwitchDisabled = false;
+						this.setW1color(0);
+						this.W1msg = "OFF";
+						this.W1msg = "Fans_not_open_success";
+						console.log(this.W1msg);
+						this.W1SwitchControllor = false;
+					}
+				}, 1000);
+
+			} else if (this.W1SwitchControllor == true && this.$store.state.command.W1 == 1) {
+
+				this.setW1color(2);
+				this.W1state = "closing";
+				this.SENDW1CONTROL(0);
+				this.W1msg = "Fans closing";
+				console.log(this.W1msg);
+				this.W1SwitchDisabled = true;
+
+				setTimeout(() => {
+					if (this.$store.state.command.W1 == 0) {
+						this.W1SwitchDisabled = false;
+						this.setW1color(0);
+						this.W1state = "OFF";
+						this.W1msg = "Fans closed";
+						console.log(this.W1msg);
+						this.W1SwitchControllor = false;
+					}
+					else if (this.$store.state.command.W1 == 1) {
+						this.W1SwitchDisabled = false;
+						this.setW1color(1);
+						this.W1state = "ON";
+						this.W1msg = "Fans_not_close_success";
+						console.log(this.W1msg);
+						this.W1SwitchControllor = true;
+					}
+				}, 1000);
+
+			} else {
+				alert(this.W1msg + this.$store.state.command.W1 + this.W1SwitchControllor);
+				console.log("error:" + "V1 is" + this.V1state + "; its code is" + this.$store.state.command.V1 + ";" + "V2 is" + this.V2state + "; its code is" + this.$store.state.command.V2 + ";"
+					+ "V3 is" + this.V3state + "; its code is" + this.$store.state.command.V3 + ";" + "V4 is" + this.V4state + "; its code is" + this.$store.state.command.V4 + ";" + "V5 is" + this.V5state + "; its code is" + this.$store.state.command.V5 + ";"
+					+ "V6 is" + this.V6state + "; its code is" + this.$store.state.command.V6 + ";" + "V7 is" + this.V7state + "; its code is" + this.$store.state.command.V7 + ";"
+					+ "W1 is" + this.W1state + "; its code is" + this.$store.state.command.W1 + ";");
+			}
+		},
+
+
+
+
+		compColorChange() {
+
+			if (this.COMPSwitchControllor == false && this.$store.state.command.Comp == 0) {
+
+				this.setCOMPcolor(2);
+				this.COMPstate = "opening";
+				this.SENDCOMPCONTROL(1);
+				this.COMPmsg = "Compressor opening";
+				console.log(this.COMPmsg);
+				this.COMPSwitchDisabled = true;
+
+				setTimeout(() => {
+					if (this.$store.state.command.Comp == 1) {
+						this.COMPSwitchDisabled = false;
+						this.setCOMPcolor(1);
+						this.COMPstate = "ON";
+						this.COMPmsg = "Compressor opened";
+						console.log(this.COMPmsg);
+						this.COMPSwitchControllor = true;
+					}
+					else if (this.$store.state.command.Comp == 0) {
+						this.COMPSwitchDisabled = false;
+						this.setCOMPcolor(0);
+						this.COMPmsg = "OFF";
+						this.COMPmsg = "Comperssor_not_open_success";
+						console.log(this.COMPmsg);
+						this.COMPSwitchControllor = false;
+					}
+				}, 1000);
+
+			} else if (this.COMPSwitchControllor == true && this.$store.state.command.Comp == 1) {
+
+				this.setCOMPcolor(2);
+				this.COMPstate = "closing";
+				this.SENDCOMPCONTROL(0);
+				this.COMPmsg = "Compressor closing";
+				console.log(this.COMPmsg);
+				this.COMPSwitchDisabled = true;
+
+				setTimeout(() => {
+					if (this.$store.state.command.Comp == 0) {
+						this.COMPSwitchDisabled = false;
+						this.setCOMPcolor(0);
+						this.COMPstate = "OFF";
+						this.COMPmsg = "Compressor closed";
+						console.log(this.COMPmsg);
+						this.COMPSwitchControllor = false;
+					}
+					else if (this.$store.state.command.Comp == 1) {
+						this.COMPSwitchDisabled = false;
+						this.setCOMPcolor(1);
+						this.COMPstate = "ON";
+						this.COMPmsg = "Compressor_not_close_success";
+						console.log(this.COMPmsg);
+						this.COMPSwitchControllor = true;
+					}
+				}, 1000);
+
+			} else {
+				alert(this.COMPmsg + this.$store.state.command.Comp + this.COMPSwitchControllor);
+				console.log("error:" + "V1 is" + this.V1state + "; its code is" + this.$store.state.command.V1 + ";" + "V2 is" + this.V2state + "; its code is" + this.$store.state.command.V2 + ";"
+					+ "V3 is" + this.V3state + "; its code is" + this.$store.state.command.V3 + ";" + "V4 is" + this.V4state + "; its code is" + this.$store.state.command.V4 + ";" + "V5 is" + this.V5state + "; its code is" + this.$store.state.command.V5 + ";"
+					+ "V6 is" + this.V6state + "; its code is" + this.$store.state.command.V6 + ";" + "V7 is" + this.V7state + "; its code is" + this.$store.state.command.V7 + ";"
+					+ "W1 is" + this.W1state + "; its code is" + this.$store.state.command.W1 + ";");
 			}
 		},
 
@@ -760,7 +934,7 @@ export default {
 					var V5 = obj.valves.V5;
 					var V6 = obj.valves.V6;
 					var V7 = obj.valves.V7;
-					// var V8 = obj.valves.V7;
+					// var V8 = obj.valves.V8;
 					var W1 = obj.relays.W1; //fan1
 					var W2 = obj.relays.W2; //fan2
 					var comp = obj.relays.comp; //compressor
@@ -845,7 +1019,7 @@ export default {
 						_this.$store.dispatch('SETV5', V5);
 						_this.$store.dispatch('SETV6', V6);
 						_this.$store.dispatch('SETV7', V7);
-						// _this.$store.dispatch('SETV8',V7);
+						// _this.$store.dispatch('SETV8',V8);
 						_this.$store.dispatch('SETW1', W1);
 						_this.$store.dispatch('SETW2', W2);
 						_this.$store.dispatch('SETComp', comp);
