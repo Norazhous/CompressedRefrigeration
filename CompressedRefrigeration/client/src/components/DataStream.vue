@@ -8,7 +8,7 @@
 <script>
 
 import axios from "axios";
-import ControlPanel from "./ACON_ControlPanel.vue";
+import ControlPanel from "./ControlPanel.vue";
 
 
 export default {

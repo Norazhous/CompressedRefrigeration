@@ -43,8 +43,8 @@
 //playerUrl = scheme + host + ':' + port + '/' + stream;
 //let playerUrl = 'ws://video.practable.io:8080/out/dpr/video0';
 import axios from "axios";
-import VideoElement from "./ACON_VideoElement.vue";
-import RigElement from "./ACON_RigElement.vue";
+import VideoElement from "./VideoElement.vue";
+import RigElement from "./RigElement.vue";
 import realtimetable from "./RealtimeTable.vue"
 
 export default {

@@ -147,7 +147,7 @@
             <g id="g368" transform="translate(-3.9999979,-7.6622272)">
                 <title> Compressor </title>
                 <circle cx="83.391655" cy="137" r="5.6083441" pointer-events="all" stroke-width="0.224231" id="circle4"
-                v-on:click="highlightValve(0.9, 0.9, '5%', '5%')" :fill="this.compcolor" style="stroke:#000000" />
+                v-on:click="highlightValve(0.85, 0.75, '15%', '15%')" :fill="this.compcolor" style="stroke:#000000" />
                 <path d="m 80.352979,141.74879 c 2.634244,-0.66723 5.268413,-1.33446 7.902582,-2.00169"
                     stroke-width="0.224229" id="path3-8" style="fill:none;stroke:#000000" />
                 <path d="m 80.316355,132.23326 c 2.634244,0.66723 5.268413,1.33446 7.902582,2.00169" stroke-width="0.224229"
@@ -289,7 +289,7 @@
                 <title>Valve 7</title>
                 <!-- V7 -->
                 <g id="g2-8-5-781" transform="matrix(1,0,0,-1,903.31208,-86.870338)">
-                    <path v-on:click="highlightValve(0.65, 0.65, '4%', '5%')" :fill="this.valve7Color" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round" stroke="#000000"
+                    <path v-on:click="highlightValve(0.75, 0.56, '5%', '5%')" :fill="this.valve7Color" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round" stroke="#000000"
                         stroke-opacity="1" stroke-miterlimit="4"
                         d="m -800.30842,-122.04517 4.99953,-2.49976 v 4.99952 l -10.00043,-4.99952 v 4.99952 z m 0,0"
                         id="path3073-2-2-3" />
@@ -439,7 +439,7 @@
                 <title> Evaporator </title>
                 <g id="g6435-8" transform="matrix(0,0.3220929,-0.3220929,0,357.93393,-81.08826)"
                     style="stroke-width:0.666667;stroke-miterlimit:4;stroke-dasharray:none">
-                    <rect v-on:click="highlightValve(0.1, 0.1, '30%', '30%')" :fill="this.w1color" y="942.36218" x="445" height="45" width="40"
+                    <rect v-on:click="highlightValve(0.1, 0.1, '25%', '30%')" :fill="this.w1color" y="942.36218" x="445" height="45" width="40"
                         id="rect6433-8" 
                         style="fill-opacity:1;stroke:#000000;stroke-width:0.666667;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
                     <g transform="rotate(-90,706.7536,277.16853)" inkscape:label="Layer 1" id="layer1-6-5-9"
@@ -501,7 +501,7 @@
                 <g id="g6435" transform="matrix(0,0.3220929,-0.3220929,0,468.21168,-28.239286)"
                     style="stroke-width:0.666667;stroke-miterlimit:4;stroke-dasharray:none">
                     <rect y="942.36218" x="445" height="45" width="40" id="rect6433"
-                    v-on:click="highlightValve(0.9, 0.9, '5%', '5%')" :fill="this.w1color" style="fill-opacity:1;stroke:#000000;stroke-width:0.666667;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                    v-on:click="highlightValve(0.75, 0.18, '15%', '25%')" :fill="this.w1color" style="fill-opacity:1;stroke:#000000;stroke-width:0.666667;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
                     <g transform="rotate(-90,706.7536,277.16853)" inkscape:label="Layer 1" id="layer1-6-5"
                         style="stroke-width:0.666667;stroke-miterlimit:4;stroke-dasharray:none">
                         <g transform="matrix(0.56118298,0,0,0.56118298,6.6797665,15.534764)" id="g3924"
@@ -739,9 +739,9 @@
                 d="m 17.976614,13.738814 v 58.24104" id="path243" />
             <path style="fill:#000000;fill-opacity:0;fill-rule:evenodd;stroke:#000000;stroke-width:0.25"
                 d="M 28.000002,74.337769 H 19.000001" id="path244" />
-            <g id="g250" transform="translate(9.7760427,-2.3756712)">
+            <g id="g250" transform="translate(9.7760427,-2.3756712)" >
                 <title>Suction Line Receiver</title>
-                <path id="path3567"
+                <path  id="path3567"
                     d="m 28.611983,127.44543 h -3.611966 v 7.26801 l 3.611966,3.634 c 0,0 3.611976,-3.634 3.611976,-3.634 v -7.26801 z"
                     style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:6.51969;stroke-opacity:1;paint-order:normal" />
                 <path
@@ -884,7 +884,7 @@
 // import dataTestStore from "../modules/ACON_dataTestStore"
 
 import { mapActions } from 'vuex';
-import RigElement from "./ACON_RigElement.vue"
+import RigElement from "./RigElement.vue"
 
 export default {
     name: "PID_SVG",

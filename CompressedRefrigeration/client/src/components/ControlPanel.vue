@@ -73,7 +73,7 @@
 </template>
 
 <script>
-import PID from "./ACON_PID.vue"
+import PID from "./PID.vue"
 // import dataTestStore from "../modules/ACON_dataTestStore"
 //import Tooltip from "./Tooltip.vue";
 import { mapGetters, mapActions } from 'vuex';

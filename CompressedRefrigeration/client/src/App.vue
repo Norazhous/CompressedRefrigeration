@@ -6,13 +6,10 @@
           <div class="col-lg-6" style="background-color: aqua; height: 10px; width: auto;"></div>
           <div class="col-lg-6" style="background-color: aqua; height: 10px; width: auto;"></div>
         </div> -->
-       <navigation-bar @toggleconsent="showConsentModal = true" @togglesnapshot="toggleSnapshot" @togglegraph="toggleGraph" @togglestopwatch="toggleStopwatch" @toggletable="toggleTable" @toggleworkspace="addWorkspace" @clearworkspace="clearWorkspace" @addruler="rulerAdded = true" @addprotractor="protractorAdded = true"/>
+       <navigation-bar @toggleconsent="showConsentModal = true" @togglesnapshot="toggleSnapshot" @togglegraph="toggleGraph" @togglestopwatch="toggleStopwatch" @toggletable="toggleTable" />
 
        <!-- <consent v-if='showConsentModal && getIsLoggingOn' @consentset="closeConsentModal"/> -->
 
-        <!-- <div v-if="isWorkspaceOn">
-          <workspace :protractorAdded="protractorAdded" :rulerAdded="rulerAdded"/>
-        </div> -->
 
         <streams id='streams' />
         
@@ -46,22 +43,19 @@
 
 <script>
 
-import GraphOutput from "./components/GraphOutput.vue";
+
 import TableOutput from "./components/TableOutput.vue";
 import Stopwatch from "./components/Stopwatch.vue";
-import Workspace from "./components/Workspace.vue";
-import WebcamStream from "./components/ACON_WebcamStream.vue";
-import DataStream from "./components/ACON_DataStream.vue";
+import WebcamStream from "./components/WebcamStream.vue";
+import DataStream from "./components/DataStream.vue";
 import DataRecorder from "./components/DataRecorder.vue";
-// import AutoCommand from "./components/AutoCommand.vue";
 import NavigationBar from "./components/NavigationBar.vue";
 import Streams from "./components/Streams.vue";
 import Snapshot from "./components/Snapshot.vue"
 import Consent from "./components/Consent.vue"
-import RealtimeChart from "./components/ACON_RealtimeChart.vue";
+import RealtimeChart from "./components/RealtimeChart.vue";
 import R134aChart from "./components/R134aChart.vue"
 
-// import Websocket from './components/Websocket.vue';
 
 import { mapGetters } from 'vuex'
 import { v4 as uuidv4 } from 'uuid';
@@ -71,16 +65,12 @@ export default {
   components: {
     R134aChart,
     RealtimeChart,
-    //Websocket,
     Streams,
     WebcamStream,
     DataStream,
-    GraphOutput,
     TableOutput,
     Stopwatch,
-    Workspace,
     DataRecorder,
-    // AutoCommand,
     NavigationBar,
     Snapshot,
     Consent,
@@ -91,8 +81,6 @@ export default {
       isTableOn: false,
       isGraphOn: false,
       isStopwatchOn: false,
-      isWorkspaceOn: false,
-      // isAutoCommandOn: false,
       isSnapshotOn: false,
       selected_graph_point: null,
       protractorAdded: false,
@@ -179,13 +167,6 @@ export default {
     toggleGraph(){
       this.isGraphOn = !this.isGraphOn;
     },
-    addWorkspace(){
-        this.isWorkspaceOn = true;
-        this.$store.dispatch("logAnalytics", {log: "measuring_tools"});
-    },
-    toggleWorkspace(){
-      this.isWorkspaceOn = !this.isWorkspaceOn;
-    },
     toggleTable(){
       this.isTableOn = !this.isTableOn;
       this.$store.dispatch('logComponent', {log:'component', name: 'table', open: this.isTableOn});
@@ -201,11 +182,6 @@ export default {
     toggleSnapshot(){
       this.isSnapshotOn = !this.isSnapshotOn;
       this.$store.dispatch('logComponent', {log:'component', name: 'snapshot', open: this.isSnapshotOn});
-    },
-    clearWorkspace(){
-      this.isWorkspaceOn = false;
-      this.protractorAdded = false;
-      this.rulerAdded = false;
     },
     // loading and saving data for logging consent and uuid etc.
     hasStorage(){
