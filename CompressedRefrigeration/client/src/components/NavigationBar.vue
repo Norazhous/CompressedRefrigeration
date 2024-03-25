@@ -106,7 +106,7 @@ import { mapGetters } from 'vuex';
 export default {
 
   name: 'NavigationBar',
-  emits:['toggleconsent', 'clearworkspace', 'togglegraph', 'togglestopwatch', 'toggletable', 'toggleautocommands', 'toggleworkspace', 'addruler', 'addprotractor', 'togglesnapshot'],
+  emits:['toggleconsent', 'clearworkspace', 'togglegraph', 'togglestopwatch', 'toggletable', 'toggleautocommands', 'toggleworkspace', 'togglesnapshot'],
   data () {
     return {
         

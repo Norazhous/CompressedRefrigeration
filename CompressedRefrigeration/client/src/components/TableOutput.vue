@@ -74,36 +74,6 @@ export default {
     ],
     data() {
         return {
-            // T1Array() {
-            //     return this.$store.state.websockets.TS1_Array
-            // },
-            // T2Array() {
-            //     return this.$store.state.websockets.TS2_Array
-            // },
-            // T3Array() {
-            //     return this.$store.state.websockets.TS3_Array
-            // },
-            // T4Array() {
-            //     return this.$store.state.websockets.TS4_Array
-            // },
-            // T5Array() {
-            //     return this.$store.state.websockets.TS5_Array
-            // },
-            // P1Array() {
-            //     return this.$store.state.websockets.PS1_Array
-            // },
-            // P2Array() {
-            //     return this.$store.state.websockets.PS2_Array
-            // },
-            // P3Array() {
-            //     return this.$store.state.websockets.PS3_Array
-            // },
-            // FArray() {
-            //     return this.$store.state.websockets.Flow_Array
-            // },
-            // EArray() {
-            //     return this.$store.state.websockets.Power_Array
-            // },
             tableData: [],
             searchData: [],
             search_field: "",
@@ -112,11 +82,6 @@ export default {
     },
     methods: {
         updateTable() {
-            // this.tableData = [];
-            // let T1Array1 = this.T1Array();
-            // let T2Array1 = this.T2Array();
-            // this.tableData.push(T1Array1,T2Array1);
-
 
             this.tableData = [...this.getData];     //get a clone of the data, not set tableData to the getData getter
             console.log(this.tableData);

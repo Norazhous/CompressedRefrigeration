@@ -10,8 +10,8 @@
             inkscape:cy="375.4737" inkscape:window-width="1920" inkscape:window-height="986" inkscape:window-x="-11"
             inkscape:window-y="-11" inkscape:window-maximized="1" inkscape:current-layer="g1-9" showgrid="true">
             <inkscape:grid id="grid1" units="mm" originx="0" originy="0" spacingx="1" spacingy="1" empcolor="#0099e5"
-                empopacity="0.30196078" color="#0099e5" opacity="0.14901961" empspacing="5" dotted="false" gridanglex="30"
-                gridanglez="30" visible="true" />
+                empopacity="0.30196078" color="#0099e5" opacity="0.14901961" empspacing="5" dotted="false"
+                gridanglex="30" gridanglez="30" visible="true" />
             <inkscape:page x="0" y="0" width="150" height="140" id="page354" margin="0" bleed="0" />
             <inkscape:page x="220" y="0" width="841" height="594" id="page355" margin="0" bleed="0" />
         </sodipodi:namedview>
@@ -40,7 +40,8 @@
             <path
                 style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#ff0000;stroke-width:0.25;stroke-dasharray:none;stroke-opacity:1"
                 d="m 90.000001,67.232701 v 7.767298" id="path324" />
-            <g inkscape:label="Livello 1" id="layer1-6" transform="matrix(0.26458333,0,0,0.26458333,17.056842,-59.340287)"
+            <g inkscape:label="Livello 1" id="layer1-6"
+                transform="matrix(0.26458333,0,0,0.26458333,17.056842,-59.340287)"
                 style="fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:1.00157;stroke-dasharray:none;stroke-opacity:1">
                 <path
                     style="fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:1.00157;stroke-dasharray:none;stroke-opacity:1"
@@ -104,8 +105,8 @@
             <g id="g354" transform="translate(-11.820679,-7.6622272)">
                 <title>Thermostatic Expansion Valve</title>
                 <g id="g2-8" transform="translate(879.30889,157.34682)">
-                    <path fill="none" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round" stroke="#000000"
-                        stroke-opacity="1" stroke-miterlimit="4"
+                    <path fill="none" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"
+                        stroke="#000000" stroke-opacity="1" stroke-miterlimit="4"
                         d="m -800.30842,-122.04517 4.99953,-2.49976 v 4.99952 l -10.00043,-4.99952 v 4.99952 z m 0,0"
                         id="path3073-2" />
                     <path fill-rule="nonzero" fill="#000000" fill-opacity="1" stroke-width="0.25" stroke-linecap="round"
@@ -147,12 +148,13 @@
             <g id="g368" transform="translate(-3.9999979,-7.6622272)">
                 <title> Compressor </title>
                 <circle cx="83.391655" cy="137" r="5.6083441" pointer-events="all" stroke-width="0.224231" id="circle4"
-                v-on:click="highlightValve(0.85, 0.75, '15%', '15%')" :fill="this.compcolor" style="stroke:#000000" />
+                    v-on:click="highlightValve(0.85, 0.75, '15%', '15%')" :fill="this.compcolor"
+                    style="stroke:#000000" />
                 <path d="m 80.352979,141.74879 c 2.634244,-0.66723 5.268413,-1.33446 7.902582,-2.00169"
                     stroke-width="0.224229" id="path3-8" style="fill:none;stroke:#000000" />
-                <path d="m 80.316355,132.23326 c 2.634244,0.66723 5.268413,1.33446 7.902582,2.00169" stroke-width="0.224229"
-                    id="path4-4" style="fill:none;stroke:#000000" />
-                
+                <path d="m 80.316355,132.23326 c 2.634244,0.66723 5.268413,1.33446 7.902582,2.00169"
+                    stroke-width="0.224229" id="path4-4" style="fill:none;stroke:#000000" />
+
             </g>
             <path
                 style="fill:#000000;fill-opacity:0;fill-rule:evenodd;stroke:#ff0000;stroke-width:0.25;stroke-dasharray:none;stroke-opacity:1"
@@ -177,9 +179,9 @@
 
                 <g id="g2-8-5" transform="matrix(1,0,0,-1,903.31208,-86.870338)">
                     <!-- V1 -->
-                    <path v-on:click="highlightValve(0.55, 0.22, '5%', '5%')" :fill="this.valve1Color" stroke-width="0.25"
-                        stroke-linecap="round" stroke-linejoin="round" stroke="#000000" stroke-opacity="1"
-                        stroke-miterlimit="4"
+                    <path v-on:click="highlightValve(0.55, 0.22, '5%', '5%')" :fill="this.valve1Color"
+                        stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round" stroke="#000000"
+                        stroke-opacity="1" stroke-miterlimit="4"
                         d="m -800.30842,-122.04517 4.99953,-2.49976 v 4.99952 l -10.00043,-4.99952 v 4.99952 z m 0,0"
                         id="path3073-2-2" />
                     <path fill-rule="nonzero" fill="#000000" fill-opacity="1" stroke-width="0.25" stroke-linecap="round"
@@ -200,9 +202,9 @@
 
                 <g id="g2-8-5-4" transform="matrix(1,0,0,-1,903.31208,-86.870338)">
                     <!-- V2 -->
-                    <path v-on:click="highlightValve(0.55, 0.30, '5%', '5%')" :fill="this.valve2Color" stroke-width="0.25"
-                        stroke-linecap="round" stroke-linejoin="round" stroke="#000000" stroke-opacity="1"
-                        stroke-miterlimit="4"
+                    <path v-on:click="highlightValve(0.55, 0.30, '5%', '5%')" :fill="this.valve2Color"
+                        stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round" stroke="#000000"
+                        stroke-opacity="1" stroke-miterlimit="4"
                         d="m -800.30842,-122.04517 4.99953,-2.49976 v 4.99952 l -10.00043,-4.99952 v 4.99952 z m 0,0"
                         id="path3073-2-2-08" />
                     <path fill-rule="nonzero" fill="#000000" fill-opacity="1" stroke-width="0.25" stroke-linecap="round"
@@ -223,9 +225,9 @@
 
                 <g id="g2-8-5-9" transform="matrix(1,0,0,-1,903.31208,-86.870338)">
                     <!-- V3 -->
-                    <path v-on:click="highlightValve(0.55, 0.36, '5%', '5%')" :fill="this.valve3Color" stroke-width="0.25"
-                        stroke-linecap="round" stroke-linejoin="round" stroke="#000000" stroke-opacity="1"
-                        stroke-miterlimit="4"
+                    <path v-on:click="highlightValve(0.55, 0.36, '5%', '5%')" :fill="this.valve3Color"
+                        stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round" stroke="#000000"
+                        stroke-opacity="1" stroke-miterlimit="4"
                         d="m -800.30842,-122.04517 4.99953,-2.49976 v 4.99952 l -10.00043,-4.99952 v 4.99952 z m 0,0"
                         id="path3073-2-2-40" />
                     <path fill-rule="nonzero" fill="#000000" fill-opacity="1" stroke-width="0.25" stroke-linecap="round"
@@ -246,9 +248,9 @@
 
                 <g id="g2-8-5-33" transform="matrix(1,0,0,-1,903.31208,-86.870338)">
                     <!-- V4 -->
-                    <path v-on:click="highlightValve(0.55, 0.44, '5%', '5%')" :fill="this.valve4Color" stroke-width="0.25"
-                        stroke-linecap="round" stroke-linejoin="round" stroke="#000000" stroke-opacity="1"
-                        stroke-miterlimit="4"
+                    <path v-on:click="highlightValve(0.55, 0.44, '5%', '5%')" :fill="this.valve4Color"
+                        stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round" stroke="#000000"
+                        stroke-opacity="1" stroke-miterlimit="4"
                         d="m -800.30842,-122.04517 4.99953,-2.49976 v 4.99952 l -10.00043,-4.99952 v 4.99952 z m 0,0"
                         id="path3073-2-2-1" />
                     <path fill-rule="nonzero" fill="#000000" fill-opacity="1" stroke-width="0.25" stroke-linecap="round"
@@ -268,9 +270,9 @@
                 <g id="g2-8-5-0" transform="matrix(1,0,0,-1,903.31208,-86.870338)">
                     <!-- V5 -->
                     <title> Valve 5</title>
-                    <path v-on:click="highlightValve(0.71, 0.65, '4%', '5%')" :fill="this.valve5Color" stroke-width="0.25"
-                        stroke-linecap="round" stroke-linejoin="round" stroke="#000000" stroke-opacity="1"
-                        stroke-miterlimit="4"
+                    <path v-on:click="highlightValve(0.71, 0.65, '4%', '5%')" :fill="this.valve5Color"
+                        stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round" stroke="#000000"
+                        stroke-opacity="1" stroke-miterlimit="4"
                         d="m -800.30842,-122.04517 4.99953,-2.49976 v 4.99952 l -10.00043,-4.99952 v 4.99952 z m 0,0"
                         id="path3073-2-2-10" />
                     <path fill-rule="nonzero" fill="#000000" fill-opacity="1" stroke-width="0.25" stroke-linecap="round"
@@ -289,7 +291,8 @@
                 <title>Valve 7</title>
                 <!-- V7 -->
                 <g id="g2-8-5-781" transform="matrix(1,0,0,-1,903.31208,-86.870338)">
-                    <path v-on:click="highlightValve(0.75, 0.56, '5%', '5%')" :fill="this.valve7Color" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round" stroke="#000000"
+                    <path v-on:click="highlightValve(0.75, 0.56, '5%', '5%')" :fill="this.valve7Color"
+                        stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round" stroke="#000000"
                         stroke-opacity="1" stroke-miterlimit="4"
                         d="m -800.30842,-122.04517 4.99953,-2.49976 v 4.99952 l -10.00043,-4.99952 v 4.99952 z m 0,0"
                         id="path3073-2-2-3" />
@@ -306,12 +309,12 @@
                     d="m 101,30.999998 h 4" id="path383-7" />
             </g>
             <g id="g383-96" transform="translate(14.996344,60.162938)">
-                <!-- V6 -->                    
+                <!-- V6 -->
                 <title> Valve 6</title>
-                <g id="g2-8-5-91" transform="matrix(1,0,0,-1,903.31208,-86.870338)">                    
-                    <path v-on:click="highlightValve(0.79, 0.63, '5%', '5%')" :fill="this.valve6Color" stroke-width="0.25"
-                        stroke-linecap="round" stroke-linejoin="round" stroke="#000000" stroke-opacity="1"
-                        stroke-miterlimit="4"
+                <g id="g2-8-5-91" transform="matrix(1,0,0,-1,903.31208,-86.870338)">
+                    <path v-on:click="highlightValve(0.79, 0.63, '5%', '5%')" :fill="this.valve6Color"
+                        stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round" stroke="#000000"
+                        stroke-opacity="1" stroke-miterlimit="4"
                         d="m -800.30842,-122.04517 4.99953,-2.49976 v 4.99952 l -10.00043,-4.99952 v 4.99952 z m 0,0"
                         id="path3073-2-2-2" />
                     <path fill-rule="nonzero" fill="#000000" fill-opacity="1" stroke-width="0.25" stroke-linecap="round"
@@ -338,8 +341,9 @@
                 </g><text xml:space="preserve"
                     style="font-size:4.23333px;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.25;stroke-dasharray:none;stroke-opacity:1"
                     x="134.23886" y="66.534241" id="text383">
-                    <tspan sodipodi:role="line" style="font-size:4.23333px;fill:#000000;fill-opacity:1;stroke-width:0.25"
-                        x="134.23886" y="66.534241" id="tspan384">F</tspan>
+                    <tspan sodipodi:role="line"
+                        style="font-size:4.23333px;fill:#000000;fill-opacity:1;stroke-width:0.25" x="134.23886"
+                        y="66.534241" id="tspan384">F</tspan>
                 </text>
             </g>
             <g id="g223" transform="translate(-1.1036679,-7.587378)">
@@ -349,7 +353,8 @@
                     <g transform="matrix(3.7046,0,0,3.7046,-190.11,-172.63)" fill="none" stroke="#000000"
                         stroke-width="0.419694" id="g1-6-3-7-6">
                         <path d="M 52.507,81.471 V 68.236" id="path1-6-3-8-7" style="stroke-width:0.419694" />
-                        <circle cx="52.515999" cy="61.535" r="6.6160002" id="circle1-5-4-3" style="stroke-width:0.419694" />
+                        <circle cx="52.515999" cy="61.535" r="6.6160002" id="circle1-5-4-3"
+                            style="stroke-width:0.419694" />
                     </g>
                 </g>
                 <g transform="matrix(0.14034071,0,0,0.14034071,54.805646,122.35042)" id="g3-7-5-8"
@@ -365,7 +370,8 @@
                     style="font-size:3.175px;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.25;stroke-dasharray:none;stroke-opacity:1"
                     x="57.044342" y="129.24615" id="text388-2">
                     <tspan sodipodi:role="line" id="tspan388-9"
-                        style="font-size:3.175px;fill:#000000;fill-opacity:1;stroke-width:0.25" x="57.044342" y="129.24615">
+                        style="font-size:3.175px;fill:#000000;fill-opacity:1;stroke-width:0.25" x="57.044342"
+                        y="129.24615">
                         01</tspan>
                 </text>
             </g>
@@ -393,14 +399,16 @@
                     style="font-size:3.175px;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.25;stroke-dasharray:none;stroke-opacity:1"
                     x="51.269569" y="84.749886" id="text388-6">
                     <tspan sodipodi:role="line" id="tspan388-6"
-                        style="font-size:3.175px;fill:#000000;fill-opacity:1;stroke-width:0.25" x="51.269569" y="84.749886">
+                        style="font-size:3.175px;fill:#000000;fill-opacity:1;stroke-width:0.25" x="51.269569"
+                        y="84.749886">
                         05</tspan>
                 </text>
             </g><text xml:space="preserve"
                 style="font-size:2.11667px;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.25;stroke-dasharray:none;stroke-opacity:1"
                 x="58.235752" y="23.853544" id="text388-9">
                 <tspan sodipodi:role="line" id="tspan388-5"
-                    style="font-size:2.11667px;fill:#000000;fill-opacity:1;stroke-width:0.25" x="58.235752" y="23.853544" />
+                    style="font-size:2.11667px;fill:#000000;fill-opacity:1;stroke-width:0.25" x="58.235752"
+                    y="23.853544" />
             </text>
             <g id="g228" transform="translate(-14.999999,-7.6622272)">
                 <title>Evaporation Pressure</title>
@@ -439,8 +447,8 @@
                 <title> Evaporator </title>
                 <g id="g6435-8" transform="matrix(0,0.3220929,-0.3220929,0,357.93393,-81.08826)"
                     style="stroke-width:0.666667;stroke-miterlimit:4;stroke-dasharray:none">
-                    <rect v-on:click="highlightValve(0.1, 0.1, '25%', '30%')" :fill="this.w1color" y="942.36218" x="445" height="45" width="40"
-                        id="rect6433-8" 
+                    <rect v-on:click="highlightValve(0.1, 0.1, '25%', '30%')" :fill="this.w1color" y="942.36218" x="445"
+                        height="45" width="40" id="rect6433-8"
                         style="fill-opacity:1;stroke:#000000;stroke-width:0.666667;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
                     <g transform="rotate(-90,706.7536,277.16853)" inkscape:label="Layer 1" id="layer1-6-5-9"
                         style="stroke-width:0.666667;stroke-miterlimit:4;stroke-dasharray:none">
@@ -468,8 +476,9 @@
                                 inkscape:transform-center-x="-0.067558495" inkscape:transform-center-y="-4.0852956" />
                             <ellipse inkscape:transform-center-y="2.1011545" inkscape:transform-center-x="-3.5041913"
                                 style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.18797;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-                                id="ellipse6484-9" transform="matrix(-0.85666795,-0.51586822,0.51425114,-0.85763965,0,0)"
-                                cx="-48.599926" cy="-16.926863" rx="0.93760067" ry="4.8538585" />
+                                id="ellipse6484-9"
+                                transform="matrix(-0.85666795,-0.51586822,0.51425114,-0.85763965,0,0)" cx="-48.599926"
+                                cy="-16.926863" rx="0.93760067" ry="4.8538585" />
                             <ellipse ry="4.8538585" rx="0.93760067" cy="43.291214" cx="13.765011"
                                 transform="matrix(0.87508896,-0.4839621,0.48561215,0.87417437,0,0)" id="ellipse6486-6"
                                 style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.18797;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
@@ -501,7 +510,8 @@
                 <g id="g6435" transform="matrix(0,0.3220929,-0.3220929,0,468.21168,-28.239286)"
                     style="stroke-width:0.666667;stroke-miterlimit:4;stroke-dasharray:none">
                     <rect y="942.36218" x="445" height="45" width="40" id="rect6433"
-                    v-on:click="highlightValve(0.75, 0.18, '15%', '25%')" :fill="this.w1color" style="fill-opacity:1;stroke:#000000;stroke-width:0.666667;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                        v-on:click="highlightValve(0.75, 0.18, '15%', '25%')" :fill="this.w1color"
+                        style="fill-opacity:1;stroke:#000000;stroke-width:0.666667;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
                     <g transform="rotate(-90,706.7536,277.16853)" inkscape:label="Layer 1" id="layer1-6-5"
                         style="stroke-width:0.666667;stroke-miterlimit:4;stroke-dasharray:none">
                         <g transform="matrix(0.56118298,0,0,0.56118298,6.6797665,15.534764)" id="g3924"
@@ -563,7 +573,8 @@
                     <g transform="matrix(3.7046,0,0,3.7046,-190.11,-172.63)" fill="none" stroke="#000000"
                         stroke-width="0.419694" id="g1-6-3-7-8">
                         <path d="M 52.507,81.471 V 68.236" id="path1-6-3-8-2" style="stroke-width:0.419694" />
-                        <circle cx="52.515999" cy="61.535" r="6.6160002" id="circle1-5-4-5" style="stroke-width:0.419694" />
+                        <circle cx="52.515999" cy="61.535" r="6.6160002" id="circle1-5-4-5"
+                            style="stroke-width:0.419694" />
                     </g>
                 </g><text xml:space="preserve"
                     style="font-size:3.175px;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.25;stroke-dasharray:none;stroke-opacity:1"
@@ -591,7 +602,8 @@
                     <g transform="matrix(3.7046,0,0,3.7046,-190.11,-172.63)" fill="none" stroke="#000000"
                         stroke-width="0.416406" id="g1-6-3-7">
                         <path d="M 52.507,81.471 V 68.236" id="path1-6-3-8" style="stroke-width:0.416406" />
-                        <circle cx="52.515999" cy="61.535" r="6.6160002" id="circle1-5-4" style="stroke-width:0.416406" />
+                        <circle cx="52.515999" cy="61.535" r="6.6160002" id="circle1-5-4"
+                            style="stroke-width:0.416406" />
                     </g>
                 </g><text xml:space="preserve"
                     style="font-size:3.175px;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.25;stroke-dasharray:none;stroke-opacity:1"
@@ -602,7 +614,8 @@
                     style="font-size:3.175px;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.25;stroke-dasharray:none;stroke-opacity:1"
                     x="123.06035" y="129.20422" id="text388-6-6">
                     <tspan sodipodi:role="line" id="tspan388-6-4"
-                        style="font-size:3.175px;fill:#000000;fill-opacity:1;stroke-width:0.25" x="123.06035" y="129.20422">
+                        style="font-size:3.175px;fill:#000000;fill-opacity:1;stroke-width:0.25" x="123.06035"
+                        y="129.20422">
                         02</tspan>
                 </text>
                 <g transform="matrix(0.14034071,0,0,0.14034071,120.72475,122.26086)" id="g3-7-5-8-4-0"
@@ -652,8 +665,8 @@
                 </g><text xml:space="preserve"
                     style="font-size:3.175px;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.25;stroke-dasharray:none;stroke-opacity:1"
                     x="97.010574" y="74.419853" id="text387-3-9-0">
-                    <tspan sodipodi:role="line" id="tspan387-1-0-9" style="fill:#000000;fill-opacity:1;stroke-width:0.25"
-                        x="97.010574" y="74.419853">P</tspan>
+                    <tspan sodipodi:role="line" id="tspan387-1-0-9"
+                        style="fill:#000000;fill-opacity:1;stroke-width:0.25" x="97.010574" y="74.419853">P</tspan>
                 </text>
                 <g id="g1-0-6-9" transform="rotate(90,134.6379,74.041953)"><text xml:space="preserve"
                         style="font-size:3.175px;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.25;stroke-dasharray:none;stroke-opacity:1"
@@ -696,7 +709,7 @@
             <g id="g234" transform="translate(-3.9999979,-7.6622272)">
                 <title>Electric Power</title>
                 <g id="g233" transform="translate(-0.60366903,0.24034592)">
-                    
+
                     <path d="m 83.995324,131.15131 v -2.22773" id="path1-6-3-8-7-5-1-9-9"
                         style="fill:none;stroke:#000000;stroke-width:0.218202" />
                     <circle cx="84" cy="125.4397" r="3.4396994" id="circle1-5-4-3-7-0-7-3"
@@ -704,8 +717,8 @@
                 </g><text xml:space="preserve"
                     style="font-size:3.88056px;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.25"
                     x="82.087967" y="127.09073" id="text233">
-                    <tspan sodipodi:role="line" id="tspan233" style="font-size:3.88056px;stroke-width:0.25" x="82.087967"
-                        y="127.09073">E</tspan>
+                    <tspan sodipodi:role="line" id="tspan233" style="font-size:3.88056px;stroke-width:0.25"
+                        x="82.087967" y="127.09073">E</tspan>
                 </text>
             </g><text xml:space="preserve"
                 style="font-size:3.88056px;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.25"
@@ -721,16 +734,16 @@
                 </g><text xml:space="preserve"
                     style="font-size:3.175px;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.25"
                     x="76.432205" y="26.927996" id="text233-8">
-                    <tspan sodipodi:role="line" id="tspan233-4" style="font-size:3.175px;stroke-width:0.25" x="76.432205"
-                        y="26.927996">TC</tspan>
+                    <tspan sodipodi:role="line" id="tspan233-4" style="font-size:3.175px;stroke-width:0.25"
+                        x="76.432205" y="26.927996">TC</tspan>
                 </text>
             </g>
             <circle style="fill:#000000;fill-opacity:0;fill-rule:evenodd;stroke:#000000;stroke-width:0.25" id="path240"
                 cx="65.598953" cy="13.738813" r="1.4010416" />
-            <circle style="fill:#000000;fill-opacity:0;fill-rule:evenodd;stroke:#000000;stroke-width:0.25" id="path240-9"
-                cx="19.377655" cy="13.738813" r="1.4010416" />
-            <circle style="fill:#000000;fill-opacity:0;fill-rule:evenodd;stroke:#000000;stroke-width:0.25" id="path240-2"
-                cx="19" cy="72.936722" r="1.4010416" />
+            <circle style="fill:#000000;fill-opacity:0;fill-rule:evenodd;stroke:#000000;stroke-width:0.25"
+                id="path240-9" cx="19.377655" cy="13.738813" r="1.4010416" />
+            <circle style="fill:#000000;fill-opacity:0;fill-rule:evenodd;stroke:#000000;stroke-width:0.25"
+                id="path240-2" cx="19" cy="72.936722" r="1.4010416" />
             <path style="fill:#000000;fill-opacity:0;fill-rule:evenodd;stroke:#000000;stroke-width:0.25"
                 d="M 67.000003,17.337772 V 13.738814" id="path241" />
             <path style="fill:#000000;fill-opacity:0;fill-rule:evenodd;stroke:#000000;stroke-width:0.25"
@@ -739,9 +752,9 @@
                 d="m 17.976614,13.738814 v 58.24104" id="path243" />
             <path style="fill:#000000;fill-opacity:0;fill-rule:evenodd;stroke:#000000;stroke-width:0.25"
                 d="M 28.000002,74.337769 H 19.000001" id="path244" />
-            <g id="g250" transform="translate(9.7760427,-2.3756712)" >
+            <g id="g250" transform="translate(9.7760427,-2.3756712)">
                 <title>Suction Line Receiver</title>
-                <path  id="path3567"
+                <path id="path3567"
                     d="m 28.611983,127.44543 h -3.611966 v 7.26801 l 3.611966,3.634 c 0,0 3.611976,-3.634 3.611976,-3.634 v -7.26801 z"
                     style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:6.51969;stroke-opacity:1;paint-order:normal" />
                 <path
@@ -763,8 +776,8 @@
                         id="path4392" transform="matrix(1.0400837,0,0,1.226875,-2.2785226,-7.6055373)" cx="37.943855"
                         cy="36.584091" rx="8.0180855" ry="7.2604713" />
                 </g>
-                <circle style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.25" id="path245"
-                    cx="18.616648" cy="105.61665" r="1.4916475" />
+                <circle style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.25"
+                    id="path245" cx="18.616648" cy="105.61665" r="1.4916475" />
             </g>
             <g id="g249" transform="matrix(0.38767919,0,0,0.61755132,70.35639,6.7124378)"
                 style="fill:#000000;fill-opacity:0;stroke-width:1.62648">
@@ -817,16 +830,15 @@
             </text>
             <title>Capillary Tube (1.5m, 3m, 6m) </title>
             <path
-            
                 style="fill:#000000;fill-opacity:0;fill-rule:evenodd;stroke:#000000;stroke-width:0.944882;stroke-dasharray:none;stroke-opacity:1"
                 d="m -567.61638,141.11914 h -1.37437 l -1.37437,-11.33859 -1.37438,22.67716 -1.37437,-22.67716 -1.37437,22.67716 -1.37438,-22.67716 -1.37437,22.67716 -1.37437,-22.67716 -1.37437,22.67716 -1.37438,-22.67716 -1.37437,22.67716 -1.37437,-11.33858 h -1.37438 v 0"
                 id="path355" />
-          
+
             <path
                 style="fill:#000000;fill-opacity:0;fill-rule:evenodd;stroke:#000000;stroke-width:0.944882;stroke-dasharray:none;stroke-opacity:1"
                 d="m -567.61169,178.29464 h -1.37437 l -1.37438,-11.33858 -1.37437,26.45669 -1.37438,-26.45669 -1.37437,26.45669 -1.37437,-26.45669 -1.37437,26.45669 -1.37438,-26.45669 -1.37437,26.45669 -1.37437,-26.45669 -1.37437,26.45669 -1.37438,-26.45669 -1.37437,26.45669 -1.37437,-26.45669 -1.37438,26.45669 -1.37438,-26.45669 -1.37437,26.45669 -1.37437,-26.45669 -1.37438,26.45669 -1.37437,-26.45669 -1.37438,26.45669 -1.37437,-11.33858 h -1.37437"
                 id="path356" />
-            
+
             <path
                 style="fill:#000000;fill-opacity:0;fill-rule:evenodd;stroke:#000000;stroke-width:0.944882;stroke-dasharray:none;stroke-opacity:1"
                 d="m -567.21094,216.2363 h -1.37437 l -1.37438,-11.33858 -1.37437,22.67716 -1.37438,-22.67716 -1.37437,22.67716 -1.37437,-22.67716 -1.37437,22.67716 -1.37438,-22.67716 -1.37437,22.67716 -1.37437,-22.67716 -1.37437,22.67716 -1.37438,-22.67716 -1.37437,22.78312 -1.37437,-22.78312 -1.37438,22.67716 -1.37438,-22.67716 -1.37437,22.67716 -1.37437,-22.67716 -1.37438,22.67716 -1.37437,-22.67716 -1.37438,22.67716 -1.37437,-22.67716 -1.37437,23.02482 -1.37437,-23.02482 -1.37438,22.67716 -1.37437,-22.67716 -1.37437,22.67716 -1.37437,-22.67716 -1.37438,22.67716 -1.37437,-22.67716 -1.37437,22.67716 -1.37438,-22.67716 -1.37437,22.67716 -1.37437,-22.67716 -1.37437,11.33858 h -1.37438"
@@ -921,15 +933,15 @@ export default {
         valve7Color() {
             return this.$store.state.ui.v7color;
         },
-        w1color(){
-			return this.$store.state.ui.w1color;
-		},
-		// w2color(){
-		// 	return this.$store.state.ui.w2color;
-		// },
-		compcolor(){
-			return this.$store.state.ui.compcolor;
-		},
+        w1color() {
+            return this.$store.state.ui.w1color;
+        },
+        // w2color(){
+        // 	return this.$store.state.ui.w2color;
+        // },
+        compcolor() {
+            return this.$store.state.ui.compcolor;
+        },
 
     },
     methods: {
@@ -974,4 +986,6 @@ export default {
 }
 </script>
 
-<style>/* https://www.w3schools.com/css/tryit.asp?filename=trycss_tooltip */</style>
+<style>
+/* https://www.w3schools.com/css/tryit.asp?filename=trycss_tooltip */
+</style>
