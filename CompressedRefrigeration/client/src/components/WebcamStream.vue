@@ -5,10 +5,10 @@
 				<RigElement />
 			</div>
 			<div class="col-4" id="video" style="margin: auto;">
-				<video-element :url="url1" />
+				<video-element1 :url="url1" />
 			</div>
-			<div class="col-4" id="video" style="margin: auto;">
-				<video-element :url="url2" />
+			<div class="col-4" id="video2" style="margin: auto;">
+				<video-element2 :url="url2" />
 			</div>
 			<!-- <div class="col-4" id="video" style="margin: auto;">	
 				<video-element :url="url" />
@@ -43,14 +43,16 @@
 //playerUrl = scheme + host + ':' + port + '/' + stream;
 //let playerUrl = 'ws://video.practable.io:8080/out/dpr/video0';
 import axios from "axios";
-import VideoElement from "./VideoElement.vue";
+import VideoElement1 from "./VideoElement1.vue";
+import VideoElement2 from "./VideoElement2.vue";
 import RigElement from "./RigElement.vue";
 import realtimetable from "./RealtimeTable.vue"
 
 export default {
 	name: "WebcamStream",
 	components: {
-		VideoElement,
+		VideoElement1,
+		VideoElement2,
 		RigElement,
 		realtimetable,
 	},

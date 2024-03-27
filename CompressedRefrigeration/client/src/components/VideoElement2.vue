@@ -8,8 +8,8 @@
 <div v-else>
   <div class='row'>
       <div class='col-12'>
-        <canvas id="video-canvas"></canvas>
-        <toolbar parentCanvasID="video-canvas" parentComponentName="webcam" parentDivID='video-element' :showDownload='true' :showPopupHelp='false' :showOptions="false"></toolbar>
+        <canvas id="video-canvas2"></canvas>
+        <toolbar parentCanvasID="video-canvas2" parentComponentName="webcam" parentDivID='video-element' :showDownload='true' :showPopupHelp='false' :showOptions="false"></toolbar>
       </div>
       
     </div>
@@ -25,7 +25,7 @@ import { mapGetters } from 'vuex';
 import Toolbar from './elements/Toolbar.vue';
 
 export default {
-  name: "VideoElement",
+  name: "VideoElement2",
   props: ["url"],
   data(){
         return{
@@ -42,7 +42,7 @@ export default {
     },
     watch:{
         url(){
-            let canvas = document.getElementById("video-canvas");
+            let canvas = document.getElementById("video-canvas2");
             this.player = new JSMpeg.Player(this.url, {canvas: canvas, preserveDrawingBuffer: true});
             // let url = this.$store.getters.getVideoURL;
             // this.player = new JSMpeg.VideoElement("#videoWrapper", url, {
@@ -78,7 +78,7 @@ export default {
 </script>
 
 <style>
-    #video-canvas {
+    #video-canvas2 {
       width: 100%;
       /* height: 100%; */
     }
