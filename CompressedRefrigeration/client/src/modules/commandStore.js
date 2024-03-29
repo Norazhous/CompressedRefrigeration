@@ -69,20 +69,55 @@ const commandStore = {
             context.commit("SET_DATA_SOCKET", socket);
         },
 
+        //set the controllers value
+        setV1({ commit }, value){
+            commit('SETV1',value);
+        },
+        setV2({ commit }, value){
+            commit('SETV2',value);
+        },
+        setV3({ commit }, value){
+            commit('SETV3',value);
+        },
+        setV4({ commit }, value){
+            commit('SETV4',value);
+        },
+        setV5({ commit }, value){
+            commit('SETV5',value);
+        },
+        setV6({ commit }, value){
+            commit('SETV6',value);
+        },
+        setV7({ commit }, value){
+            commit('SETV7',value);
+        },
+        setV8({ commit }, value){
+            commit('SETV8',value);
+        },
+        setW1({ commit }, value){
+            commit('SETW1',value);
+        },
+        setW2({ commit }, value){
+            commit('SETW2',value);
+        },
+        setComp({ commit }, value){
+            commit('SETComp',value);
+        },
+
         //send msg to server, in Vue file, use dispatch to use this function, in server side, check the JSON content and then change the parameter's value
         // 0- turn off, 1- turn on
         SENDV1CONTROL({ state, commit }, value) { 
             if (value == 0) {
                 //connect to the server
-                // let msg = JSON.stringify({ "valve":1, "state":0 })
-                // state.dataSocket.send(msg);
+                let msg = JSON.stringify({ "valve":1, "state":0 })
+                state.dataSocket.send(msg);
             
                 //test on the  UI
                 commit("SETV1",0);
             
             } else if (value == 1) {
-                // let msg = JSON.stringify({ "valve":1, "state":1 })
-                // state.dataSocket.send(msg);
+                let msg = JSON.stringify({ "valve":1, "state":1 })
+                state.dataSocket.send(msg);
             
                  //test on the  UI
                 commit("SETV1",1);
@@ -91,15 +126,15 @@ const commandStore = {
         SENDV2CONTROL({ state, commit }, value) { 
             if (value == 0) {
                 //connect to the server
-                // let msg = JSON.stringify({ "valve":2, "state":0 })
-                // state.dataSocket.send(msg);
+                let msg = JSON.stringify({ "valve":2, "state":0 })
+                state.dataSocket.send(msg);
             
                 //test on the  UI
                 commit("SETV2",0);
             
             } else if (value == 1) {
-                // let msg = JSON.stringify({ "valve":2, "state":1 })
-                // state.dataSocket.send(msg);
+                let msg = JSON.stringify({ "valve":2, "state":1 })
+                state.dataSocket.send(msg);
                 
                 //test on the  UI
                 commit("SETV2",1);
@@ -109,15 +144,15 @@ const commandStore = {
         SENDV3CONTROL({ state, commit }, value) { 
             if (value == 0) {
                 //connect to the server
-                // let msg = JSON.stringify({ "valve":3, "state":0 })
-                // state.dataSocket.send(msg);
+                let msg = JSON.stringify({ "valve":3, "state":0 })
+                state.dataSocket.send(msg);
 
                 //test on the  UI
                 commit("SETV3",0);
             
             } else if (value == 1) {
-                // let msg = JSON.stringify({ "valve":3, "state":1 })
-                // state.dataSocket.send(msg);
+                let msg = JSON.stringify({ "valve":3, "state":1 })
+                state.dataSocket.send(msg);
 
                  //test on the  UI
                  commit("SETV3",1);
@@ -128,15 +163,15 @@ const commandStore = {
         SENDV4CONTROL({ state, commit }, value) { 
             if (value == 0) {
                 //connect to the server
-                // let msg = JSON.stringify({ "valve":4, "state":0 })
-                // state.dataSocket.send(msg);
+                let msg = JSON.stringify({ "valve":4, "state":0 })
+                state.dataSocket.send(msg);
 
                 //test on the  UI
                 commit("SETV4",0);
             
             } else if (value == 1) {
-                // let msg = JSON.stringify({ "valve":4, "state":1 })
-                // state.dataSocket.send(msg);
+                let msg = JSON.stringify({ "valve":4, "state":1 })
+                state.dataSocket.send(msg);
 
                  //test on the  UI
                  commit("SETV4",1);
@@ -147,15 +182,15 @@ const commandStore = {
         SENDV5CONTROL({ state, commit }, value) { 
             if (value == 0) {
                 //connect to the server
-                // let msg = JSON.stringify({ "valve":5, "state":0 })
-                // state.dataSocket.send(msg);
+                let msg = JSON.stringify({ "valve":5, "state":0 })
+                state.dataSocket.send(msg);
 
                 //test on the  UI
                 commit("SETV5",0);
             
             } else if (value == 1) {
-                // let msg = JSON.stringify({ "valve":5, "state":1 })
-                // state.dataSocket.send(msg);
+                let msg = JSON.stringify({ "valve":5, "state":1 })
+                state.dataSocket.send(msg);
 
                  //test on the  UI
                  commit("SETV5",1);
@@ -166,15 +201,15 @@ const commandStore = {
         SENDV6CONTROL({ state, commit }, value) { 
             if (value == 0) {
                 //connect to the server
-                // let msg = JSON.stringify({ "valve":6, "state":0 })
-                // state.dataSocket.send(msg);
+                let msg = JSON.stringify({ "valve":6, "state":0 })
+                state.dataSocket.send(msg);
 
                 //test on the  UI
                 commit("SETV6", 0);
             
             } else if (value == 1) {
-                // let msg = JSON.stringify({ "valve":6, "state":1 })
-                // state.dataSocket.send(msg);
+                let msg = JSON.stringify({ "valve":6, "state":1 })
+                state.dataSocket.send(msg);
 
                  //test on the  UI
                  commit("SETV6",1);
@@ -185,15 +220,15 @@ const commandStore = {
         SENDV7CONTROL({ state, commit }, value) { 
             if (value == 0) {
                 //connect to the server
-                // let msg = JSON.stringify({ "valve":7, "state":0 })
-                // state.dataSocket.send(msg);
+                let msg = JSON.stringify({ "valve":7, "state":0 })
+                state.dataSocket.send(msg);
 
                 //test on the  UI
                 commit("SETV7",0);
             
             } else if (value == 1) {
-                // let msg = JSON.stringify({ "valve":7, "state":1 })
-                // state.dataSocket.send(msg);
+                let msg = JSON.stringify({ "valve":7, "state":1 })
+                state.dataSocket.send(msg);
 
                  //test on the  UI
                  commit("SETV7",1);
@@ -203,15 +238,15 @@ const commandStore = {
         SENDW1CONTROL({ state, commit }, value) { 
             if (value == 0) {
                 //connect to the server
-                // let msg = JSON.stringify({"fans":0})
-                // state.dataSocket.send(msg);
+                let msg = JSON.stringify({"fans":0})
+                state.dataSocket.send(msg);
 
                 //test on the  UI
                 commit("SETW1",0);
             
             } else if (value == 1) {
-                // let msg = JSON.stringify({"fans":1})
-                // state.dataSocket.send(msg);
+                let msg = JSON.stringify({"fans":1})
+                state.dataSocket.send(msg);
 
                  //test on the  UI
                  commit("SETW1",1);
@@ -239,15 +274,15 @@ const commandStore = {
         SENDCOMPCONTROL({ state, commit }, value) { 
             if (value == 0) {
                 //connect to the server
-                // let msg = JSON.stringify({"comp":0})
-                // state.dataSocket.send(msg);
+                let msg = JSON.stringify({"comp":0})
+                state.dataSocket.send(msg);
 
                 //test on the  UI
                 commit("SETComp",0);
             
             } else if (value == 1) {
-                // let msg = JSON.stringify({"comp":1})
-                // state.dataSocket.send(msg);
+                let msg = JSON.stringify({"comp":1})
+                state.dataSocket.send(msg);
 
                  //test on the  UI
                  commit("SETComp",1);

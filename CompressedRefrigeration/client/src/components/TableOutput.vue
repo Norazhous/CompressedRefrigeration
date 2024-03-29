@@ -8,7 +8,7 @@
                     <tr class='background-primary text-white'>
                         <!-- <th scope="col">ID</th> -->
                         <th scope="col">ID</th>
-                        <th scope="col">Time</th>
+                        <!-- <th scope="col">Time</th> -->
                         <th scope="col">T1(°C)</th>
                         <th scope="col">T2(°C)</th>
                         <th scope="col">T3(°C)</th>
@@ -33,7 +33,7 @@
                 <tr v-for="row in tableData" :id="row.id" :key="row.id"
                     v-bind:class="[row.id == selected_row_id ? 'selected-row' : '']" @click="changeSelected(row.id)">
                     <td>{{ row.id + 1 }}</td>
-                    <td>{{ row.t }}</td>
+                    <!-- <td>{{ row.t }}</td> -->
                     <td>{{ row.T1 }}</td>
                     <td>{{ row.T2 }}</td>
                     <td>{{ row.T3 }}</td>

@@ -76,7 +76,7 @@
 import PID from "./PID.vue"
 // import dataTestStore from "../modules/ACON_dataTestStore"
 //import Tooltip from "./Tooltip.vue";
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters, mapMutations, mapActions } from 'vuex';
 
 export default {
 	name: "ControlPanel",
@@ -201,7 +201,40 @@ export default {
 
 	},
 	methods: {
+
 		...mapActions([
+
+			//set sensors value
+			'setPS1_value',
+			'setPS2_value',
+			'setPS3_value',
+			'setTS1_value',
+			'setTS2_value',
+			'setTS3_value',
+			'setTS4_value',
+			'setTS5_value',
+			'setFlow_value',
+			'setPower_value',
+			'setTSA_value',
+			'setPSA_value',
+			'setHSA_value',
+
+			// set controllers' value
+			'setV1',
+			'setV2',
+			'setV3',
+			'setV4',
+			'setV5',
+			'setV6',
+			'setV7',
+			// 'SETV8',
+			'setW1',
+			'setW2',
+			'setComp',
+			'setCurrentTime',
+			'setCurrentDate',
+
+			//set the color and send command to server
 			'setV1color',// set the color of the valve,setV1color(2)-waiting, setV1color(1)-on,setV1color(0)-off
 			'SENDV1CONTROL',//send command to server,SENDV1CONTROL(1)-open,SENDV1CONTROL(1)-close
 			'setV2color',
@@ -835,13 +868,6 @@ export default {
 
 
 
-
-
-
-		// test() {
-		// 	console.log('SECOND');
-		// },
-
 		connect() {
 
 			let _this = this;
@@ -850,67 +876,27 @@ export default {
 			//console.log(this.dataSocket);
 			this.$store.dispatch('setDataSocket', this.dataSocket);
 
-			//let dataOpen = false;
-			var delay = 0;
-			let delay_sum = 0;
-			// let avgDelay = 0;
-			// let delays = [];
-			var messageCount = 0;
-			let a;
-			let b;
+			
 			let debug = false;
-			// let wrapEncoder = true;
+			
 
-			var initialSamplingCount = 1200 // 2 mins at 10Hz
-			var delayWeightingFactor = 60  // 1 minute drift in 1 hour
-			// let encoderPPR = 2400
+			this.dataSocket.onopen = () => {
+				//dataOpen = true; 
+				console.log("Websocket Openned")
 
-			let responsiveSmoothie = true;
-			let thisTime;
-
-			// var chart = new SmoothieChart({ responsive: responsiveSmoothie, millisPerPixel: 10, grid: { fillStyle: '#ffffff' }, interpolation: "linear", maxValue: 135, minValue: -135, labels: { fillStyle: '#0024ff', precision: 0 } }); //interpolation:'linear
-			// this.canvas = document.getElementById("smoothie-chart");
-			// let series = new TimeSeries();
-			// chart.addTimeSeries(series, { lineWidth: 2, strokeStyle: '#0024ff' });
-			// chart.streamTo(this.canvas, 0);
-
-			// this.dataSocket.onopen = () => {
-			// 	//dataOpen = true; 
-			// 	_this.updateDrive(50);
-			// 	_this.sendDrive(false);
-			// 	console.log('drive');
-
-			// 	setTimeout(() => {
-			// 		_this.updateInterval(50);
-			// 		_this.sendInterval(false);
-			// 		console.log('interval');
-			// 	}, 1000)
-
-			// 	setTimeout(() => {
-			// 		_this.updateBrake(50);
-			// 		_this.sendBrake(false);
-			// 		console.log('brake');
-			// 	}, 2000)
-
-
-
-
-
-			// 	console.log('sent starting parameters');
-
-			// };
+			};
 
 
 			this.dataSocket.onmessage = (event) => {
+				//console.log(event.data);
+				// console.log(JSON.parse(event.data));
 
 				try {
 					//delay of timestamp from device and UI
 
 					var obj = JSON.parse(event.data);
-					var msgTime = obj.timestamp;//timestamp
-					var thisDelay = new Date().getTime() - msgTime;
-					//var enc = obj.enc;
-
+				
+					var msgTime = obj.timestamp;
 					// Measure data from refrigeration
 					var PS1 = obj.sensors.pressure.PS1;
 					var PS2 = obj.sensors.pressure.PS2;
@@ -939,110 +925,120 @@ export default {
 					var W2 = obj.relays.W2; //fan2
 					var comp = obj.relays.comp; //compressor
 
-					//check the Data obj:{enc: -204, time: 867251805}
-					//enc: -204 time: 867251805
-					console.log("0" + obj);
-					if (messageCount == 0) {
-						_this.$store.dispatch('setStartTime', msgTime);
-						delay = thisDelay
-						delay_sum += thisDelay;
-					} else {
-						if (!isNaN(thisDelay)) {
-							delay_sum += thisDelay;
-							delay = delay_sum / (messageCount + 1);
-						} else {
-							delay_sum += delay;
-							delay = delay_sum / (messageCount + 1);
 
-						}
-
-					}
+					this.setPS1_value(PS1);
+					this.setPS2_value(PS2);
+					this.setPS3_value(PS3);
+					this.setTS1_value(TS1);
+					this.setTS2_value(TS2);
+					this.setTS3_value(TS3);
+					this.setTS4_value(TS4);
+					this.setTS5_value(TS5);
+					this.setFlow_value(flow);
+					this.setPower_value(power);
+					this.setTSA_value(TSA);
+					this.setPSA_value(PSA);
+					this.setHSA_value(HSA);
+					// console.log(this.$store.state.rawData.PS1_value)
 
 
+					//dispatch value to rawdatastore_controllers
+					this.setV1(V1);
+					this.setV2(V2);
+					this.setV3(V3);
+					this.setV4(V4);
+					this.setV5(V5);
+					this.setV6(V6);
+					this.setV7(V7);
+					// this.setV8(V8);
+					this.setW1(W1);
+					this.setW2(W2);
+					this.setComp(comp);
+					this.setCurrentTime(msgTime);
+					this.setCurrentDate(new Date().toLocaleString());
+					
+					// console.log(this.$store.state.rawData.Current_time);
 
-					a = 1 / delayWeightingFactor
-					b = 1 - a
+					// if (!isNaN(thisTime) && !isNaN(PS1)) {
+					// 	series.append(msgTime + thisDelay, PS1) // for chart
 
+					// 	//dispatch value to rawdatastore_sensors
+					// 	// this.setPS1_value(PS1);
+					// 	// this.setPS2_value(PS2);
+					// 	// this.setPS3_value(PS3);
+					// 	// this.setTS1_value(TS1);
+					// 	// this.setTS2_value(TS2);
+					// 	// this.setTS3_value(TS3);
+					// 	// this.setTS4_value(TS4);
+					// 	// this.setTS5_value(TS5);
+					// 	// this.setFlow_value(flow);
+					// 	// this.setPower_value(power);
+					// 	// this.setTSA_value(TSA);
+					// 	// this.setPSA_value(PSA);
+					// 	// this.setHSA_value(HSA);
 
-					if (messageCount < initialSamplingCount) {
-						thisDelay = ((delay * messageCount) + thisDelay) / (messageCount + 1)
-					} else {
-						thisDelay = (delay * b) + (thisDelay * a)
-					}
-
-					messageCount += 1
-
-					//https://stackoverflow.com/questions/4633177/c-how-to-wrap-a-float-to-the-interval-pi-pi
-					//if (wrapEncoder) { //wrap and convert to degrees
-					// enc = Math.atan2(Math.sin(obj.enc / (encoderPPR / 2) * Math.PI), Math.cos(obj.enc / (encoderPPR / 2) * Math.PI)) / Math.PI * 180
-					// enc = Math.min(135, enc)
-					// enc = Math.max(-135, enc)
-
-					// check om message function
-					//console.log("1"+obj);
-					//}
-					//else { //convert to degrees only
-					// enc = enc * 360.0 / encoderPPR;
-					// console.log(obj);
-					//}
-
-					thisTime = msgTime + thisDelay
-
-					if (!isNaN(thisTime) && !isNaN(PS1)) {
-						series.append(msgTime + thisDelay, PS1) // for chart
-
-						//Calculate angular velocity using new data sent through as well as currently stored values - before updating those values
-						// let values = { theta_1: enc * Math.PI / 180, theta_0: _this.$store.getters.getCurrentAngle, t_1: msgTime, t_0: _this.$store.getters.getCurrentTime }
-						// _this.$store.dispatch('setCurrentAngVel', values)
-						// _this.$store.dispatch('setCurrentAngle', enc * Math.PI / 180);		//for output graph, convert to radians
-						// _this.$store.dispatch('setCurrentTime', msgTime);			//for output graph
-
-						//dispatch value to rawdatastore_sensors
-						_this.$store.dispatch('SETPS1_value', PS1);
-						_this.$store.dispatch('SETPS2_value', PS2);
-						_this.$store.dispatch('SETPS3_value', PS3);
-						_this.$store.dispatch('SETTS1_value', TS1);
-						_this.$store.dispatch('SETTS2_value', TS2);
-						_this.$store.dispatch('SETTS3_value', TS3);
-						_this.$store.dispatch('SETTS4_value', TS4);
-						_this.$store.dispatch('SETTS5_value', TS5);
-						_this.$store.dispatch('SETFlow_value', flow);
-						_this.$store.dispatch('SETPower_value', power);
-						_this.$store.dispatch('SETTSA_value', TSA);
-						_this.$store.dispatch('SETPSA_value', PSA);
-						_this.$store.dispatch('SETHSA_value', HSA);
-						//dispatch value to rawdatastore_controllers
-						_this.$store.dispatch('SETV1', V1);
-						_this.$store.dispatch('SETV2', V2);
-						_this.$store.dispatch('SETV3', V3);
-						_this.$store.dispatch('SETV4', V4);
-						_this.$store.dispatch('SETV5', V5);
-						_this.$store.dispatch('SETV6', V6);
-						_this.$store.dispatch('SETV7', V7);
-						// _this.$store.dispatch('SETV8',V8);
-						_this.$store.dispatch('SETW1', W1);
-						_this.$store.dispatch('SETW2', W2);
-						_this.$store.dispatch('SETComp', comp);
-
-						_this.$store.dispatch('setCurrentTime', msgTime);			//for output graph
+					// 	// console.log(this.$store.state.rawData.PS1_value)
 
 
-						console.log("2" + obj);
-						if (debug) {
-							console.log(delay, thisDelay, msgTime, enc)
-						}
-					}
-					else {
-						if (debug) {
-							console.log("NaN so not logging to smoothie", delay, thisDelay, msgTime, enc)
-						}
-					}
+					// 	// _this.$store.dispatch('SETPS2_value', PS2);
+					// 	// _this.$store.dispatch('SETPS3_value', PS3);
+					// 	// _this.$store.dispatch('SETTS1_value', TS1);
+					// 	// _this.$store.dispatch('SETTS2_value', TS2);
+					// 	// _this.$store.dispatch('SETTS3_value', TS3);
+					// 	// _this.$store.dispatch('SETTS4_value', TS4);
+					// 	// _this.$store.dispatch('SETTS5_value', TS5);
+					// 	// _this.$store.dispatch('SETFlow_value', flow);
+					// 	// _this.$store.dispatch('SETPower_value', power);
+					// 	// _this.$store.dispatch('SETTSA_value', TSA);
+					// 	// _this.$store.dispatch('SETPSA_value', PSA);
+					// 	// _this.$store.dispatch('SETHSA_value', HSA);
+
+					// 	//dispatch value to rawdatastore_controllers
+					// 	// this.setV1(V1);
+					// 	// this.setV2(V2);
+					// 	// this.setV3(V3);
+					// 	// this.setV4(V4);
+					// 	// this.setV5(V5);
+					// 	// this.setV6(V6);
+					// 	// this.setV7(V7);
+					// 	// this.setV8(V8);
+					// 	// this.setW1(W1);
+					// 	// this.setW2(W2);
+					// 	// this.setComp(comp);
+					// 	// this.setCurrentTime(msgTime);
+
+					// 	// _this.$store.dispatch('SETV1', V1);
+					// 	// _this.$store.dispatch('SETV2', V2);
+					// 	// _this.$store.dispatch('SETV3', V3);
+					// 	// _this.$store.dispatch('SETV4', V4);
+					// 	// _this.$store.dispatch('SETV5', V5);
+					// 	// _this.$store.dispatch('SETV6', V6);
+					// 	// _this.$store.dispatch('SETV7', V7);
+					// 	// // _this.$store.dispatch('SETV8',V8);
+					// 	// _this.$store.dispatch('SETW1', W1);
+					// 	// _this.$store.dispatch('SETW2', W2);
+					// 	// _this.$store.dispatch('SETComp', comp);
+
+					// 	// _this.$store.dispatch('setCurrentTime', msgTime);			//for output graph
+
+
+					// 	console.log("2" + obj);
+					// 	if (debug) {
+					// 		console.log(delay, thisDelay, msgTime, enc)
+					// 	}
+					// }
+					// else {
+					// 	if (debug) {
+					// 		console.log("NaN so not logging to smoothie", delay, thisDelay, msgTime, enc)
+					// 	}
+					// }
 
 				} catch (e) {
 					if (debug) {
 						console.log(e)
 					}
 				}
+				 
 			}
 
 

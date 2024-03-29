@@ -14,16 +14,14 @@ const rawDataStore = {
         Power_value: 0.8,
         TSA_value: 0,
         PSA_value: 0,
-        HSA_value:0,
+        HSA_value: 0,
 
         //time 
         Start_time: 0,
         Current_time: 0,
         Current_date: 0,
-        current_time: 0,   //ms
-        start_time: 0,
         data: [],
-        snapdata:[],
+        snapdata: [],
         isRecording: false,
         // PS1_Array: [],
         // PS2_Array: [],
@@ -52,7 +50,7 @@ const rawDataStore = {
         // GETreceivedData(state) {
         //     return state.receivedData
         // },
-        
+
 
         GetCurrentTS1(state) {
             return state.TS1_value
@@ -94,15 +92,15 @@ const rawDataStore = {
             return state.Power_value
         },
 
-        GetCurrentTSA(state){
+        GetCurrentTSA(state) {
             return state.TSA_value
         },
 
-        GetCurrentPSA(state){
+        GetCurrentPSA(state) {
             return state.PSA_value
         },
 
-        GetCurrentHSA(state){
+        GetCurrentHSA(state) {
             return state.HSA_value
         },
 
@@ -114,124 +112,92 @@ const rawDataStore = {
             return state.Current_date
         },
 
-        getData(state){
+        getData(state) {
             return state.data;
-         },
+        },
 
-         getCurrentTime(state){
-           return state.current_time;
-         },
-
-         getTime(state){
-            return state.current_time - state.start_time;    //in seconds  
-         },
-         getMaxTime(state){
+        getMaxTime(state) {
             let time_max = -Infinity;
             state.data.forEach(d => {
-               if(d.t > time_max){
-                  time_max = d.t;
-               }
+                if (d.t > time_max) {
+                    time_max = d.t;
+                }
             });
-   
+
             return time_max;
-         },
-         getMinTime(state){
+        },
+        getMinTime(state) {
             let time_min = Infinity;
             state.data.forEach(d => {
-               if(d.t < time_min){
-                  time_min = d.t;
-               }
+                if (d.t < time_min) {
+                    time_min = d.t;
+                }
             });
-   
+
             return time_min;
-         },
-         getIsRecording(state){
+        },
+        getIsRecording(state) {
             return state.isRecording;
-         },
-         getNumData(state){
+        },
+        getNumData(state) {
             return state.data.length;
         },
 
 
     },
     mutations: {
-        //set websocket
-        // WEBSOCKET_INIT(state) {
-        //     state.websocket = new WebSocket(state.url)
-        // },
-
-
-        // WEBSOCKET_REIVE(state, data) {
-        //     state.receivedData = data;
-        // },
-
-        // WEBSOCKET_CLOSE(state) {
-        //     // state.receivedData = null; // clear the data send
-        //     state.websocket.close();
-        // },
-
-        // JsonPARSE(state) {
-        // try {
-        // state.jsonValue = JSON.parse(state.receivedData);
-        // }
-        // catch (error) {
-        //     console.log('Error parsing JSON:', error, state.receivedData);
-        // }
-        // },
 
         // set js variables value according to the value from server, current values
-  
 
-        
-        SETPS1_value(state,value) {
+        SETPS1_value(state, value) {
             state.PS1_value = value;
         },
 
-        SETPS2_value(state,value) {
+        SETPS2_value(state, value) {
             state.PS2_value = value;
         },
 
-        SETPS3_value(state,value) {
+        SETPS3_value(state, value) {
             state.PS3_value = value;
         },
 
-        SETTS1_value(state,value) {
+        SETTS1_value(state, value) {
             state.TS1_value = value;
         },
 
-        SETTS2_value(state,value) {
+        SETTS2_value(state, value) {
             state.TS2_value = value;
         },
 
-        SETTS3_value(state,value) {
+        SETTS3_value(state, value) {
             state.TS3_value = value;
         },
 
-        SETTS4_value(state,value) {
+        SETTS4_value(state, value) {
             state.TS4_value = value;
         },
 
-        SETTS5_value(state,value) {
+        SETTS5_value(state, value) {
             state.TS5_value = value;
         },
 
-        SETFlow_value(state,value) {
+        SETFlow_value(state, value) {
             state.Flow_value = value;
         },
 
-        SETPower_value(state,value) {
+        SETPower_value(state, value) {
             state.Power_value = value;
         },
 
-        SETTSA_value(state,value) {
+        SETTSA_value(state, value) {
             state.TSA_value = value;
         },
 
-        SETPSA_value(state,value) {
+        SETPSA_value(state, value) {
             state.PSA_value = value;
         },
 
-        SETHSA_value(state,value) {
+        SETHSA_value(state, value) {
             state.HSA_value = value;
         },
 
@@ -284,77 +250,108 @@ const rawDataStore = {
         //     state.APS_Array.push(state.APS_value);
         // },
 
-        // SETV1OFF(state) {
-        //     state.V1 = 0;
-        // },
-        // SETV1ON(state) {
-        //     state.V1 = 1;
-        // },
-        // SETV2OFF(state) {
-        //     state.V2 = 0;
-        // },
-        // SETV2ON(state) {
-        //     state.V2 = 1;
-        // },
-        // SETV3OFF(state) {
-        //     state.V3 = 0;
-        // },
-        // SETV3ON(state) {
-        //     state.V3 = 1;
-        // }
-        SET_CURRENT_TIME(state, value){
-            state.current_time = value;
-         },
-         
-        SET_START_TIME(state, value){
-            state.start_time = value;
-         },
-         SET_IS_RECORDING(state, set){
+        // functions of data recoder and snapshot, including the time and data add or delete 
+        SET_CURRENT_TIME(state, value) {
+            state.Current_time = value;
+        },
+        SET_CURRENT_DATE(state, value) {
+            state.Current_date = value;
+        },
+
+        SET_START_TIME(state, value) {
+            state.Start_time = value;
+        },
+        SET_IS_RECORDING(state, set) {
             state.isRecording = set;
-         },
-         CLEAR_ALL_DATA(state){
+        },
+        CLEAR_ALL_DATA(state) {
             state.data = [];
-         },
-         ADD_DATA(state, object){
+        },
+        ADD_DATA(state, object) {
             state.data.push(object);
-         },
-         ADD_SNAP_DATA(state, object){
+        },
+        ADD_SNAP_DATA(state, object) {
             state.snapdata.push(object);
-         },
-         DELETE_DATA(state, id){
+        },
+        DELETE_DATA(state, id) {
             state.data.splice(id, 1);
-         },
-         DELETE_SNAP_DATA(state, id){
+        },
+        DELETE_SNAP_DATA(state, id) {
             state.snapdata.splice(id, 1);
-         }
+        }
 
     },
     actions: {
 
-        setCurrentTime(context, value){
+        //set the sensors value
+        setPS1_value({ commit }, value) {
+            commit('SETPS1_value', value);
+        },
+        setPS2_value({ commit }, value) {
+            commit('SETPS2_value', value);
+        },
+        setPS3_value({ commit }, value) {
+            commit('SETPS3_value', value);
+        },
+        setTS1_value({ commit }, value) {
+            commit('SETTS1_value', value);
+        },
+        setTS2_value({ commit }, value) {
+            commit('SETTS2_value', value);
+        },
+        setTS3_value({ commit }, value) {
+            commit('SETTS3_value', value);
+        },
+        setTS4_value({ commit }, value) {
+            commit('SETTS4_value', value);
+        },
+        setTS5_value({ commit }, value) {
+            commit('SETTS5_value', value);
+        },
+        setFlow_value({ commit }, value) {
+            commit('SETFlow_value', value);
+        },
+        setPower_value({ commit }, value) {
+            commit('SETPower_value', value);
+        },
+        setTSA_value({ commit }, value) {
+            commit('SETTSA_value', value);
+        },
+        setPSA_value({ commit }, value) {
+            commit('SETPSA_value', value);
+        },
+        setHSA_value({ commit }, value) {
+            commit('SETHSA_value', value);
+        },
+
+        //set time
+        setCurrentTime(context, value) {
             context.commit('SET_CURRENT_TIME', value);
-         },
-         setStartTime(context, value){
+        },
+        setCurrentDate(context, value) {
+            context.commit('SET_CURRENT_DATE', value);
+        },
+        setStartTime(context, value) {
             context.commit('SET_START_TIME', value);
-         },
-         setIsRecording(context, value){
+        },
+        setIsRecording(context, value) {
             context.commit('SET_IS_RECORDING', value);
-         },
-         clearAllData(context){
+        },
+        clearAllData(context) {
             context.commit('CLEAR_ALL_DATA');
-         },
-         addData(context,object){
+        },
+        addData(context, object) {
             context.commit('ADD_DATA', object);
-         },
-         addSnapData(context,object){
+        },
+        addSnapData(context, object) {
             context.commit('ADD_SNAP_DATA', object);
-         },
-         deleteData (context, dataId) {
+        },
+        deleteData(context, dataId) {
             context.commit('DELETE_DATA', dataId);
-         },
-         deleteSnapData(context,object){
+        },
+        deleteSnapData(context, object) {
             context.commit('DELETE_SNAP_DATA', object);
-         },
+        },
 
     }
 }

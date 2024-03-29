@@ -1,5 +1,3 @@
-//Vue3 update
-
 <template>
     <div id='sessionTime'> Session ends in: {{current_time_left}}</div>
 </template>
@@ -91,7 +89,7 @@ export default {
 <style scoped>
 #sessionTime{
     font-style: italic;
-    color: white;
+    color: rgb(0, 0, 0);
 }
 
 </style>

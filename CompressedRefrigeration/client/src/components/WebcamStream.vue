@@ -4,17 +4,20 @@
 			<div class="col-12" id="rigImage">
 				<RigElement />
 			</div>
-			<div class="col-4" id="video" style="margin: auto;">
-				<video-element1 :url="url1" />
-			</div>
 			<div class="col-4" id="video2" style="margin: auto;">
+				<span>Evaporator</span>
 				<video-element2 :url="url2" />
 			</div>
+			<div class="col-4" id="video" style="margin: auto;">
+				<span>Condenser</span>
+				<video-element1 :url="url1" />
+			</div>
+			
 			<!-- <div class="col-4" id="video" style="margin: auto;">	
 				<video-element :url="url" />
 			</div> -->
-			<button @click="CheckURL1()">checkURL1</button>
-			<button @click="CheckURL2()">checkURL2</button>
+			<!-- <button @click="CheckURL1()">checkURL1</button>
+			<button @click="CheckURL2()">checkURL2</button> -->
 			<!-- <div class="row">
 				<websockets />
 			</div> -->
@@ -138,9 +141,9 @@ export default {
 				})
 			.catch((err) => console.log(err))	
 		},
-		CheckURL1() {
-			console.log(this.$store.getters.getVideoURL);
-		},
+		// CheckURL1() {
+		// 	console.log(this.$store.getters.getVideoURL);
+		// },
 
 		accessVideo2() {
 			this.stream2 = this.$store.getters.getStream("video-alt");
@@ -155,9 +158,9 @@ export default {
 				})
 			.catch((err) => console.log(err))	
 		},
-		CheckURL2() {
-			console.log(this.$store.getters.getVideoAltURL);
-		}
+		// CheckURL2() {
+		// 	console.log(this.$store.getters.getVideoAltURL);
+		// }
 	},
 	watch: {
 		streamOK1: function (is) {

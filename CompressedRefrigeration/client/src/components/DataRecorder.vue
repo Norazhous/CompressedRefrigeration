@@ -1,6 +1,8 @@
 <template>
+
   <div class='container-fluid m-2 background-white border rounded'>
     <div class="col pb-2 d-grid gap-2 d-sm-block">
+      <div id='RecordTime'> Recording Time: {{ formatTime(timer) }}</div>
       <button class="button-sm button-primary m-1" v-if="!getIsRecording" id="recordButton"
         @click="record()">Record</button>
       <button class="button-sm button-danger m-1" v-if="getIsRecording" id="stopButton"
@@ -34,6 +36,8 @@ export default {
       hasPlotted: false,
       max_data_points: 5000,
       max_reached: false,
+      timer: 0,
+      clearFlag: false,
     }
   },
   components: {
@@ -49,8 +53,6 @@ export default {
     ...mapGetters([
       'getIsRecording',
       'getNumData',
-      'getTime',
-      'getCurrentTime',
       'GetCurrentTS1',
       'GetCurrentTS2',
       'GetCurrentTS3',
@@ -64,7 +66,7 @@ export default {
       'GetCurrentTSA',
       'GetCurrentPSA',
       'GetCurrentHSA',
-      "GETCurrentTime",
+      'GETCurrentTime',
       'GETCurrentDate',
 
     ]),
@@ -100,7 +102,8 @@ export default {
     record() {
       // this.$store.dispatch('setCurrentTime', new Date().getTime());
       this.$store.dispatch('setStartTime', this.GETCurrentTime);
-      console.log(this.$store.state.data.current_time);
+      // console.log(this.GETCurrentTime);
+      // console.log(this.$store.state.rawData.Current_time);
 
       this.data_points_count = 0;
       this.setIsRecording(true);
@@ -111,10 +114,18 @@ export default {
       this.logAnalytics({ log: 'record' });
       // this.plot();
 
+      //timer increase 1 per second
+      this.clearFlag=true;
+      this.timerFunc();
+
+
 
     },
     stopRecording() {
       this.setIsRecording(false);
+      this.clearFlag = false;
+
+
     },
     plot() {
       this.updategetCurrentTime();
@@ -134,19 +145,20 @@ export default {
       let PSA = this.GetCurrentTSA;
       let HSA = this.GetCurrentTSA;
 
-      let data_object = { id: this.getNumData, t: time, T1: T1, T2: T2, T3: T3, T4: T4, T5: T5, P1: P1, P2: P2, P3: P3, Flow: Flow, Power: Power, TSA:TSA, PSA:PSA,HSA:HSA,};
+      let data_object = { id: this.getNumData, t: time, T1: T1, T2: T2, T3: T3, T4: T4, T5: T5, P1: P1, P2: P2, P3: P3, Flow: Flow, Power: Power, TSA: TSA, PSA: PSA, HSA: HSA, };
       this.addData(data_object);
       this.hasPlotted = true;
-      console.log(data_object);
+      // console.log(data_object);
 
     },
     clearGraph() {
       this.clearAllData();
       this.max_reached = false;
       this.hasPlotted = false;
+      this.clearFlag = false;
     },
     outputToCSV() {
-      let csv = 'Time,T1/C,T2/C,T3/C,T4/C,T5/C,P1/bar,P2/bar,P2/bar,Flowrate/(L/h),Power/W,TSA/C,PSA/bar,HSA/%rh\n';
+      let csv = 'Date,Time,T1/C,T2/C,T3/C,T4/C,T5/C,P1/bar,P2/bar,P2/bar,Flowrate/(L/h),Power/W,TSA/C,PSA/bar,HSA/%rh\n';
       let data = this.$store.getters.getData;
       data.forEach(function (d) {
         csv += d.t.toString();
@@ -182,7 +194,7 @@ export default {
       let hiddenElement = document.createElement('a');
       hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
       hiddenElement.target = '_blank';
-      hiddenElement.download = 'pendulum.csv';
+      hiddenElement.download = 'compressed refrigeration.csv';
       hiddenElement.click();
     },
 
@@ -190,6 +202,24 @@ export default {
       this.$store.dispatch('setCurrentTime', this.GETCurrentTime);
       // console.log(this.getCurrentTime);
     },
+
+    timerFunc() {
+      var interval = setInterval(() => {
+        this.timer++;
+        if (this.clearFlag == false) {
+          clearInterval(interval);
+          this.timer=0;
+        }
+      }, 1000);
+
+    },
+
+    formatTime(time) {
+      let hour = Math.floor(time / 3600);
+      let min = Math.floor((time - hour * 3600) / 60);
+      let sec = Math.floor(time - hour * 3600 - min * 60);
+      return `${hour.toString().padStart(2, '0')}:${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
+    }
   }
 }
 </script>

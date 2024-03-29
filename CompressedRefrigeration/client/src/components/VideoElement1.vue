@@ -43,6 +43,8 @@ export default {
     watch:{
         url(){
             let canvas = document.getElementById("video-canvas1");
+            // var context = canvas.getContext('2d');
+            // context.rotate(90 * (Math.PI / 180));
             this.player = new JSMpeg.Player(this.url, {canvas: canvas, preserveDrawingBuffer: true});
             // let url = this.$store.getters.getVideoURL;
             // this.player = new JSMpeg.VideoElement("#videoWrapper", url, {
