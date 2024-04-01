@@ -180,8 +180,9 @@ export default {
 	watch: {
 		url() {
 			try {
-				if (this.url != '' && this.getDataURLObtained) {
+				if (this.getDataURLObtained) {//this.url != '' &&
 					this.connect();
+					// this.getInitialValveState();
 				} else {
 					console.log('disconnecting: ' + this.url);
 				}
@@ -255,6 +256,149 @@ export default {
 			'setCOMPcolor',
 			'SENDCOMPCONTROL',
 		]),
+
+		getInitialValve1State() {
+			if (this.$store.state.command.V1 == 1) {
+				this.setV1color(1);
+				this.V1state = "ON";
+				this.V1msg = "V1 already opended";
+				console.log(this.V1msg);
+				this.V1SwitchControllor = true;
+			} else {
+				this.V1SwitchDisabled = false;
+				this.setV1color(0);
+				this.V1state = "OFF";
+				this.V1SwitchControllor = false;
+			};
+
+		},
+
+		getInitialValve2State() {
+			if (this.$store.state.command.V2 == 1) {
+				this.setV2color(1);
+				this.V2state = "ON";
+				this.V2msg = "V2 already opended";
+				console.log(this.V2msg);
+				this.V2SwitchControllor = true;
+			} else {
+				this.V2SwitchDisabled = false;
+				this.setV2color(0);
+				this.V2state = "OFF";
+				this.V2SwitchControllor = false;
+			};
+
+		},
+
+		getInitialValve3State() {
+			if (this.$store.state.command.V3 == 1) {
+				this.setV3color(1);
+				this.V3state = "ON";
+				this.V3msg = "V3 already opended";
+				console.log(this.V3msg);
+				this.V3SwitchControllor = true;
+			} else {
+				this.V3SwitchDisabled = false;
+				this.setV3color(0);
+				this.V3state = "OFF";
+				this.V3SwitchControllor = false;
+			};
+
+		},
+
+		getInitialValve4State() {
+			if (this.$store.state.command.V4 == 1) {
+				this.setV4color(1);
+				this.V4state = "ON";
+				this.V4msg = "V4 already opended";
+				console.log(this.V4msg);
+				this.V4SwitchControllor = true;
+			} else {
+				this.V4SwitchDisabled = false;
+				this.setV4color(0);
+				this.V4state = "OFF";
+				this.V4SwitchControllor = false;
+			};
+
+		},
+
+		getInitialValve5State() {
+			if (this.$store.state.command.V5 == 1) {
+				this.setV5color(1);
+				this.V5state = "ON";
+				this.V5msg = "V5 already opended";
+				console.log(this.V5msg);
+				this.V5SwitchControllor = true;
+			} else {
+				this.V5SwitchDisabled = false;
+				this.setV5color(0);
+				this.V5state = "OFF";
+				this.V5SwitchControllor = false;
+			};
+
+		},
+
+		getInitialValve6State() {
+			if (this.$store.state.command.V6 == 1) {
+				this.setV6color(1);
+				this.V6state = "ON";
+				this.V6msg = "V6 already opended";
+				console.log(this.V6msg);
+				this.V6SwitchControllor = true;
+			} else {
+				this.V6SwitchDisabled = false;
+				this.setV6color(0);
+				this.V6state = "OFF";
+				this.V6SwitchControllor = false;
+			};
+
+		},
+
+
+
+		getInitialValve7State() {
+			if (this.$store.state.command.V7 == 1) {
+				this.setV7color(1);
+				this.V7state = "ON";
+				this.V7msg = "V7 already opended";
+				console.log(this.V7msg);
+				this.V7SwitchControllor = true;
+			} else {
+				this.setV7color(0);
+				this.V7state = "OFF";
+				this.V7SwitchControllor = false;
+			};
+
+		},
+
+		getInitialFansState() {
+			if (this.$store.state.command.W1 == 1) {
+				this.setW1color(1);
+				this.W1state = "ON";
+				this.W1msg = "Fans opened";
+				console.log(this.W1msg);
+				this.W1SwitchControllor = true;
+			}
+			else if (this.$store.state.command.W1 == 0) {
+				this.setW1color(0);
+				this.W1state = "OFF";
+				this.W1SwitchControllor = false;
+			}
+		},
+
+		getInitialCompState() {
+			if (this.$store.state.command.Comp == 1) {
+				this.setCOMPcolor(1);
+				this.COMPstate = "ON";
+				this.COMPmsg = "Compressor opened";
+				console.log(this.COMPmsg);
+				this.COMPSwitchControllor = true;
+			}
+			else if (this.$store.state.command.Comp == 0) {
+				this.setCOMPcolor(0);
+				this.COMPstate = "OFF";
+				this.COMPSwitchControllor = false;
+			}
+		},
 
 		//send command first, and the state changes to opening. waith 1 -2 second, check the state again, if the state become opened, then UI change. otherwise, alert and UI keep original.
 		valve1ColorChange() {
@@ -752,7 +896,7 @@ export default {
 					else if (this.$store.state.command.W1 == 0) {
 						this.W1SwitchDisabled = false;
 						this.setW1color(0);
-						this.W1msg = "OFF";
+						this.W1state = "OFF";
 						this.W1msg = "Fans_not_open_success";
 						console.log(this.W1msg);
 						this.W1SwitchControllor = false;
@@ -822,7 +966,7 @@ export default {
 					else if (this.$store.state.command.Comp == 0) {
 						this.COMPSwitchDisabled = false;
 						this.setCOMPcolor(0);
-						this.COMPmsg = "OFF";
+						this.COMPstate = "OFF";
 						this.COMPmsg = "Comperssor_not_open_success";
 						console.log(this.COMPmsg);
 						this.COMPSwitchControllor = false;
@@ -876,9 +1020,9 @@ export default {
 			//console.log(this.dataSocket);
 			this.$store.dispatch('setDataSocket', this.dataSocket);
 
-			
+
 			let debug = false;
-			
+
 
 			this.dataSocket.onopen = () => {
 				//dataOpen = true; 
@@ -895,7 +1039,7 @@ export default {
 					//delay of timestamp from device and UI
 
 					var obj = JSON.parse(event.data);
-				
+
 					var msgTime = obj.timestamp;
 					// Measure data from refrigeration
 					var PS1 = obj.sensors.pressure.PS1;
@@ -956,7 +1100,7 @@ export default {
 					this.setComp(comp);
 					this.setCurrentTime(msgTime);
 					this.setCurrentDate(new Date().toLocaleString());
-					
+
 					// console.log(this.$store.state.rawData.Current_time);
 
 					// if (!isNaN(thisTime) && !isNaN(PS1)) {
@@ -1038,14 +1182,23 @@ export default {
 						console.log(e)
 					}
 				}
-				 
-			}
 
-
+			};
+			
+			// get the initial state of controllers
+			this.getInitialValve1State();
+			this.getInitialValve2State();
+			this.getInitialValve3State();
+			this.getInitialValve4State();
+			this.getInitialValve5State();
+			this.getInitialValve6State();
+			this.getInitialValve7State();
+			this.getInitialFansState();
+			this.getInitialCompState();
 
 			window.addEventListener('keydown', this.hotkey, false);
 			//window.addEventListener('pagehide', this.free);				//closing window
-			//window.addEventListener('beforeunload', this.free);			//refreshing page, changing URL
+			// window.addEventListener('beforeunload', this.free);			//refreshing page, changing URL
 
 
 		},
