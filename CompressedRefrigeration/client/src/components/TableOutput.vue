@@ -84,7 +84,7 @@ export default {
         updateTable() {
 
             this.tableData = [...this.getData];     //get a clone of the data, not set tableData to the getData getter
-            console.log(this.tableData);
+            // console.log(this.tableData);
         },
         search() {
             if (this.search_field == "") {

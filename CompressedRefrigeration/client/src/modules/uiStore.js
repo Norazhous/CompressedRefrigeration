@@ -20,6 +20,14 @@ const uiStore = {
       compcolor: '#808080',
 
 
+      //chart.js
+      realTimeChart: null,
+
+      //snapshot 
+      valuePost: 0,      
+
+
+
    }),
    mutations: {
       SET_DATA_RECORDER(state, set) {
@@ -154,6 +162,14 @@ const uiStore = {
       SETcompwaitcolor(state) {
          state.compcolor = "#ff0000";
       },
+      //chart
+      SETChart(state,value){
+         state.realTimeChart = value;
+      },
+      // snapshot value post
+      SETValuePost(state,value){
+         state.valuePost = value;
+      }
 
 
    },
@@ -171,6 +187,14 @@ const uiStore = {
       //    console.log("bbbb");
       // },
 
+      //chart
+      setChart(context,value){
+         context.commit("SETChart",value)
+      },
+      //snapshot 
+      setValuePost(context,value){
+         context.commit("SETValuePost",value)
+      },
 
       setV1color(context, value) {
          if (value == 1) {
@@ -315,6 +339,14 @@ const uiStore = {
       },
       getUsesLocalStorage(state) {
          return state.usesLocalStorage;
+      },
+      //chart function
+      getChart(state){
+         return state.realTimeChart;
+      },
+      //snapshot
+      getValuePost(state){
+         return state.valuePost;
       },
 
 

@@ -61,7 +61,6 @@ export default {
             'GetCurrentFlow',
             'GetCurrentPower',
             "GETCurrentTime",
-
         ]),
 
     },

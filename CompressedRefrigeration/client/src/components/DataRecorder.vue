@@ -142,8 +142,8 @@ export default {
       let Flow = this.GetCurrentFlow;
       let Power = this.GetCurrentPower;
       let TSA = this.GetCurrentTSA;
-      let PSA = this.GetCurrentTSA;
-      let HSA = this.GetCurrentTSA;
+      let PSA = this.GetCurrentPSA;
+      let HSA = this.GetCurrentHSA;
 
       let data_object = { id: this.getNumData, t: time, T1: T1, T2: T2, T3: T3, T4: T4, T5: T5, P1: P1, P2: P2, P3: P3, Flow: Flow, Power: Power, TSA: TSA, PSA: PSA, HSA: HSA, };
       this.addData(data_object);
@@ -158,7 +158,7 @@ export default {
       this.clearFlag = false;
     },
     outputToCSV() {
-      let csv = 'Date,Time,T1/C,T2/C,T3/C,T4/C,T5/C,P1/bar,P2/bar,P2/bar,Flowrate/(L/h),Power/W,TSA/C,PSA/bar,HSA/%rh\n';
+      let csv = 'Date,Time,T1/C,T2/C,T3/C,T4/C,T5/C,P1/bar,P2/bar,P2/bar,Flowrate/(L/h),Power/W,TSA/C,PSA/pa,HSA/%rh\n';
       let data = this.$store.getters.getData;
       data.forEach(function (d) {
         csv += d.t.toString();

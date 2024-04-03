@@ -3,6 +3,10 @@
         <!-- test svg dispaly  -->
         <PID_SVG/>
     </div>
+    <!-- <div>
+        <InteractiveChart/>
+    </div> -->
+
     
 </template>
 
@@ -11,12 +15,16 @@
 // import Svgfiller from "vue-svg-filler"
 
 import PID_SVG from "./PID_SVG.vue"
+// import InteractiveChart from "./interactiveChart.vue"
+
 
 export default {
     name: "PID",
     components: {
         // Svgfiller,
         PID_SVG,
+        // InteractiveChart,
+        
 },
     data() {
         return {

@@ -1,6 +1,8 @@
 <template>
     <div class="container-fluid m-2 background-white border rounded" id='snapshot-div'>
-
+        <!-- <div>
+            <InteractiveChart/>
+        </div> -->
         <div class="row table" id='table'>
 
             <table>
@@ -39,12 +41,11 @@
             </table>
 
 
-
         </div>
 
         <div class='d-grid gap-2 d-sm-block'>
             <button id="snapshot" type='button' class="button-sm button-primary"
-                @click="snapshot(); scrollTo('table-bottom')">Record Snapshot</button>
+                @click="snapshot(); scrollTo('table-bottom'); ">Record Snapshot</button>
             <button id="reset_snaps" type='button' class="button-sm button-danger"
                 @click="toggleResetModal">Reset</button>
             <button id="download_snaps" type='button' class="button-sm button-secondary" @click="outputToCSV">Download
@@ -64,6 +65,7 @@
                         </p>
                     </div>
                 </div>
+
 
             </template>
         </toolbar>
@@ -88,6 +90,7 @@
                             data-bs-dismiss="modal" @click="toggleResetModal">Cancel</button>
                     </div>
                 </div>
+
             </div>
         </div>
 
@@ -98,6 +101,7 @@
 
 import { mapGetters, mapActions } from 'vuex'
 import Toolbar from './elements/Toolbar.vue';
+// import InteractiveChart from "./interactiveChart.vue"
 
 export default {
 
@@ -106,12 +110,14 @@ export default {
     data() {
         return {
             snaps: [],
-            showResetConfirmModal: false
-
+            showResetConfirmModal: false,
+            buttonValue:0,
+            
         }
     },
     components: {
-        Toolbar
+        Toolbar,
+        // InteractiveChart,
     },
     computed: {
         ...mapGetters([
@@ -131,14 +137,17 @@ export default {
             'GetCurrentPSA',
             'GetCurrentHSA',
             'GETCurrentDate',
+            'getValuePost',
+            
         ])
     },
     methods: {
         ...mapActions([
             'addSnapData',
+            'setValuePost',
         ]),
         snapshot() {
-
+            this.buttonValue++;
             let snap_object = {
                 t: this.GETCurrentDate, T1: this.GetCurrentTS1, T2: this.GetCurrentTS2,
                 T3: this.GetCurrentTS3, T4: this.GetCurrentTS4, T5: this.GetCurrentTS5,
@@ -151,9 +160,25 @@ export default {
             //gets added to the snaps list
             this.snaps.push(snap_object);
 
+            //button click value post
+            this.setValuePost(this.buttonValue);
+            // console.log(this.getValuePost);
+            // console.log(this.buttonValue);
+
         },
+
+        plotDataInChart() {
+            console.log(InteractiveChart.startTime)
+            // InteractiveChart.methods.updatDataset();
+            InteractiveChart.methods.updateChartData();
+            // this.$root.$emit('chartPlotEvent');
+        },
+
         resetSnaps() {
             this.snaps = [];
+            this.buttonValue = -1;
+            this.setValuePost(this.buttonValue);
+            console.log(this.getValuePost);
         },
         toggleResetModal() {
             this.showResetConfirmModal = !this.showResetConfirmModal;
@@ -172,7 +197,7 @@ export default {
             let data = this.snaps;
             filename = 'SNAPSHOTs_' + date.getDate().toString() + (date.getMonth() + 1).toString() + date.getFullYear().toString();
 
-            csv = 'Date,Time,T1/C,T2/C,T3/C,T4/C,T5/C,P1/bar,P2/bar,P2/bar,Flowrate/(L/h),Power/W,TSA/C,PSA/bar,HSA/%rh\n';
+            csv = 'Date,Time,T1/C,T2/C,T3/C,T4/C,T5/C,P1/bar,P2/bar,P2/bar,Flowrate/(L/h),Power/W,TSA/C,PSA/pa,HSA/%rh\n';
 
             data.forEach(function (d) {
                 csv += d.t.toString();
