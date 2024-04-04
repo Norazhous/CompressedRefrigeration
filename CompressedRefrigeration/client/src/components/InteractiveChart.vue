@@ -68,13 +68,13 @@ export default {
     },
     mounted() {
         this.createChart();
-       
+
         //add data according to the valuePost from Snapshot
         this.$watch('getValuePost', function (val) {
             this.updateChartData();
             val = this.getValuePost;
             // console.log(val);
-            if(val == -1){
+            if (val == -1) {
                 this.clearChartData();
             }
             // console.log(this.valuePost);
@@ -83,7 +83,7 @@ export default {
         // this.updateChart();
         // this.updateChartBySnapshot();
     },
-   
+
     methods: {
         createChart() {
             //test 
@@ -178,6 +178,10 @@ export default {
                                 min: 0,      // Minimum value for x-axis
                                 max: 500,      // Maximum value for x-axis
                             },
+                            title: {
+                                display: true,
+                                text: 'time/s'
+                            }
                         },
                         // x: {
                         //     type: 'linear',

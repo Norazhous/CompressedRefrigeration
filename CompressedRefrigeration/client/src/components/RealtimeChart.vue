@@ -1,8 +1,8 @@
 <template>
     <div id="chart">
-        <canvas id="smoothie-chart" width="640" height="400" ></canvas>
+        <canvas id="smoothie-chart" style="width:100%;height:400px" ></canvas>
         <div id="legend" >
-            <svg  height="30" width="80">
+            <svg height="30" width="80">
                 <text x="0" y="18" fill="rgb(0, 0, 0)">Legend:</text>
             </svg>
             <svg height="60" width="550">
@@ -45,8 +45,7 @@ export default {
 
     },
     data() {
-
-
+       
     },
     computed: {
         ...mapGetters([
@@ -84,7 +83,7 @@ export default {
         // },
 
         plotChart() {
-            var smoothie = new SmoothieChart({ millisPerPixel: 70, grid: { fillStyle: '#ffffff', strokeStyle: '#c9c9c9', millisPerLine: 2000, verticalSections: 3, lineWidth: 1},labels:{fillStyle:'#000000'}, tooltip: true, tooltipLine: { strokeStyle: '#bbbbbb' } });
+            var smoothie = new SmoothieChart({responsive: true, millisPerPixel: 70, grid: { fillStyle: '#ffffff', strokeStyle: '#c9c9c9', millisPerLine: 2000, verticalSections: 3, lineWidth: 1},labels:{fillStyle:'#000000'}, tooltip: true, tooltipLine: { strokeStyle: '#bbbbbb' }, timestampFormatter:SmoothieChart.timeFormatter });
             smoothie.streamTo(document.getElementById("smoothie-chart"));
 
             // Data

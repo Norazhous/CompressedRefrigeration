@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div><control-panel :url="url" /></div>
-		<button @click="CheckURL()">Check Data URL</button>
+		<!-- <button @click="CheckURL()">Check Data URL</button> -->
 	</div>
 </template>
 

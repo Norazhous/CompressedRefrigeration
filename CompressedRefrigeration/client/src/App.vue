@@ -18,12 +18,13 @@
         <div class='row' id='component-grid' >
 
             <div class='col-lg-6' id='left-screen'>
-                <div class='col drop-area' id='drop_0_0' :draggable='getDraggable' @dragstart="dragComponent" @drop='dropComponent' @dragover.prevent @dragenter.prevent><WebcamStream id='webcam-stream' /></div>
-                <div class='col drop-area' id='drop_1_0' :draggable='getDraggable' @dragstart="dragComponent" @drop='dropComponent' @dragover.prevent @dragenter.prevent><RealtimeChart id='RealtimeChart' /></div>
-                <div class='col drop-area' id='drop_2_0' :draggable='getDraggable' @dragstart="dragComponent" @drop='dropComponent' @dragover.prevent @dragenter.prevent><data-recorder id='data-recorder' /></div>
+                <div class='col drop-area' id='drop_0_0' :draggable='getDraggable' @dragstart="dragComponent" @drop='dropComponent' @dragover.prevent @dragenter.prevent><RigElement id='RigElement' /></div>
+                <div class='col drop-area' id='drop_1_0' :draggable='getDraggable' @dragstart="dragComponent" @drop='dropComponent' @dragover.prevent @dragenter.prevent><WebcamStream id='webcam-stream' /></div>
+                <div class='col drop-area' id='drop_2_0' :draggable='getDraggable' @dragstart="dragComponent" @drop='dropComponent' @dragover.prevent @dragenter.prevent><RealtimeChart id='RealtimeChart' /></div>
+                <div class='col drop-area' id='drop_3_0' :draggable='getDraggable' @dragstart="dragComponent" @drop='dropComponent' @dragover.prevent @dragenter.prevent><data-recorder id='data-recorder' /></div>
                 <!-- <div class='col drop-area' id='drop_2_0' :draggable='getDraggable' @dragstart="dragComponent" @drop='dropComponent' @dragover.prevent @dragenter.prevent><table-output v-if='isTableOn' id='table' :selected_point="selected_graph_point"/></div> -->
-                <div class='col drop-area' id='drop_3_0' :draggable='getDraggable' @dragstart="dragComponent" @drop='dropComponent' @dragover.prevent @dragenter.prevent><table-output id='table' :selected_point="selected_graph_point"/></div>
-                <div class='col drop-area' id='drop_4_0' :draggable='getDraggable' @dragstart="dragComponent" @drop='dropComponent' @dragover.prevent @dragenter.prevent><R134aChart id="R134aChart" /></div>
+                <div class='col drop-area' id='drop_4_0' :draggable='getDraggable' @dragstart="dragComponent" @drop='dropComponent' @dragover.prevent @dragenter.prevent><table-output id='table' :selected_point="selected_graph_point"/></div>
+                <div class='col drop-area' id='drop_5_0' :draggable='getDraggable' @dragstart="dragComponent" @drop='dropComponent' @dragover.prevent @dragenter.prevent><R134aChart id="R134aChart" /></div>
             </div>
 
             <div class='col-lg-6' id='right-screen'>
@@ -54,8 +55,10 @@ import Streams from "./components/Streams.vue";
 import Snapshot from "./components/Snapshot.vue"
 import Consent from "./components/Consent.vue"
 import RealtimeChart from "./components/RealtimeChart.vue";
-import R134aChart from "./components/R134aChart.vue"
-import InteractiveChart from "./components/interactiveChart.vue"
+import R134aChart from "./components/R134aChart.vue";
+import InteractiveChart from "./components/interactiveChart.vue";
+import RigElement from "./components/RigElement.vue";
+
 
 
 import { mapGetters } from 'vuex'
@@ -76,6 +79,7 @@ export default {
     Snapshot,
     Consent,
     InteractiveChart,
+    RigElement,
 
   },
   data() {

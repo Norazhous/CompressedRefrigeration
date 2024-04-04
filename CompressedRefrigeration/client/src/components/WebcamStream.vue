@@ -1,14 +1,14 @@
 <template>
 	<div class='container-fluid m-2 background-white border rounded'>
 		<div class="row">
-			<div class="col-12" id="rigImage">
+			<!-- <div class="col-12" id="rigImage">
 				<RigElement />
-			</div>
-			<div class="col-4" id="video2" style="margin: auto;">
+			</div> -->
+			<div class="col-12" id="video2" style="margin: auto;">
 				<span>Evaporator</span>
 				<video-element2 :url="url2" />
 			</div>
-			<div class="col-4" id="video" style="margin: auto;">
+			<div class="col-12" id="video" style="margin: auto;">
 				<span>Condenser</span>
 				<video-element1 :url="url1" />
 			</div>
@@ -21,9 +21,9 @@
 			<!-- <div class="row">
 				<websockets />
 			</div> -->
-			<div class="col-12" id="realTimeTable">
+			<!-- <div class="col-12" id="realTimeTable">
 				<realtimetable/>
-			</div>
+			</div> -->
 		</div>
 
 
@@ -48,7 +48,7 @@
 import axios from "axios";
 import VideoElement1 from "./VideoElement1.vue";
 import VideoElement2 from "./VideoElement2.vue";
-import RigElement from "./RigElement.vue";
+// import RigElement from "./RigElement.vue";
 import realtimetable from "./RealtimeTable.vue"
 
 export default {
@@ -56,8 +56,8 @@ export default {
 	components: {
 		VideoElement1,
 		VideoElement2,
-		RigElement,
-		realtimetable,
+		// RigElement,
+		// realtimetable,
 	},
 	data() {
 		return {

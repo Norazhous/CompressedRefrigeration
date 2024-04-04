@@ -1,14 +1,29 @@
 <template>
-    <div class="container-fluid m-2 background-white border rounded" id='snapshot-div'>
+    <div class="container-fluid m-2 background-white border rounded table" id='snapshot-div'>
         <!-- <div>
             <InteractiveChart/>
         </div> -->
-        <div class="row table" id='table'>
+        <div class="row " id='table'>
 
             <table>
-                <thead class='table-head background-primary'>
+                <thead class='table-head'>
                     <tr class='background-primary text-white'>
-                        <th v-for='heading in headings' :key="heading" scope="col">{{ heading }}</th>
+                        <!-- <th v-for='heading in headings' :key="heading" scope="col">{{ heading }}</th> -->
+                        <!-- <th scope="col">ID</th> -->
+                        <th scope="col">Time</th>
+                        <th scope="col">T1(°C)</th>
+                        <th scope="col">T2(°C)</th>
+                        <th scope="col">T3(°C)</th>
+                        <th scope="col">T4(°C)</th>
+                        <th scope="col">T5(°C)</th>
+                        <th scope="col">P1(bar)</th>
+                        <th scope="col">P2(bar)</th>
+                        <th scope="col">P3(bar)</th>
+                        <th scope="col">F(L/h)</th>
+                        <th scope="col">E(W)</th>
+                        <th scope="col">TSA(°C)</th>
+                        <th scope="col">PSA(Pa)</th>
+                        <th scope="col">HSA(%rh)</th>
                     </tr>
                 </thead>
 
@@ -39,8 +54,6 @@
                     </div>
                 </div>
             </table>
-
-
         </div>
 
         <div class='d-grid gap-2 d-sm-block'>
@@ -52,7 +65,7 @@
                 Snapshots</button>
         </div>
 
-        <toolbar parentCanvasID="" parentComponentName="snapshot" parentDivID="snapshot-div" :showDownload='false'
+        <toolbar parentCanvasID="snapshot-div" parentComponentName="snapshot" parentDivID="snapshot-div" :showDownload='false'
             :showPopupHelp="true" :showOptions="false">
             <template v-slot:popup id='snapshot-popup'>
                 <div class='row mb-2'>
@@ -167,12 +180,12 @@ export default {
 
         },
 
-        plotDataInChart() {
-            console.log(InteractiveChart.startTime)
-            // InteractiveChart.methods.updatDataset();
-            InteractiveChart.methods.updateChartData();
-            // this.$root.$emit('chartPlotEvent');
-        },
+        // plotDataInChart() {
+        //     console.log(InteractiveChart.startTime)
+        //     // InteractiveChart.methods.updatDataset();
+        //     InteractiveChart.methods.updateChartData();
+        //     // this.$root.$emit('chartPlotEvent');
+        // },
 
         resetSnaps() {
             this.snaps = [];
@@ -197,7 +210,7 @@ export default {
             let data = this.snaps;
             filename = 'SNAPSHOTs_' + date.getDate().toString() + (date.getMonth() + 1).toString() + date.getFullYear().toString();
 
-            csv = 'Date,Time,T1/C,T2/C,T3/C,T4/C,T5/C,P1/bar,P2/bar,P2/bar,Flowrate/(L/h),Power/W,TSA/C,PSA/pa,HSA/%rh\n';
+            csv = 'Date,Time,T1/C,T2/C,T3/C,T4/C,T5/C,P1/bar,P2/bar,P2/bar,Flowrate/(L/h),Power/W,TSA/C,PSA/Pa,HSA/%rh\n';
 
             data.forEach(function (d) {
                 csv += d.t.toString();

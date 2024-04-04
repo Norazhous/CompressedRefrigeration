@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col-12" id="rigImage">
+    <div class="col-12 background-white" id="rigImage">
       <!-- <div v-for="(position, index) in highlightedPositions" :key="index" class="highlight"
         :style="{ left: position.x, top: position.y }"></div> -->
       <!-- <img src="/images/ET-411C-Compression-refrigeration-system-gunt-206-foto_totale.jpg" alt=""> -->
@@ -8,11 +8,15 @@
         alt="ET-411C-Compression-refrigeration-system">
       <!-- <button >{{ highlightedPositions }}</button> -->
     </div>
+    <div class="col-12 background-white" id="realTimeTable">
+				<realtimetable/>
+			</div>
 
   </div>
 </template>
 
 <script>
+import realtimetable from "./RealtimeTable.vue";
 export default {
 
   name: "RigElement",
@@ -24,6 +28,7 @@ export default {
     }
   },
   components: {
+    realtimetable,
 
   },
   computed: {
