@@ -4,17 +4,7 @@
         xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
         xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg"
         xmlns:svg="http://www.w3.org/2000/svg">
-        <sodipodi:namedview id="namedview1" pagecolor="#ffffff" bordercolor="#000000" borderopacity="0.25"
-            inkscape:showpageshadow="2" inkscape:pageopacity="0.0" inkscape:pagecheckerboard="0"
-            inkscape:deskcolor="#d1d1d1" inkscape:document-units="mm" inkscape:zoom="0.70710679" inkscape:cx="312.54119"
-            inkscape:cy="375.4737" inkscape:window-width="1920" inkscape:window-height="986" inkscape:window-x="-11"
-            inkscape:window-y="-11" inkscape:window-maximized="1" inkscape:current-layer="g1-9" showgrid="true">
-            <inkscape:grid id="grid1" units="mm" originx="0" originy="0" spacingx="1" spacingy="1" empcolor="#0099e5"
-                empopacity="0.30196078" color="#0099e5" opacity="0.14901961" empspacing="5" dotted="false"
-                gridanglex="30" gridanglez="30" visible="true" />
-            <inkscape:page x="0" y="0" width="150" height="140" id="page354" margin="0" bleed="0" />
-            <inkscape:page x="220" y="0" width="841" height="594" id="page355" margin="0" bleed="0" />
-        </sodipodi:namedview>
+    
         <defs id="defs1">
             <linearGradient id="swatch297" inkscape:swatch="solid">
                 <stop style="stop-color:#000000;stop-opacity:1;" offset="0" id="stop297" />

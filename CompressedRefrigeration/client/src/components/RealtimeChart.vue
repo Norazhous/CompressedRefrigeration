@@ -44,9 +44,7 @@ export default {
     components: {
 
     },
-    data() {
-       
-    },
+
     computed: {
         ...mapGetters([
             'GetCurrentTS1',

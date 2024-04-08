@@ -15,9 +15,6 @@ export default {
 
     name: "R134aChart",
 
-    data() {
-
-    },
     components: {
         // CanvasDrawing,
 

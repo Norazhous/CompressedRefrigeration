@@ -143,6 +143,14 @@ const rawDataStore = {
             return state.data.length;
         },
 
+        getSnapData(state){
+            return state.snapdata;
+        },
+        getStartTime(state){
+            return state.Start_time;
+        }
+
+
 
     },
     mutations: {
@@ -276,8 +284,11 @@ const rawDataStore = {
         DELETE_DATA(state, id) {
             state.data.splice(id, 1);
         },
-        DELETE_SNAP_DATA(state, id) {
-            state.snapdata.splice(id, 1);
+        DELETE_SNAP_DATA(state) {
+            state.snapdata = [];
+        },
+        ADD_SNAP_LOCAL_DATA(state,value){
+            state.snapdata = value;
         }
 
     },
@@ -345,12 +356,17 @@ const rawDataStore = {
         },
         addSnapData(context, object) {
             context.commit('ADD_SNAP_DATA', object);
+            // console.log(object);
         },
         deleteData(context, dataId) {
             context.commit('DELETE_DATA', dataId);
         },
-        deleteSnapData(context, object) {
-            context.commit('DELETE_SNAP_DATA', object);
+        deleteSnapData(context) {
+            context.commit('DELETE_SNAP_DATA');
+        },
+        addLocalSnapData(context,value){
+            context.commit('ADD_SNAP_LOCAL_DATA',value);
+            // console.log(value);
         },
 
     }

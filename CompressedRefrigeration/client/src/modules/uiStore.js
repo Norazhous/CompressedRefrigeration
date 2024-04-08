@@ -24,7 +24,10 @@ const uiStore = {
       realTimeChart: null,
 
       //snapshot 
-      valuePost: 0,      
+      valuePost: 0,     
+      
+      //snapsLocalStorage
+      snapsLocalStorage:[],
 
 
 
@@ -337,17 +340,19 @@ const uiStore = {
       getColourIndex(state) {
          return state.colour_index;
       },
-      getUsesLocalStorage(state) {
-         return state.usesLocalStorage;
-      },
+
       //chart function
       getChart(state){
          return state.realTimeChart;
       },
-      //snapshot
+      //snapshot to chart value post
       getValuePost(state){
          return state.valuePost;
       },
+      //snaps local storage
+      getSnapsLocalStorage(state){
+         return state.snapsLocalStorage;
+      } 
 
 
    },

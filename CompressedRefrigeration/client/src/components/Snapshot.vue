@@ -27,7 +27,7 @@
                     </tr>
                 </thead>
 
-                <tr v-for="row in snaps" :id="row.i" :key="row.i">
+                <tr v-for="row in getSnapData" :id="row.i" :key="row.i">
                     <td v-for='key in Object.keys(row)' :key="key">{{ row[key] }}</td>
                 </tr>
 
@@ -58,15 +58,18 @@
 
         <div class='d-grid gap-2 d-sm-block'>
             <button id="snapshot" type='button' class="button-sm button-primary"
-                @click="snapshot(); scrollTo('table-bottom'); ">Record Snapshot</button>
+                @click="snapshot(); scrollTo('table-bottom');">Record Snapshot</button>
             <button id="reset_snaps" type='button' class="button-sm button-danger"
                 @click="toggleResetModal">Reset</button>
             <button id="download_snaps" type='button' class="button-sm button-secondary" @click="outputToCSV">Download
                 Snapshots</button>
+                <!-- <button @click="setLocalStorage">localstoragetest</button> -->
+                <!-- <button @click="getLocalStorage">getLocalStorage</button> -->
+                <button @click="test()">test</button>
         </div>
 
-        <toolbar parentCanvasID="snapshot-div" parentComponentName="snapshot" parentDivID="snapshot-div" :showDownload='false'
-            :showPopupHelp="true" :showOptions="false">
+        <toolbar parentCanvasID="snapshot-div" parentComponentName="snapshot" parentDivID="snapshot-div"
+            :showDownload='false' :showPopupHelp="true" :showOptions="false">
             <template v-slot:popup id='snapshot-popup'>
                 <div class='row mb-2'>
                     <div class='col'>
@@ -112,7 +115,7 @@
 
 <script>
 
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions, Store } from 'vuex'
 import Toolbar from './elements/Toolbar.vue';
 // import InteractiveChart from "./interactiveChart.vue"
 
@@ -122,16 +125,20 @@ export default {
     props: ['headings'],
     data() {
         return {
-            snaps: [],
+            // snaps: [],
             showResetConfirmModal: false,
-            buttonValue:0,
-            
+            buttonValue: 0,
+
         }
     },
     components: {
         Toolbar,
         // InteractiveChart,
     },
+    // created() {
+    //     //beforeunload event and save data to local storage
+    //     window.addEventListener("beforeunload", this.confirm_leaving);
+    // },
     computed: {
         ...mapGetters([
             'getTime',
@@ -151,15 +158,19 @@ export default {
             'GetCurrentHSA',
             'GETCurrentDate',
             'getValuePost',
-            
+            'getSnapData',
+            'getStartTime',
+
         ])
     },
     methods: {
         ...mapActions([
             'addSnapData',
             'setValuePost',
+            'deleteSnapData',
         ]),
         snapshot() {
+            // this.snaps = this.getSnapData;
             this.buttonValue++;
             let snap_object = {
                 t: this.GETCurrentDate, T1: this.GetCurrentTS1, T2: this.GetCurrentTS2,
@@ -168,16 +179,26 @@ export default {
                 Flow: this.GetCurrentFlow, Power: this.GetCurrentPower, TSA: this.GetCurrentTSA,
                 PSA: this.GetCurrentPSA, HSA: this.GetCurrentHSA
             };
+            console.log(snap_object);
             //gets added to the data for plotting
             this.addSnapData(snap_object);
+            console.log(this.getSnapData);
             //gets added to the snaps list
-            this.snaps.push(snap_object);
+            // this.snaps.push(snap_object);
 
             //button click value post
             this.setValuePost(this.buttonValue);
-            // console.log(this.getValuePost);
-            // console.log(this.buttonValue);
+            console.log(this.getValuePost);
+            console.log(this.buttonValue);
 
+        },
+
+        test(){
+            // this.deleteSnapData();
+            // console.log(this.getSnapData);
+            // console.log({"t":0,"T1":0.2,"T2":0.3,"T3":0.4,"T4":0.5,"T5":0.6,"P1":0,"P2":1,"P3":1.1,"Flow":0.7,"Power":0.8,"TSA":0,"PSA":0,"HSA":0});
+            // this.addSnapData({"t":0,"T1":0.2,"T2":0.3,"T3":0.4,"T4":0.5,"T5":0.6,"P1":0,"P2":1,"P3":1.1,"Flow":0.7,"Power":0.8,"TSA":0,"PSA":0,"HSA":0})
+            // console.log(this.getStartTime);
         },
 
         // plotDataInChart() {
@@ -188,10 +209,11 @@ export default {
         // },
 
         resetSnaps() {
-            this.snaps = [];
+            this.deleteSnapData();
             this.buttonValue = -1;
             this.setValuePost(this.buttonValue);
             console.log(this.getValuePost);
+            console.log(this.getSnapData);
         },
         toggleResetModal() {
             this.showResetConfirmModal = !this.showResetConfirmModal;
@@ -207,7 +229,7 @@ export default {
             let csv = '';
             let filename = '';
             let date = new Date();
-            let data = this.snaps;
+            let data = this.getSnapData;
             filename = 'SNAPSHOTs_' + date.getDate().toString() + (date.getMonth() + 1).toString() + date.getFullYear().toString();
 
             csv = 'Date,Time,T1/C,T2/C,T3/C,T4/C,T5/C,P1/bar,P2/bar,P2/bar,Flowrate/(L/h),Power/W,TSA/C,PSA/Pa,HSA/%rh\n';
@@ -251,6 +273,31 @@ export default {
             hiddenElement.download = filename;
             hiddenElement.click();
         },
+
+        // getLocalStorage(val){
+        //     this.snaps= val;
+        //     console.log(this.snaps);
+        // },
+
+        // setLocalStorage(){
+        //     localStorage.setItem('snaps',JSON.stringify(this.$store.state.rawData.snapdata));
+        //     console.log(this.getSnapDate);
+        // },
+        // getLocalStorage(){
+        //     this.snaps= JSON.parse(localStorage.getItem('snaps'));
+        //     console.log(this.snaps);
+        // },
+
+        // confirm_leaving(evt) {
+        //     if (this.snaps != []) {
+        //         const unsaved_changes_warning = "You have unsaved changes. Are you sure you wish to leave?";
+        //         evt.returnValue = unsaved_changes_warning; 
+        //         this.setLocalStorage();
+        //         InteractiveChart.methods.setLocalStorage();
+        //         return unsaved_changes_warning;
+        //     };
+        // },
+
     }
 }
 </script>
