@@ -7,7 +7,7 @@
                 <thead class='table-head'>
                     <tr class='background-primary text-white'>
                         <!-- <th scope="col">ID</th> -->
-                        <th scope="col">Time</th>
+                        <th scope="col">RecordingTime(s)</th>
                         <th scope="col">T1(°C)</th>
                         <th scope="col">T2(°C)</th>
                         <th scope="col">T3(°C)</th>

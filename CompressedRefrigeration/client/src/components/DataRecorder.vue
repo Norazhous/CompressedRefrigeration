@@ -66,15 +66,17 @@ export default {
       'GetCurrentTSA',
       'GetCurrentPSA',
       'GetCurrentHSA',
-      'GETCurrentTime',
       'GETCurrentDate',
+      'getRecorderCurrentTime',
+      'getRecorderStartTime',
+
 
     ]),
     hasData() {
       return this.getNumData !== 0;
     },
     newTime() {
-      return this.$store.getters.GETCurrentTime;
+      return this.getRecorderCurrentTime;
     },
     showRedLight() {
       return this.getNumData % 20 > 10 ? true : false;
@@ -84,6 +86,7 @@ export default {
     newTime() {
       if (this.getIsRecording && this.getNumData < this.max_data_points) {
         this.plot();
+        //console.log(this.getRecorderCurrentTime+"start:"+this.getRecorderStartTime);
       } else if (this.getNumData == this.max_data_points && !this.max_reached) {
         this.stopRecording();
         this.max_reached = true;
@@ -97,11 +100,14 @@ export default {
       'addData',
       'clearAllData',
       'updateColourIndex',
-      'logAnalytics'
+      'logAnalytics',
+      'setRecorderCurrentTime',
+      'setRecorderStartTime',
     ]),
     record() {
       // this.$store.dispatch('setCurrentTime', new Date().getTime());
-      this.$store.dispatch('setStartTime', this.GETCurrentTime);
+      this.setRecorderStartTime(this.getRecorderCurrentTime);
+      console.log(this.getRecorderCurrentTime+"start:"+this.getRecorderStartTime);
       // console.log(this.GETCurrentTime);
       // console.log(this.$store.state.rawData.Current_time);
 
@@ -118,19 +124,19 @@ export default {
       this.clearFlag=true;
       this.timerFunc();
 
-
-
+      
     },
+
     stopRecording() {
       this.setIsRecording(false);
       this.clearFlag = false;
-
-
     },
+
     plot() {
-      this.updategetCurrentTime();
+      // this.updategetCurrentTime();
       this.data_points_count++;
-      let time = this.GETCurrentDate;
+      let date = this.GETCurrentDate;
+      let time = (this.getRecorderCurrentTime-this.getRecorderStartTime)/1000;
       let T1 = this.GetCurrentTS1;
       let T2 = this.GetCurrentTS2;
       let T3 = this.GetCurrentTS3;
@@ -145,7 +151,7 @@ export default {
       let PSA = this.GetCurrentPSA;
       let HSA = this.GetCurrentHSA;
 
-      let data_object = { id: this.getNumData, t: time, T1: T1, T2: T2, T3: T3, T4: T4, T5: T5, P1: P1, P2: P2, P3: P3, Flow: Flow, Power: Power, TSA: TSA, PSA: PSA, HSA: HSA, };
+      let data_object = { id: this.getNumData, date:date, t: time, T1: T1, T2: T2, T3: T3, T4: T4, T5: T5, P1: P1, P2: P2, P3: P3, Flow: Flow, Power: Power, TSA: TSA, PSA: PSA, HSA: HSA, };
       this.addData(data_object);
       this.hasPlotted = true;
       // console.log(data_object);
@@ -158,9 +164,11 @@ export default {
       this.clearFlag = false;
     },
     outputToCSV() {
-      let csv = 'Date,Time,T1/C,T2/C,T3/C,T4/C,T5/C,P1/bar,P2/bar,P2/bar,Flowrate/(L/h),Power/W,TSA/C,PSA/Pa,HSA/%rh\n';
+      let csv = 'Date,Time,Recording Time/s,T1/C,T2/C,T3/C,T4/C,T5/C,P1/bar,P2/bar,P2/bar,Flowrate/(L/h),Power/W,TSA/C,PSA/Pa,HSA/%rh\n';
       let data = this.$store.getters.getData;
       data.forEach(function (d) {
+        csv += d.date.toString();
+        csv += ",";
         csv += d.t.toString();
         csv += ",";
         csv += d.T1.toString();
@@ -198,10 +206,10 @@ export default {
       hiddenElement.click();
     },
 
-    updategetCurrentTime() {
-      this.$store.dispatch('setCurrentTime', this.GETCurrentTime);
-      // console.log(this.getCurrentTime);
-    },
+    // updategetCurrentTime() {
+    //   this.$store.dispatch('setRecorderCurrentTime', this.getRecorderCurrentTime);
+    //   // console.log(this.getCurrentTime);
+    // },
 
     timerFunc() {
       var interval = setInterval(() => {

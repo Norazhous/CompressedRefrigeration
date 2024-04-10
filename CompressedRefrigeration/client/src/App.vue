@@ -34,7 +34,7 @@
           @drop='dropComponent' @dragover.prevent @dragenter.prevent><data-recorder id='data-recorder' /></div>
         <!-- <div class='col drop-area' id='drop_2_0' :draggable='getDraggable' @dragstart="dragComponent" @drop='dropComponent' @dragover.prevent @dragenter.prevent><table-output v-if='isTableOn' id='table' :selected_point="selected_graph_point"/></div> -->
         <div class='col drop-area' id='drop_4_0' :draggable='getDraggable' @dragstart="dragComponent"
-          @drop='dropComponent' @dragover.prevent @dragenter.prevent><table-output id='table' v-if='isTableOn'
+          @drop='dropComponent' @dragover.prevent @dragenter.prevent><table-output id='table'
             :selected_point="selected_graph_point" /></div>
         <div class='col drop-area' id='drop_5_0' :draggable='getDraggable' @dragstart="dragComponent"
           @drop='dropComponent' @dragover.prevent @dragenter.prevent>

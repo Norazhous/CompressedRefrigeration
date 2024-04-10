@@ -232,8 +232,8 @@ export default {
 			'setW1',
 			'setW2',
 			'setComp',
-			'setCurrentTime',
 			'setCurrentDate',
+			'setRecorderCurrentTime',
 
 			//set the color and send command to server
 			'setV1color',// set the color of the valve,setV1color(2)-waiting, setV1color(1)-on,setV1color(0)-off
@@ -1098,7 +1098,7 @@ export default {
 					this.setW1(W1);
 					this.setW2(W2);
 					this.setComp(comp);
-					this.setCurrentTime(msgTime);
+					this.setRecorderCurrentTime(msgTime);//msgtime is start from restart of equipment, so in this experiment this time will not be recorded
 					this.setCurrentDate(new Date().toLocaleString());
 
 					// console.log(this.$store.state.rawData.Current_time);

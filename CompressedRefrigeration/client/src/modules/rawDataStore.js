@@ -18,7 +18,9 @@ const rawDataStore = {
 
         //time 
         Start_time: 0,
-        Current_time: 0,
+        Current_time: 0,//for chartjs and snapshot
+        RecorderCurrentTime: 0, //for recorder
+        RecorderStartTime: 0,
         Current_date: 0,
         data: [],
         snapdata: [],
@@ -143,12 +145,20 @@ const rawDataStore = {
             return state.data.length;
         },
 
-        getSnapData(state){
+        getSnapData(state) {
             return state.snapdata;
         },
-        getStartTime(state){
+        getStartTime(state) {
             return state.Start_time;
-        }
+        },
+        //recoder
+        getRecorderCurrentTime(state) {
+            return state.RecorderCurrentTime;
+        },
+        getRecorderStartTime(state) {
+            return state.RecorderStartTime;
+        },
+
 
 
 
@@ -287,8 +297,14 @@ const rawDataStore = {
         DELETE_SNAP_DATA(state) {
             state.snapdata = [];
         },
-        ADD_SNAP_LOCAL_DATA(state,value){
+        ADD_SNAP_LOCAL_DATA(state, value) {
             state.snapdata = value;
+        },
+        SET_RECORDER_CURRENT_TIME(state, value) {
+            state.RecorderCurrentTime = value;
+        },
+        SET_RECORDER_START_TIME(state, value) {
+            state.RecorderStartTime = value;
         }
 
     },
@@ -364,9 +380,15 @@ const rawDataStore = {
         deleteSnapData(context) {
             context.commit('DELETE_SNAP_DATA');
         },
-        addLocalSnapData(context,value){
-            context.commit('ADD_SNAP_LOCAL_DATA',value);
+        addLocalSnapData(context, value) {
+            context.commit('ADD_SNAP_LOCAL_DATA', value);
             // console.log(value);
+        },
+        setRecorderCurrentTime(context, value) {
+            context.commit('SET_RECORDER_CURRENT_TIME', value);
+        },
+        setRecorderStartTime(context, value) {
+            context.commit('SET_RECORDER_START_TIME', value);
         },
 
     }

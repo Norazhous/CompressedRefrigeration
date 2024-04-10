@@ -10,7 +10,7 @@
                     <tr class='background-primary text-white'>
                         <!-- <th v-for='heading in headings' :key="heading" scope="col">{{ heading }}</th> -->
                         <!-- <th scope="col">ID</th> -->
-                        <th scope="col">Time</th>
+                        <th scope="col">Time(s)</th>
                         <th scope="col">T1(°C)</th>
                         <th scope="col">T2(°C)</th>
                         <th scope="col">T3(°C)</th>
@@ -28,11 +28,25 @@
                 </thead>
 
                 <tr v-for="row in getSnapData" :id="row.i" :key="row.i">
-                    <td v-for='key in Object.keys(row)' :key="key">{{ row[key] }}</td>
+                    <!-- <td v-for='key in Object.keys(row)' :key="key">{{ row[key] }}</td> -->
+                    <td>{{ row.t }}</td>
+                    <td>{{ row.T1 }}</td>
+                    <td>{{ row.T2 }}</td>
+                    <td>{{ row.T3 }}</td>
+                    <td>{{ row.T4 }}</td>
+                    <td>{{ row.T5 }}</td>
+                    <td>{{ row.P1 }}</td>
+                    <td>{{ row.P2 }}</td>
+                    <td>{{ row.P3 }}</td>
+                    <td>{{ row.Flow }}</td>
+                    <td>{{ row.Power }}</td>
+                    <td>{{ row.TSA }}</td>
+                    <td>{{ row.PSA }}</td>
+                    <td>{{ row.HSA }}</td>
                 </tr>
 
                 <tr class='current' id='current-row'>
-                    <td>{{ GETCurrentDate }}</td>
+                    <td>{{ currentTime }}</td>
                     <td>{{ GetCurrentTS1 }}</td>
                     <td>{{ GetCurrentTS2 }}</td>
                     <td>{{ GetCurrentTS3 }}</td>
@@ -63,9 +77,9 @@
                 @click="toggleResetModal">Reset</button>
             <button id="download_snaps" type='button' class="button-sm button-secondary" @click="outputToCSV">Download
                 Snapshots</button>
-                <!-- <button @click="setLocalStorage">localstoragetest</button> -->
-                <!-- <button @click="getLocalStorage">getLocalStorage</button> -->
-                <button @click="test()">test</button>
+            <!-- <button @click="setLocalStorage">localstoragetest</button> -->
+            <!-- <button @click="getLocalStorage">getLocalStorage</button> -->
+            <!-- <button @click="test()">test</button> -->
         </div>
 
         <toolbar parentCanvasID="snapshot-div" parentComponentName="snapshot" parentDivID="snapshot-div"
@@ -128,6 +142,8 @@ export default {
             // snaps: [],
             showResetConfirmModal: false,
             buttonValue: 0,
+            currentTime: 0,
+
 
         }
     },
@@ -139,10 +155,11 @@ export default {
     //     //beforeunload event and save data to local storage
     //     window.addEventListener("beforeunload", this.confirm_leaving);
     // },
+    mounted() {
+        this.currentTimeTable();
+    },
     computed: {
         ...mapGetters([
-            'getTime',
-            'getCurrentTime',
             'GetCurrentTS1',
             'GetCurrentTS2',
             'GetCurrentTS3',
@@ -160,20 +177,23 @@ export default {
             'getValuePost',
             'getSnapData',
             'getStartTime',
+            'GETCurrentTime'
+        ]),
 
-        ])
     },
     methods: {
         ...mapActions([
             'addSnapData',
             'setValuePost',
             'deleteSnapData',
+            'setCurrentTime',
         ]),
         snapshot() {
+             this.setCurrentTime((Date.now() - this.getStartTime) / 1000);
             // this.snaps = this.getSnapData;
             this.buttonValue++;
             let snap_object = {
-                t: this.GETCurrentDate, T1: this.GetCurrentTS1, T2: this.GetCurrentTS2,
+                date: this.GETCurrentDate, t: this.GETCurrentTime, T1: this.GetCurrentTS1, T2: this.GetCurrentTS2,
                 T3: this.GetCurrentTS3, T4: this.GetCurrentTS4, T5: this.GetCurrentTS5,
                 P1: this.GetCurrentPS1, P2: this.GetCurrentPS2, P3: this.GetCurrentPS3,
                 Flow: this.GetCurrentFlow, Power: this.GetCurrentPower, TSA: this.GetCurrentTSA,
@@ -193,13 +213,13 @@ export default {
 
         },
 
-        test(){
-            // this.deleteSnapData();
-            // console.log(this.getSnapData);
-            // console.log({"t":0,"T1":0.2,"T2":0.3,"T3":0.4,"T4":0.5,"T5":0.6,"P1":0,"P2":1,"P3":1.1,"Flow":0.7,"Power":0.8,"TSA":0,"PSA":0,"HSA":0});
-            // this.addSnapData({"t":0,"T1":0.2,"T2":0.3,"T3":0.4,"T4":0.5,"T5":0.6,"P1":0,"P2":1,"P3":1.1,"Flow":0.7,"Power":0.8,"TSA":0,"PSA":0,"HSA":0})
-            // console.log(this.getStartTime);
-        },
+        // test(){
+        //     // this.deleteSnapData();
+        //     // console.log(this.getSnapData);
+        //     // console.log({"t":0,"T1":0.2,"T2":0.3,"T3":0.4,"T4":0.5,"T5":0.6,"P1":0,"P2":1,"P3":1.1,"Flow":0.7,"Power":0.8,"TSA":0,"PSA":0,"HSA":0});
+        //     // this.addSnapData({"t":0,"T1":0.2,"T2":0.3,"T3":0.4,"T4":0.5,"T5":0.6,"P1":0,"P2":1,"P3":1.1,"Flow":0.7,"Power":0.8,"TSA":0,"PSA":0,"HSA":0})
+        //     // console.log(this.getStartTime);
+        // },
 
         // plotDataInChart() {
         //     console.log(InteractiveChart.startTime)
@@ -232,9 +252,11 @@ export default {
             let data = this.getSnapData;
             filename = 'SNAPSHOTs_' + date.getDate().toString() + (date.getMonth() + 1).toString() + date.getFullYear().toString();
 
-            csv = 'Date,Time,T1/C,T2/C,T3/C,T4/C,T5/C,P1/bar,P2/bar,P2/bar,Flowrate/(L/h),Power/W,TSA/C,PSA/Pa,HSA/%rh\n';
+            csv = 'Date,Time,Snapshot Time/s,T1/C,T2/C,T3/C,T4/C,T5/C,P1/bar,P2/bar,P2/bar,Flowrate/(L/h),Power/W,TSA/C,PSA/Pa,HSA/%rh\n';
 
             data.forEach(function (d) {
+                csv += d.date.toString();
+                csv += ",";
                 csv += d.t.toString();
                 csv += ",";
                 csv += d.T1.toString();
@@ -273,6 +295,14 @@ export default {
             hiddenElement.download = filename;
             hiddenElement.click();
         },
+
+        currentTimeTable() {
+
+            setInterval(() => {
+                this.currentTime = (Date.now() - this.getStartTime) / 1000;
+            }, 1000);
+           
+        }
 
         // getLocalStorage(val){
         //     this.snaps= val;

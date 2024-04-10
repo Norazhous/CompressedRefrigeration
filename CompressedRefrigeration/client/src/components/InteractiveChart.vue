@@ -5,9 +5,9 @@
         <button @click="removeChartData()">remove</button>
         <button @click="clearChartData()">clear</button> -->
         <!-- <button @click="test">test</button> -->
-        <button @click="setLocalStorage">localstoragetest</button>
-        <button @click="getLocalStorage">getLocalStorage</button>
-        <button @click="updatechartbyLocal">updatechartbyLocal</button>
+        <!-- <button @click="setLocalStorage">localstoragetest</button> -->
+        <!-- <button @click="getLocalStorage">getLocalStorage</button> -->
+        <!-- <button @click="updatechartbyLocal">updatechartbyLocal</button> -->
     </div>
 
 </template>
@@ -48,6 +48,7 @@ export default {
             'getValuePost',
             'getSnapData',
             'getStartTime',
+            'GETCurrentTime',
 
 
         ]),
@@ -89,15 +90,14 @@ export default {
     },
     mounted() {
         this.createChart();
-
+        this.LocalStorageCheck();
         //add data according to the valuePost from Snapshot
         this.$watch('getValuePost', function (val) {
             this.updateChartData();
             val = this.getValuePost;
-            // this.setLocalStorage();
-            // console.log(val);
             if (val == -1) {
                 this.clearChartData();
+                localStorage.clear();
             }
             // console.log(this.valuePost);
         })
@@ -112,6 +112,7 @@ export default {
             'addLocalSnapData',
             'addSnapData',
             'setStartTime',
+            'setCurrentTime',
         ]),
 
         createChart() {
@@ -237,50 +238,57 @@ export default {
         //update dataset for chart input
         updatDataset() {
             //use the currenttime -starttime as the x axis
-            var currentTime = (Date.now() - this.getStartTime) / 1000;
+            // var currentTime = (Date.now() - this.getStartTime) / 1000;
+            // this.setCurrentTime((Date.now() - this.getStartTime) / 1000);
+
 
             // console.log(this.datasetTS1);
             // push the data into the dataset for chart plotting 
-            this.datasetTS1.push({
-                x: currentTime,
-                y: this.GetCurrentTS1,
-            });
+            // this.datasetTS1 = [x:currentTime, y:this.getSnapData.t]
+            // this.datasetTS1.push({
+            //     x: currentTime,
+            //     y: this.getSnapData[this.getSnapData.length-1].T1,
+            // });
             // console.log(this.datasetTS1);
             // console.log(this.dataset);
+            this.datasetTS1.push({
+                x: this.GETCurrentTime,
+                y: this.GetCurrentTS1,
+            });
             this.datasetTS2.push({
-                x: currentTime,
+                x: this.GETCurrentTime,
                 y: this.GetCurrentTS2,
             });
             this.datasetTS3.push({
-                x: currentTime,
+                x: this.GETCurrentTime,
                 y: this.GetCurrentTS3,
             });
             this.datasetTS4.push({
-                x: currentTime,
+                x: this.GETCurrentTime,
                 y: this.GetCurrentTS4,
             });
             this.datasetTS5.push({
-                x: currentTime,
+                x: this.GETCurrentTime,
                 y: this.GetCurrentTS5,
             });
             this.datasetPS1.push({
-                x: currentTime,
+                x: this.GETCurrentTime,
                 y: this.GetCurrentPS1,
             });
             this.datasetPS2.push({
-                x: currentTime,
+                x: this.GETCurrentTime,
                 y: this.GetCurrentPS2,
             });
             this.datasetPS3.push({
-                x: currentTime,
+                x: this.GETCurrentTime,
                 y: this.GetCurrentPS3,
             });
             this.datasetFlow.push({
-                x: currentTime,
+                x: this.GETCurrentTime,
                 y: this.GetCurrentFlow,
             });
             this.datasetPower.push({
-                x: currentTime,
+                x: this.GETCurrentTime,
                 y: this.GetCurrentPower,
             });
         },
@@ -300,7 +308,7 @@ export default {
             // });
             // console.log(this.realTimeChart);
 
-            this.realTimeChart.data.datasets[0].data.push(this.datasetTS1[this.datasetTS1.length - 1])
+            this.realTimeChart.data.datasets[0].data.push(this.datasetTS1[this.datasetTS1.length - 1]);
             this.realTimeChart.data.datasets[1].data.push(this.datasetTS2[this.datasetTS2.length - 1]);
             this.realTimeChart.data.datasets[2].data.push(this.datasetTS3[this.datasetTS3.length - 1]);
             this.realTimeChart.data.datasets[3].data.push(this.datasetTS4[this.datasetTS4.length - 1]);
@@ -361,13 +369,26 @@ export default {
             this.realTimeChart.data.datasets.forEach((dataset) => {
                 dataset.data = [];
             })
-            //clear the dataset as well
-            this.dataset = [];
             this.realTimeChart.update();
+            //clear the dataset as well
+            // this.dataset = [];
+            console.log(this.datasetTS1);
+            this.datasetTS1 = [];
+            this.datasetTS2 = [];
+            this.datasetTS3 = [];
+            this.datasetTS4 = [];
+            this.datasetTS5 = [];
+            this.datasetPS1 = [];
+            this.datasetPS2 = [];
+            this.datasetPS3 = [];
+            this.datasetFlow = [];
+            this.datasetPower = [];
+
         },
 
 
         setLocalStorage() {
+
             localStorage.setItem('datasetTS1', JSON.stringify(this.datasetTS1));
             localStorage.setItem('datasetTS2', JSON.stringify(this.datasetTS2));
             localStorage.setItem('datasetTS3', JSON.stringify(this.datasetTS3));
@@ -380,82 +401,88 @@ export default {
             localStorage.setItem('datasetPower', JSON.stringify(this.datasetPower));
             localStorage.setItem('snapsData', JSON.stringify(this.getSnapData));
             localStorage.setItem('starttime', JSON.stringify(this.getStartTime));
+
         },
         getLocalStorage() {
-            const TS1Local = JSON.parse(localStorage.getItem('datasetTS1'));
-            const TS2Local = JSON.parse(localStorage.getItem('datasetTS2'));
-            const TS3Local = JSON.parse(localStorage.getItem('datasetTS3'));
-            const TS4Local = JSON.parse(localStorage.getItem('datasetTS4'));
-            const TS5Local = JSON.parse(localStorage.getItem('datasetTS5'));
-            const PS1Local = JSON.parse(localStorage.getItem('datasetPS1'));
-            const PS2Local = JSON.parse(localStorage.getItem('datasetPS2'));
-            const PS3Local = JSON.parse(localStorage.getItem('datasetPS3'));
-            const FlowLocal = JSON.parse(localStorage.getItem('datasetFlow'));
-            const PowerLocal = JSON.parse(localStorage.getItem('datasetPower'));
-            const startTime = JSON.parse(localStorage.getItem('starttime'));
+            if (localStorage.getItem('datasetTS1') == null) {
+                alert("There is no data in the localStorage!")
+            } else {
+                const TS1Local = JSON.parse(localStorage.getItem('datasetTS1'));
+                const TS2Local = JSON.parse(localStorage.getItem('datasetTS2'));
+                const TS3Local = JSON.parse(localStorage.getItem('datasetTS3'));
+                const TS4Local = JSON.parse(localStorage.getItem('datasetTS4'));
+                const TS5Local = JSON.parse(localStorage.getItem('datasetTS5'));
+                const PS1Local = JSON.parse(localStorage.getItem('datasetPS1'));
+                const PS2Local = JSON.parse(localStorage.getItem('datasetPS2'));
+                const PS3Local = JSON.parse(localStorage.getItem('datasetPS3'));
+                const FlowLocal = JSON.parse(localStorage.getItem('datasetFlow'));
+                const PowerLocal = JSON.parse(localStorage.getItem('datasetPower'));
+                const startTime = JSON.parse(localStorage.getItem('starttime'));
 
-            this.realTimeChart.data.datasets[0].data = TS1Local;
-            this.realTimeChart.data.datasets[1].data = TS2Local;
-            this.realTimeChart.data.datasets[2].data = TS3Local;
-            this.realTimeChart.data.datasets[3].data = TS4Local;
-            this.realTimeChart.data.datasets[4].data = TS5Local;
-            this.realTimeChart.data.datasets[5].data = PS1Local;
-            this.realTimeChart.data.datasets[6].data = PS2Local;
-            this.realTimeChart.data.datasets[7].data = PS3Local;
-            this.realTimeChart.data.datasets[8].data = FlowLocal;
-            this.realTimeChart.data.datasets[9].data = PowerLocal;
+                this.realTimeChart.data.datasets[0].data = TS1Local;
+                this.realTimeChart.data.datasets[1].data = TS2Local;
+                this.realTimeChart.data.datasets[2].data = TS3Local;
+                this.realTimeChart.data.datasets[3].data = TS4Local;
+                this.realTimeChart.data.datasets[4].data = TS5Local;
+                this.realTimeChart.data.datasets[5].data = PS1Local;
+                this.realTimeChart.data.datasets[6].data = PS2Local;
+                this.realTimeChart.data.datasets[7].data = PS3Local;
+                this.realTimeChart.data.datasets[8].data = FlowLocal;
+                this.realTimeChart.data.datasets[9].data = PowerLocal;
 
-            this.realTimeChart.update();
+                this.realTimeChart.update();
 
-            //Uncaught (in promise) RangeError: Maximum call stack size exceeded
-            // this.datasetTS1 = JSON.parse(localStorage.getItem('datasetTS1'));
-            // this.datasetTS2 = JSON.parse(localStorage.getItem('datasetTS2'));
-            // this.datasetTS3 = JSON.parse(localStorage.getItem('datasetTS3'));
-            // this.datasetTS4 = JSON.parse(localStorage.getItem('datasetTS4'));
-            // this.datasetTS5 = JSON.parse(localStorage.getItem('datasetTS5'));
-            // this.datasetPS1 = JSON.parse(localStorage.getItem('datasetPS1'));
-            // this.datasetPS2 = JSON.parse(localStorage.getItem('datasetPS2'));
-            // this.datasetPS3 = JSON.parse(localStorage.getItem('datasetPS3'));
-            // this.datasetFlow = JSON.parse(localStorage.getItem('datasetFlow'));
-            // this.datasetPower = JSON.parse(localStorage.getItem('datasetPower'));
-
-
-            // this.realTimeChart.data.datasets[0].data = this.datasetTS1;
-            // this.realTimeChart.data.datasets[1].data = this.datasetTS2;
-            // this.realTimeChart.data.datasets[2].data = this.datasetTS3;
-            // this.realTimeChart.data.datasets[3].data = this.datasetTS4;
-            // this.realTimeChart.data.datasets[4].data = this.datasetTS5;
-            // this.realTimeChart.data.datasets[5].data = this.datasetPS1;
-            // this.realTimeChart.data.datasets[6].data = this.datasetPS2;
-            // this.realTimeChart.data.datasets[7].data = this.datasetPS3;
-            // this.realTimeChart.data.datasets[8].data = this.datasetFlow;
-            // this.realTimeChart.data.datasets[9].data = this.datasetPower;
-            // this.realTimeChart.update();
+                //Uncaught (in promise) RangeError: Maximum call stack size exceeded
+                // this.datasetTS1 = JSON.parse(localStorage.getItem('datasetTS1'));
+                // this.datasetTS2 = JSON.parse(localStorage.getItem('datasetTS2'));
+                // this.datasetTS3 = JSON.parse(localStorage.getItem('datasetTS3'));
+                // this.datasetTS4 = JSON.parse(localStorage.getItem('datasetTS4'));
+                // this.datasetTS5 = JSON.parse(localStorage.getItem('datasetTS5'));
+                // this.datasetPS1 = JSON.parse(localStorage.getItem('datasetPS1'));
+                // this.datasetPS2 = JSON.parse(localStorage.getItem('datasetPS2'));
+                // this.datasetPS3 = JSON.parse(localStorage.getItem('datasetPS3'));
+                // this.datasetFlow = JSON.parse(localStorage.getItem('datasetFlow'));
+                // this.datasetPower = JSON.parse(localStorage.getItem('datasetPower'));
 
 
+                // this.realTimeChart.data.datasets[0].data = this.datasetTS1;
+                // this.realTimeChart.data.datasets[1].data = this.datasetTS2;
+                // this.realTimeChart.data.datasets[2].data = this.datasetTS3;
+                // this.realTimeChart.data.datasets[3].data = this.datasetTS4;
+                // this.realTimeChart.data.datasets[4].data = this.datasetTS5;
+                // this.realTimeChart.data.datasets[5].data = this.datasetPS1;
+                // this.realTimeChart.data.datasets[6].data = this.datasetPS2;
+                // this.realTimeChart.data.datasets[7].data = this.datasetPS3;
+                // this.realTimeChart.data.datasets[8].data = this.datasetFlow;
+                // this.realTimeChart.data.datasets[9].data = this.datasetPower;
+                // this.realTimeChart.update();
 
-            this.setStartTime(startTime);
 
-            this.addLocalSnapData(JSON.parse(localStorage.getItem('snapsData')));
-            // console.log(this.getSnapData);
 
-            // console.log("TS1Local" + TS1Local + "datasetTS1" + this.datasetTS1);
+                this.setStartTime(startTime);
 
-            this.datasetTS1 = TS1Local;
-            this.datasetTS2 = TS2Local;
-            this.datasetTS3 = TS3Local;
-            this.datasetTS4 = TS4Local;
-            this.datasetTS5 = TS5Local;
-            this.datasetPS1 = PS1Local;
-            this.datasetPS2 = PS2Local;
-            this.datasetPS3 = PS3Local;
-            this.datasetFlow = FlowLocal;
-            this.datasetPower = PowerLocal;
+                this.addLocalSnapData(JSON.parse(localStorage.getItem('snapsData')));
+                // console.log(this.getSnapData);
 
-            this.local = 1;
-            this.updateChartData();
+                // console.log("TS1Local" + TS1Local + "datasetTS1" + this.datasetTS1);
 
-            // console.log("TS1Local" + TS1Local + "datasetTS1" + this.datasetTS1);
+                this.datasetTS1 = [...TS1Local];
+                this.datasetTS2 = [...TS2Local];
+                this.datasetTS3 = [...TS3Local];
+                this.datasetTS4 = [...TS4Local];
+                this.datasetTS5 = [...TS5Local];
+                this.datasetPS1 = [...PS1Local];
+                this.datasetPS2 = [...PS2Local];
+                this.datasetPS3 = [...PS3Local];
+                this.datasetFlow = [...FlowLocal];
+                this.datasetPower = [...PowerLocal];
+
+                // this.local = 1;
+                // this.updateChartData();
+
+                // console.log("TS1Local" + TS1Local + "datasetTS1" + this.datasetTS1);
+
+            }
 
 
         },
@@ -487,11 +514,31 @@ export default {
             };
         },
 
-        // test(){
-        //     this.addLocalSnapData([{"t":0,"T1":0.2,"T2":0.3,"T3":0.4,"T4":0.5,"T5":0.6,"P1":0,"P2":1,"P3":1.1,"Flow":0.7,"Power":0.8,"TSA":0,"PSA":0,"HSA":0},{"t":0,"T1":0.2,"T2":0.3,"T3":0.4,"T4":0.5,"T5":0.6,"P1":0,"P2":1,"P3":1.1,"Flow":0.7,"Power":0.8,"TSA":0,"PSA":0,"HSA":0},{"t":0,"T1":0.2,"T2":0.3,"T3":0.4,"T4":0.5,"T5":0.6,"P1":0,"P2":1,"P3":1.1,"Flow":0.7,"Power":0.8,"TSA":0,"PSA":0,"HSA":0}]);
-        //     console.log(this.getSnapData);
-        // }
 
+        LocalStorageCheck() {
+
+            if (localStorage.getItem('datasetTS1') == null || JSON.parse(localStorage.getItem('datasetTS1')).length == 0) {
+                console.log(localStorage.getItem('datasetTS1'));
+            }else{
+                console.log(typeof(localStorage.getItem('datasetTS1'))+localStorage.getItem('datasetTS1'));
+                var con;
+                con = confirm(" The Local storage is exist. Do you need to use it ?")
+                if (con==true) {
+                    this.getLocalStorage();
+                }else{
+                    localStorage.clear();
+                }  
+            }
+
+            // test() {
+            //     this.realTimeChart.data.datasets[0].data = [{ "x": 0, "y": 0.2 }, { "x": 0.2, "y": 0.2 }, { "x": 0.5, "y": 0.2 }, { "x": 0.7, "y": 0.2 }, { "x": 1, "y": 0.2 }];
+            //     this.realTimeChart.update();
+            //     this.datasetTS1 = [{ "x": 37.25, "y": 0.2 }, { "x": 38.271, "y": 0.2 }, { "x": 39.347, "y": 0.2 }, { "x": 39.711, "y": 0.2 }, { "x": 40.161, "y": 0.2 }];
+            //     this.addLocalSnapData([{ "x": 37.25, "y": 0.2 }, { "x": 38.271, "y": 0.2 }, { "x": 39.347, "y": 0.2 }, { "x": 39.711, "y": 0.2 }, { "x": 40.161, "y": 0.2 }]);
+            //     console.log(this.getSnapData);
+            // }
+
+        }
     }
 }
 
