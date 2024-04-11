@@ -24,8 +24,8 @@
                 <text x="490" y="25" fill="rgb(14, 14, 141)" font-style="italic">P3(bar)</text>
                 <line x1="0" y1="35" x2="50" y2="35" style="stroke:rgb(0, 178, 148);stroke-width:3" /> 
                 <text x="0" y="55" fill="rgb(0, 178, 148)" font-style="italic">F(L/h)</text>
-                <line x1="70" y1="35" x2="120" y2="35" style="stroke:rgb(255, 140, 0);stroke-width:3" /> 
-                <text x="70" y="55" fill="rgb(255, 140, 0)" font-style="italic">E(W)</text>
+                <!-- <line x1="70" y1="35" x2="120" y2="35" style="stroke:rgb(255, 140, 0);stroke-width:3" /> 
+                <text x="70" y="55" fill="rgb(255, 140, 0)" font-style="italic">E(W)</text> -->
             </svg>
         </div>
     </div>
@@ -94,7 +94,7 @@ export default {
             var line7 = new TimeSeries();
             var line8 = new TimeSeries();
             var line9 = new TimeSeries();
-            var line10 = new TimeSeries();
+            // var line10 = new TimeSeries();
 
             // console.log(this.GETCurrentTime)
             // console.log(this.GetCurrentTS1);
@@ -116,7 +116,7 @@ export default {
                 line7.append(Date.now(), this.GetCurrentPS2);
                 line8.append(Date.now(), this.GetCurrentPS3);
                 line9.append(Date.now(), this.GetCurrentFlow);
-                line10.append(Date.now(), this.GetCurrentPower);
+                // line10.append(Date.now(), this.GetCurrentPower);
             }, 1000);
 
             // Add to SmoothieChart
@@ -129,7 +129,7 @@ export default {
             smoothie.addTimeSeries(line7, { strokeStyle: 'rgb(141, 14, 14)', lineWidth: 1.2, interpolation:'linear' });
             smoothie.addTimeSeries(line8, { strokeStyle: 'rgb(14, 14, 141)', lineWidth: 1.2, interpolation:'linear' });
             smoothie.addTimeSeries(line9, { strokeStyle: 'rgb(0, 178, 148)', lineWidth: 1.2, interpolation:'linear' });
-            smoothie.addTimeSeries(line10, { strokeStyle: 'rgb(255, 140, 0)', lineWidth: 1.2, interpolation:'linear' });
+            // smoothie.addTimeSeries(line10, { strokeStyle: 'rgb(255, 140, 0)', lineWidth: 1.2, interpolation:'linear' });
 
             // add some delay
             // smoothie.streamTo(document.getElementById("smoothie-chart"), 1000 /*delay*/);

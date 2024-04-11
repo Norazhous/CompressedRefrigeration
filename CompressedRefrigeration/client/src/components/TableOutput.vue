@@ -19,7 +19,7 @@
                         <th scope="col">F(L/h)</th>
                         <th scope="col">E(W)</th>
                         <th scope="col">TSA(°C)</th>
-                        <th scope="col">PSA(Pa)</th>
+                        <th scope="col">PSA(hPa)</th>
                         <th scope="col">HSA(%rh)</th>
                     </tr>
                 </thead>

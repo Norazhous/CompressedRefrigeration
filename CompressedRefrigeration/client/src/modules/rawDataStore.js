@@ -11,7 +11,7 @@ const rawDataStore = {
         TS4_value: 0.5,
         TS5_value: 0.6,
         Flow_value: 0.7,
-        Power_value: 0.8,
+        Power_value: 200,
         TSA_value: 0,
         PSA_value: 0,
         HSA_value: 0,
