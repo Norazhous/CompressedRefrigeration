@@ -164,7 +164,7 @@ export default {
       this.clearFlag = false;
     },
     outputToCSV() {
-      let csv = 'Date,Time,Recording Time/s,T1/C,T2/C,T3/C,T4/C,T5/C,P1/bar,P2/bar,P2/bar,Flowrate/(L/h),Power/W,TSA/C,PSA/hPa,HSA/%rh\n';
+      let csv = 'Date,Time,Recording Time/s,T1/C,T2/C,T3/C,T4/C,T5/C,P1/bar,P2/bar,P3/bar,Flowrate/(L/h),Power/W,TSA/C,PSA/hPa,HSA/%rh\n';
       let data = this.$store.getters.getData;
       data.forEach(function (d) {
         csv += d.date.toString();

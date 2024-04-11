@@ -252,7 +252,7 @@ export default {
             let data = this.getSnapData;
             filename = 'SNAPSHOTs_' + date.getDate().toString() + (date.getMonth() + 1).toString() + date.getFullYear().toString();
 
-            csv = 'Date,Time,Snapshot Time/s,T1/C,T2/C,T3/C,T4/C,T5/C,P1/bar,P2/bar,P2/bar,Flowrate/(L/h),Power/W,TSA/C,PSA/hPa,HSA/%rh\n';
+            csv = 'Date,Time,Snapshot Time/s,T1/C,T2/C,T3/C,T4/C,T5/C,P1/bar,P2/bar,P3/bar,Flowrate/(L/h),Power/W,TSA/C,PSA/hPa,HSA/%rh\n';
 
             data.forEach(function (d) {
                 csv += d.date.toString();
