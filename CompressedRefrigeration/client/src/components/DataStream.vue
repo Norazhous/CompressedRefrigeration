@@ -53,6 +53,7 @@ export default {
 		};
 		//make second and subsequent connections
 		document.addEventListener("streams:dropped", reconnect);
+		// reconnect();
 	},
 	methods: {
 		getWebsocketConnection() {

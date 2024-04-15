@@ -12,6 +12,18 @@ See [Vite Configuration Reference](https://vitejs.dev/config/).
 
 ## Project Setup
 
+1. This project is developed under windows system, use ubuntu build, update the package.json file as following:
+
+```sh
+"@cycjimmy/jsmpeg-player": "^6.0.5", 
+```
+ change to: 
+
+```sh
+"@cycjimmy/jsmpeg-player": "github:practable/jsmpeg-player",
+```
+
+2.npm install
 ```sh
 npm install
 ```
@@ -27,3 +39,4 @@ npm run dev
 ```sh
 npm run build
 ```
+
