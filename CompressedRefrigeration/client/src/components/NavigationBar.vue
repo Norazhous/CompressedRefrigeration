@@ -20,7 +20,7 @@
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <!-- <li><a class="dropdown-item" href="#" @click='toggleComponent("graph")'>Graph</a></li> -->
                     <li><a class="dropdown-item" href="#" @click='toggleComponent("stopwatch")'>Stopwatch</a></li>
-                    <li><a class="dropdown-item" href="#" @click='toggleComponent("table")'>Table</a></li>
+                    <!-- <li><a class="dropdown-item" href="#" @click='toggleComponent("table")'>Table</a></li> -->
                     <!-- <li><a class="dropdown-item" href="#" @click='toggleComponent("autocommands")'>Auto Commands</a></li> -->
                     <li><a class="dropdown-item" href="#" @click='toggleComponent("snapshot")'>Snapshot</a></li>
                     <!-- <li><a class="dropdown-item" href="#" @click='toggleComponent("workspace")'>Measuring Tools</a></li> -->

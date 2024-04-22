@@ -51,7 +51,7 @@
         </div>
         <div class='col drop-area' id='drop_2_1' :draggable='getDraggable' @dragstart="dragComponent"
           @drop='dropComponent' @dragover.prevent @dragenter.prevent>
-          <snapshot id='snapshot' :headings="['Time/s', 'Angle/rad', 'Ang. Vel./rad/s']" />
+          <snapshot v-if='isSnapshotOn' id='snapshot' />
         </div>
         <!-- <div class='col drop-area' id='drop_2_1' :draggable='getDraggable' @dragstart="dragComponent" @drop='dropComponent' @dragover.prevent @dragenter.prevent><snapshot v-if='isSnapshotOn' id='snapshot' :headings="['Time/s', 'Angle/rad', 'Ang. Vel./rad/s']"/></div> -->
         <!-- <div class='col drop-area' id='drop_3_1' :draggable='getDraggable' @dragstart="dragComponent" @drop='dropComponent' @dragover.prevent @dragenter.prevent><graph-output v-if='isGraphOn' id='graph' type="graph" @newselectedobject="selectedGraphPoint"/></div> -->
@@ -112,7 +112,7 @@ export default {
       isTableOn: false,
       isGraphOn: false,
       isStopwatchOn: false,
-      isSnapshotOn: false,
+      isSnapshotOn: true,
       selected_graph_point: null,
       protractorAdded: false,
       rulerAdded: false,

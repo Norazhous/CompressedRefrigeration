@@ -446,7 +446,7 @@ export default {
 						console.log(this.V1msg);
 						this.V1SwitchControllor = false;
 					}
-				}, 1000);
+				}, 5000);
 
 			} else if (this.V1SwitchControllor == true && this.$store.state.command.V1 == 1) {
 
@@ -474,7 +474,7 @@ export default {
 						console.log(this.V1msg);
 						this.V1SwitchControllor = true;
 					}
-				}, 1000);
+				}, 5000);
 
 			} else {
 				alert(this.V1msg);
@@ -513,7 +513,7 @@ export default {
 						console.log(this.V2msg);
 						this.V2SwitchControllor = false;
 					}
-				}, 1000);
+				}, 5000);
 
 			} else if (this.V2SwitchControllor == true && this.$store.state.command.V2 == 1) {
 
@@ -541,7 +541,7 @@ export default {
 						console.log(this.V2msg);
 						this.V2SwitchControllor = true;
 					}
-				}, 1000);
+				}, 5000);
 
 			} else {
 				alert(this.V2msg);
@@ -580,7 +580,7 @@ export default {
 						console.log(this.V3msg);
 						this.V3SwitchControllor = false;
 					}
-				}, 1000);
+				}, 5000);
 
 			} else if (this.V3SwitchControllor == true && this.$store.state.command.V3 == 1) {
 
@@ -608,7 +608,7 @@ export default {
 						console.log(this.V3msg);
 						this.V3SwitchControllor = true;
 					}
-				}, 1000);
+				}, 5000);
 
 			} else {
 				alert(this.V3msg);
@@ -646,7 +646,7 @@ export default {
 						console.log(this.V4msg);
 						this.V4SwitchControllor = false;
 					}
-				}, 1000);
+				}, 5000);
 
 			} else if (this.V4SwitchControllor == true && this.$store.state.command.V4 == 1) {
 
@@ -674,7 +674,7 @@ export default {
 						console.log(this.V4msg);
 						this.V4SwitchControllor = true;
 					}
-				}, 1000);
+				}, 5000);
 
 			} else {
 				alert(this.V4msg);
@@ -713,7 +713,7 @@ export default {
 						console.log(this.V5msg);
 						this.V5SwitchControllor = false;
 					}
-				}, 1000);
+				}, 5000);
 
 			} else if (this.V5SwitchControllor == true && this.$store.state.command.V5 == 1) {
 
@@ -741,7 +741,7 @@ export default {
 						console.log(this.V5msg);
 						this.V5SwitchControllor = true;
 					}
-				}, 1000);
+				}, 5000);
 
 			} else {
 				alert(this.V5msg);
@@ -781,7 +781,7 @@ export default {
 						console.log(this.V6msg);
 						this.V6SwitchControllor = false;
 					}
-				}, 1000);
+				}, 5000);
 
 			} else if (this.V6SwitchControllor == true && this.$store.state.command.V6 == 1) {
 
@@ -809,7 +809,7 @@ export default {
 						console.log(this.V6msg);
 						this.V6SwitchControllor = true;
 					}
-				}, 1000);
+				}, 5000);
 
 			} else {
 				alert(this.V6msg);
@@ -849,7 +849,7 @@ export default {
 						console.log(this.V7msg);
 						this.V7SwitchControllor = false;
 					}
-				}, 1000);
+				}, 5000);
 
 			} else if (this.V7SwitchControllor == true && this.$store.state.command.V7 == 1) {
 
@@ -877,7 +877,7 @@ export default {
 						console.log(this.V7msg);
 						this.V7SwitchControllor = true;
 					}
-				}, 1000);
+				}, 5000);
 
 			} else {
 				alert(this.V7msg);
@@ -918,7 +918,7 @@ export default {
 						console.log(this.W1msg);
 						this.W1SwitchControllor = false;
 					}
-				}, 1000);
+				}, 5000);
 
 			} else if (this.W1SwitchControllor == true && this.$store.state.command.W1 == 1) {
 
@@ -946,7 +946,7 @@ export default {
 						console.log(this.W1msg);
 						this.W1SwitchControllor = true;
 					}
-				}, 1000);
+				}, 5000);
 
 			} else {
 				alert(this.W1msg + this.$store.state.command.W1 + this.W1SwitchControllor);
@@ -988,7 +988,7 @@ export default {
 						console.log(this.COMPmsg);
 						this.COMPSwitchControllor = false;
 					}
-				}, 1000);
+				}, 5000);
 
 			} else if (this.COMPSwitchControllor == true && this.$store.state.command.Comp == 1) {
 
@@ -1016,7 +1016,7 @@ export default {
 						console.log(this.COMPmsg);
 						this.COMPSwitchControllor = true;
 					}
-				}, 1000);
+				}, 5000);
 
 			} else {
 				alert(this.COMPmsg + this.$store.state.command.Comp + this.COMPSwitchControllor);
