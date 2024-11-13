@@ -437,7 +437,7 @@
                 <title> Evaporator </title>
                 <g id="g6435-8" transform="matrix(0,0.3220929,-0.3220929,0,357.93393,-81.08826)"
                     style="stroke-width:0.666667;stroke-miterlimit:4;stroke-dasharray:none">
-                    <rect v-on:click="highlightValve(0.1, 0.1, '25%', '30%')" :fill="this.w1color" y="942.36218" x="445"
+                    <rect v-on:click="highlightValve(0.1, 0.1, '25%', '30%')" :fill="this.lightcolor" y="942.36218" x="445"
                         height="45" width="40" id="rect6433-8"
                         style="fill-opacity:1;stroke:#000000;stroke-width:0.666667;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
                     <g transform="rotate(-90,706.7536,277.16853)" inkscape:label="Layer 1" id="layer1-6-5-9"
@@ -445,8 +445,8 @@
                         <g transform="matrix(0.56118298,0,0,0.56118298,6.6797665,15.534764)" id="g3924-4"
                             style="stroke-width:1.18797;stroke-miterlimit:4;stroke-dasharray:none">
                             <ellipse ry="15.192103" rx="14.813296" cy="34.414196" cx="36.073139"
-                                transform="matrix(1.166604,0,0,1.1375153,-6.6576263,-3.7212311)" id="path2202-6"
-                                style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.03125;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                                transform="matrix(1.166604,0,0,1.1375153,-6.6576263,-3.7212311)" id="path2202-6" :fill="this.w1color"
+                                style="fill-opacity:1;stroke:#000000;stroke-width:1.03125;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
                             <circle r="0" cy="24.80315" cx="42.519684" transform="translate(-0.00762871,-0.007628)"
                                 id="path2787-7"
                                 style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.18797;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
@@ -500,15 +500,15 @@
                 <g id="g6435" transform="matrix(0,0.3220929,-0.3220929,0,468.21168,-28.239286)"
                     style="stroke-width:0.666667;stroke-miterlimit:4;stroke-dasharray:none">
                     <rect y="942.36218" x="445" height="45" width="40" id="rect6433"
-                        v-on:click="highlightValve(0.75, 0.18, '15%', '25%')" :fill="this.w1color"
+                        v-on:click="highlightValve(0.75, 0.18, '15%', '25%')" :fill="this.lightcolor"
                         style="fill-opacity:1;stroke:#000000;stroke-width:0.666667;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
                     <g transform="rotate(-90,706.7536,277.16853)" inkscape:label="Layer 1" id="layer1-6-5"
                         style="stroke-width:0.666667;stroke-miterlimit:4;stroke-dasharray:none">
                         <g transform="matrix(0.56118298,0,0,0.56118298,6.6797665,15.534764)" id="g3924"
                             style="stroke-width:1.18797;stroke-miterlimit:4;stroke-dasharray:none">
                             <ellipse ry="15.192103" rx="14.813296" cy="34.414196" cx="36.073139"
-                                transform="matrix(1.166604,0,0,1.1375153,-6.6576263,-3.7212311)" id="path2202"
-                                style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.03125;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                                transform="matrix(1.166604,0,0,1.1375153,-6.6576263,-3.7212311)" id="path2202" :fill="this.w1color"
+                                style="fill-opacity:1;stroke:#000000;stroke-width:1.03125;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
                             <circle r="0" cy="24.80315" cx="42.519684" transform="translate(-0.00762871,-0.007628)"
                                 id="path2787"
                                 style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.18797;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
@@ -523,7 +523,7 @@
                                 style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.18797;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;marker-end:none;enable-background:accumulate" />
                             <ellipse ry="4.8538585" rx="0.93760067" cy="-40.925926" cx="34.834911"
                                 transform="matrix(-0.01842101,0.99983032,-0.99986329,-0.01653473,2.4298913e-8,9.8493331e-7)"
-                                id="path3210"
+                                id="path3210" 
                                 style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.18797;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
                                 inkscape:transform-center-x="-0.067558495" inkscape:transform-center-y="-4.0852956" />
                             <ellipse inkscape:transform-center-y="2.1011545" inkscape:transform-center-x="-3.5041913"
@@ -931,6 +931,9 @@ export default {
         // },
         compcolor() {
             return this.$store.state.ui.compcolor;
+        },
+        lightcolor() {
+            return this.$store.state.ui.lightcolor;
         },
 
     },

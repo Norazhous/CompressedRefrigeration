@@ -81,7 +81,7 @@ import Snapshot from "./components/Snapshot.vue"
 import Consent from "./components/Consent.vue"
 import RealtimeChart from "./components/RealtimeChart.vue";
 import R134aChart from "./components/R134aChart.vue";
-import InteractiveChart from "./components/interactiveChart.vue";
+import InteractiveChart from "./components/InteractiveChart.vue";
 import RigElement from "./components/RigElement.vue";
 
 

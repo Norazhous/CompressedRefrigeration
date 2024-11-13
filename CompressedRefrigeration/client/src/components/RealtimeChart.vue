@@ -1,7 +1,7 @@
 <template>
     <div id="chart">
         <canvas id="smoothie-chart" style="width:100%;height:400px" ></canvas>
-        <div id="legend" >
+        <div id="legend" style="max-width: 100%; width: auto;resize: both;overflow: auto;">
             <svg height="30" width="80">
                 <text x="0" y="18" fill="rgb(0, 0, 0)">Legend:</text>
             </svg>

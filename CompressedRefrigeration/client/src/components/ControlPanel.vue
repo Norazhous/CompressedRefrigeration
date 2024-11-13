@@ -42,8 +42,6 @@
 						:disabled="V6SwitchDisabled" @click="valve6ColorChange()">
 					<label class="form-check-label" :style="{ color: valve6Color }">V6 {{ V6state }}</label>
 				</div>
-
-
 				<div class="form-check form-switch">
 					<input class="form-check-input" type="checkbox" :checked="V7SwitchControllor"
 						:disabled="V7SwitchDisabled" @click="valve7ColorChange()">
@@ -51,6 +49,8 @@
 				</div>
 
 			</div>
+
+
 			<div class="col-3">
 				<div class="form-check form-switch">
 					<input class="form-check-input" type="checkbox" :checked="W1SwitchControllor"
@@ -61,6 +61,11 @@
 					<input class="form-check-input" type="checkbox" :checked="COMPSwitchControllor"
 						:disabled="COMPSwitchDisabled" @click="compColorChange()">
 					<label class="form-check-label" :style="{ color: compcolor }"> Compressor {{ COMPstate }}</label>
+				</div>
+				<div class="form-check form-switch">
+					<input class="form-check-input" type="checkbox" :checked="lightSwitchControllor"
+						:disabled="lightSwitchDisabled" @click="lightColorChange()">
+					<label class="form-check-label" :style="{ color: lightcolor }"> Lights {{ lightstate }}</label>
 				</div>
 			</div>
 
@@ -138,6 +143,11 @@ export default {
 			COMPSwitchDisabled: false,
 			COMPmsg: "Fans error",
 
+			lightstate: "OFF",
+			lightSwitchControllor: false,
+			lightSwitchDisabled: false,
+			lightmsg: "Lights error",
+
 
 		}
 	},
@@ -171,6 +181,9 @@ export default {
 		},
 		compcolor() {
 			return this.$store.state.ui.compcolor;
+		},
+		lightcolor() {
+			return this.$store.state.ui.lightcolor;
 		},
 
 
@@ -236,6 +249,8 @@ export default {
 			'setW1',
 			'setW2',
 			'setComp',
+			'setlight', //set light value
+
 			'setCurrentDate',
 			'setRecorderCurrentTime',
 
@@ -259,6 +274,8 @@ export default {
 			// 'setW2color',
 			'setCOMPcolor',
 			'SENDCOMPCONTROL',
+			'setlightcolor',
+			'SENDLIGHTCONTROL',
 		]),
 
 		getinitialstate() {
@@ -272,6 +289,7 @@ export default {
 			this.getInitialValve7State();
 			this.getInitialFansState();
 			this.getInitialCompState();
+			this.getInitiallightState();
 		},
 
 		getInitialValve1State() {
@@ -391,7 +409,7 @@ export default {
 			if (this.$store.state.command.W1 == 1) {
 				this.setW1color(1);
 				this.W1state = "ON";
-				this.W1msg = "Fans opened";
+				this.W1msg = "Fans turned on";
 				console.log(this.W1msg);
 				this.W1SwitchControllor = true;
 			}
@@ -406,7 +424,7 @@ export default {
 			if (this.$store.state.command.Comp == 1) {
 				this.setCOMPcolor(1);
 				this.COMPstate = "ON";
-				this.COMPmsg = "Compressor opened";
+				this.COMPmsg = "Compressor turned on";
 				console.log(this.COMPmsg);
 				this.COMPSwitchControllor = true;
 			}
@@ -414,6 +432,21 @@ export default {
 				this.setCOMPcolor(0);
 				this.COMPstate = "OFF";
 				this.COMPSwitchControllor = false;
+			}
+		},
+
+		getInitiallightState() {
+			if (this.$store.state.command.light == 1) {
+				this.setlightcolor(1);
+				this.lightstate = "ON";
+				this.lightmsg = "Lights turned on";
+				console.log(this.lightmsg);
+				this.lightSwitchControllor = true;
+			}
+			else if (this.$store.state.command.light == 0) {
+				this.setlightcolor(0);
+				this.lightstate = "OFF";
+				this.lightSwitchControllor = false;
 			}
 		},
 
@@ -895,9 +928,9 @@ export default {
 			if (this.W1SwitchControllor == false && this.$store.state.command.W1 == 0) {
 
 				this.setW1color(2);
-				this.W1state = "opening";
+				this.W1state = "Turning on";
 				this.SENDW1CONTROL(1);
-				this.W1msg = "Fans opening";
+				this.W1msg = "Fans turning on";
 				console.log(this.W1msg);
 				this.W1SwitchDisabled = true;
 
@@ -906,7 +939,7 @@ export default {
 						this.W1SwitchDisabled = false;
 						this.setW1color(1);
 						this.W1state = "ON";
-						this.W1msg = "Fans opened";
+						this.W1msg = "Fans turned on";
 						console.log(this.W1msg);
 						this.W1SwitchControllor = true;
 					}
@@ -914,7 +947,7 @@ export default {
 						this.W1SwitchDisabled = false;
 						this.setW1color(0);
 						this.W1state = "OFF";
-						this.W1msg = "Fans_not_open_success";
+						this.W1msg = "Fans_not_turn_on_success";
 						console.log(this.W1msg);
 						this.W1SwitchControllor = false;
 					}
@@ -923,9 +956,9 @@ export default {
 			} else if (this.W1SwitchControllor == true && this.$store.state.command.W1 == 1) {
 
 				this.setW1color(2);
-				this.W1state = "closing";
+				this.W1state = "Turning off";
 				this.SENDW1CONTROL(0);
-				this.W1msg = "Fans closing";
+				this.W1msg = "Fans turning off";
 				console.log(this.W1msg);
 				this.W1SwitchDisabled = true;
 
@@ -934,7 +967,7 @@ export default {
 						this.W1SwitchDisabled = false;
 						this.setW1color(0);
 						this.W1state = "OFF";
-						this.W1msg = "Fans closed";
+						this.W1msg = "Fans turning off";
 						console.log(this.W1msg);
 						this.W1SwitchControllor = false;
 					}
@@ -942,7 +975,7 @@ export default {
 						this.W1SwitchDisabled = false;
 						this.setW1color(1);
 						this.W1state = "ON";
-						this.W1msg = "Fans_not_close_success";
+						this.W1msg = "Fans_not_turn_off_success";
 						console.log(this.W1msg);
 						this.W1SwitchControllor = true;
 					}
@@ -965,9 +998,9 @@ export default {
 			if (this.COMPSwitchControllor == false && this.$store.state.command.Comp == 0) {
 
 				this.setCOMPcolor(2);
-				this.COMPstate = "opening";
+				this.COMPstate = "Turning on";
 				this.SENDCOMPCONTROL(1);
-				this.COMPmsg = "Compressor opening";
+				this.COMPmsg = "Compressor turning on";
 				console.log(this.COMPmsg);
 				this.COMPSwitchDisabled = true;
 
@@ -976,7 +1009,7 @@ export default {
 						this.COMPSwitchDisabled = false;
 						this.setCOMPcolor(1);
 						this.COMPstate = "ON";
-						this.COMPmsg = "Compressor opened";
+						this.COMPmsg = "Compressor turned on";
 						console.log(this.COMPmsg);
 						this.COMPSwitchControllor = true;
 					}
@@ -984,7 +1017,7 @@ export default {
 						this.COMPSwitchDisabled = false;
 						this.setCOMPcolor(0);
 						this.COMPstate = "OFF";
-						this.COMPmsg = "Comperssor_not_open_success";
+						this.COMPmsg = "Comperssor_not_turn_on_success";
 						console.log(this.COMPmsg);
 						this.COMPSwitchControllor = false;
 					}
@@ -993,9 +1026,9 @@ export default {
 			} else if (this.COMPSwitchControllor == true && this.$store.state.command.Comp == 1) {
 
 				this.setCOMPcolor(2);
-				this.COMPstate = "closing";
+				this.COMPstate = "Turning off";
 				this.SENDCOMPCONTROL(0);
-				this.COMPmsg = "Compressor closing";
+				this.COMPmsg = "Compressor turning off";
 				console.log(this.COMPmsg);
 				this.COMPSwitchDisabled = true;
 
@@ -1004,7 +1037,7 @@ export default {
 						this.COMPSwitchDisabled = false;
 						this.setCOMPcolor(0);
 						this.COMPstate = "OFF";
-						this.COMPmsg = "Compressor closed";
+						this.COMPmsg = "Compressor turned off";
 						console.log(this.COMPmsg);
 						this.COMPSwitchControllor = false;
 					}
@@ -1012,7 +1045,7 @@ export default {
 						this.COMPSwitchDisabled = false;
 						this.setCOMPcolor(1);
 						this.COMPstate = "ON";
-						this.COMPmsg = "Compressor_not_close_success";
+						this.COMPmsg = "Compressor_not_turn_off_success";
 						console.log(this.COMPmsg);
 						this.COMPSwitchControllor = true;
 					}
@@ -1020,6 +1053,74 @@ export default {
 
 			} else {
 				alert(this.COMPmsg + this.$store.state.command.Comp + this.COMPSwitchControllor);
+				console.log("error:" + "V1 is" + this.V1state + "; its code is" + this.$store.state.command.V1 + ";" + "V2 is" + this.V2state + "; its code is" + this.$store.state.command.V2 + ";"
+					+ "V3 is" + this.V3state + "; its code is" + this.$store.state.command.V3 + ";" + "V4 is" + this.V4state + "; its code is" + this.$store.state.command.V4 + ";" + "V5 is" + this.V5state + "; its code is" + this.$store.state.command.V5 + ";"
+					+ "V6 is" + this.V6state + "; its code is" + this.$store.state.command.V6 + ";" + "V7 is" + this.V7state + "; its code is" + this.$store.state.command.V7 + ";"
+					+ "W1 is" + this.W1state + "; its code is" + this.$store.state.command.W1 + ";");
+			}
+		},
+
+
+		lightColorChange() {
+
+			if (this.lightSwitchControllor == false && this.$store.state.command.light == 0) {
+
+				this.setlightcolor(2);
+				this.lightstate = "Turning on";
+				this.SENDLIGHTCONTROL(1);
+				this.lightmsg = "lights turning on";
+				console.log(this.lightmsg);
+				this.lightSwitchDisabled = true;
+
+				setTimeout(() => {
+					if (this.$store.state.command.light == 1) {
+						this.lightSwitchDisabled = false;
+						this.setlightcolor(1);
+						this.lightstate = "ON";
+						this.lightmsg = "lights Turned on";
+						console.log(this.lightmsg);
+						this.lightSwitchControllor = true;
+					}
+					else if (this.$store.state.command.light == 0) {
+						this.lightSwitchDisabled = false;
+						this.setlightcolor(0);
+						this.lightstate = "OFF";
+						this.lightmsg = "lights_not_turn_on_success";
+						console.log(this.lightmsg);
+						this.lightSwitchControllor = false;
+					}
+				}, 5000);
+
+			} else if (this.lightSwitchControllor == true && this.$store.state.command.light == 1) {
+
+				this.setlightcolor(2);
+				this.lightstate = "Turning off";
+				this.SENDLIGHTCONTROL(0);
+				this.lightmsg = "lights turning off";
+				console.log(this.lightmsg);
+				this.lightSwitchDisabled = true;
+
+				setTimeout(() => {
+					if (this.$store.state.command.light == 0) {
+						this.lightSwitchDisabled = false;
+						this.setlightcolor(0);
+						this.lightstate = "OFF";
+						this.lightmsg = "lights Turned off";
+						console.log(this.lightmsg);
+						this.lightSwitchControllor = false;
+					}
+					else if (this.$store.state.command.light == 1) {
+						this.lightSwitchDisabled = false;
+						this.setlightcolor(1);
+						this.lightstate = "ON";
+						this.lightmsg = "lights_not_turn_off_success";
+						console.log(this.lightmsg);
+						this.lightSwitchControllor = true;
+					}
+				}, 5000);
+
+			} else {
+				alert(this.lightmsg + this.$store.state.command.light + this.lightSwitchControllor);
 				console.log("error:" + "V1 is" + this.V1state + "; its code is" + this.$store.state.command.V1 + ";" + "V2 is" + this.V2state + "; its code is" + this.$store.state.command.V2 + ";"
 					+ "V3 is" + this.V3state + "; its code is" + this.$store.state.command.V3 + ";" + "V4 is" + this.V4state + "; its code is" + this.$store.state.command.V4 + ";" + "V5 is" + this.V5state + "; its code is" + this.$store.state.command.V5 + ";"
 					+ "V6 is" + this.V6state + "; its code is" + this.$store.state.command.V6 + ";" + "V7 is" + this.V7state + "; its code is" + this.$store.state.command.V7 + ";"
@@ -1058,7 +1159,7 @@ export default {
 					var obj = JSON.parse(event.data);
 
 					var msgTime = obj.timestamp;
-					// Measure data from refrigeration
+					// Measured data from refrigeration
 					var PS1 = obj.sensors.pressure.PS1;
 					var PS2 = obj.sensors.pressure.PS2;
 					var PS3 = obj.sensors.pressure.PS3;
@@ -1085,8 +1186,10 @@ export default {
 					var W1 = obj.relays.W1; //fan1
 					var W2 = obj.relays.W2; //fan2
 					var comp = obj.relays.comp; //compressor
+					var lights = obj.relays.lights; //light
 
 
+					//set the experimental measured value in store
 					this.setPS1_value(PS1);
 					this.setPS2_value(PS2);
 					this.setPS3_value(PS3);
@@ -1102,8 +1205,8 @@ export default {
 					this.setHSA_value(HSA);
 					// console.log(this.$store.state.rawData.PS1_value)
 
-
-					//dispatch value to rawdatastore_controllers
+					
+					//dispatch controllers value in store: rawdatastore_controllers
 					this.setV1(V1);
 					this.setV2(V2);
 					this.setV3(V3);
@@ -1115,6 +1218,7 @@ export default {
 					this.setW1(W1);
 					this.setW2(W2);
 					this.setComp(comp);
+					this.setlight(lights);
 					this.setRecorderCurrentTime(msgTime);//msgtime is start from restart of equipment, so in this experiment this time will not be recorded
 					this.setCurrentDate(new Date().toLocaleString());
 

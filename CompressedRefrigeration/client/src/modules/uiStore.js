@@ -19,6 +19,8 @@ const uiStore = {
       // w2color: '#ffffff',
       compcolor: '#808080',
 
+      lightcolor: '#808080',
+
 
       //chart.js
       realTimeChart: null,
@@ -165,6 +167,16 @@ const uiStore = {
       SETcompwaitcolor(state) {
          state.compcolor = "#ff0000";
       },
+
+      SETlightONcolor(state) {
+         state.lightcolor = "#bbc34a";
+      },
+      SETlightOFFcolor(state) {
+         state.lightcolor = '#808080';
+      },
+      SETlightwaitcolor(state) {
+         state.lightcolor = "#ff0000";
+      },
       //chart
       SETChart(state,value){
          state.realTimeChart = value;
@@ -207,7 +219,7 @@ const uiStore = {
          } else if (value == 2) {
             context.commit("SETV1waitcolor");
          } else {
-            console.log("V1 controllor error");
+            console.log("V1 controller error");
          }
       },
       setV2color(context, value) {
@@ -218,7 +230,7 @@ const uiStore = {
          } else if (value == 2) {
             context.commit("SETV2waitcolor");
          } else {
-            console.log("V2 controllor error");
+            console.log("V2 controller error");
          }
       },
       setV3color(context, value) {
@@ -229,7 +241,7 @@ const uiStore = {
          } else if (value == 2) {
             context.commit("SETV3waitcolor");
          } else {
-            console.log("V3 controllor error");
+            console.log("V3 controller error");
          }
       },
 
@@ -241,7 +253,7 @@ const uiStore = {
          } else if (value == 2) {
             context.commit("SETV4waitcolor");
          } else {
-            console.log("V4 controllor error");
+            console.log("V4 controller error");
          }
       },
       setV5color(context, value) {
@@ -252,7 +264,7 @@ const uiStore = {
          } else if (value == 2) {
             context.commit("SETV5waitcolor");
          } else {
-            console.log("V5 controllor error");
+            console.log("V5 controller error");
          }
       },
       setV6color(context, value) {
@@ -263,7 +275,7 @@ const uiStore = {
          } else if (value == 2) {
             context.commit("SETV6waitcolor");
          } else {
-            console.log("V6 controllor error");
+            console.log("V6 controller error");
          }
       },
       setV7color(context, value) {
@@ -274,7 +286,7 @@ const uiStore = {
          } else if (value == 2) {
             context.commit("SETV7waitcolor");
          } else {
-            console.log("V7 controllor error");
+            console.log("V7 controller error");
          }
       },
 
@@ -286,7 +298,7 @@ const uiStore = {
          } else if (value == 2) {
             context.commit("SETw1waitcolor");
          } else {
-            console.log("W1 controllor error");
+            console.log("W1 controller error");
          }
       },
 
@@ -298,7 +310,7 @@ const uiStore = {
       //    } else if (value == 2) {
       //       context.commit("SETw2waitcolor");
       //    } else {
-      //       console.log("W2 controllor error");
+      //       console.log("W2 controller error");
       //    }
       // },
 
@@ -310,7 +322,19 @@ const uiStore = {
          } else if (value == 2) {
             context.commit("SETcompwaitcolor");
          } else {
-            console.log("Compressor controllor error");
+            console.log("Compressor controller error");
+         }
+      },
+
+      setlightcolor(context, value) {
+         if (value == 1) {
+            context.commit("SETlightONcolor");
+         } else if (value == 0) {
+            context.commit("SETlightOFFcolor");
+         } else if (value == 2) {
+            context.commit("SETlightwaitcolor");
+         } else {
+            console.log("lights controller error");
          }
       },
 

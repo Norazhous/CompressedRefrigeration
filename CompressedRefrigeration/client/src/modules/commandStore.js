@@ -16,6 +16,8 @@ const commandStore = {
         W1: 0,
         W2: 0,
         Comp: 0,
+        light: 0,
+
        }),
 
        mutations:{
@@ -62,6 +64,10 @@ const commandStore = {
             state.Comp = value;
         },
 
+        SETlight(state,value) {
+            state.light = value;
+        },
+
  
        },
        actions:{
@@ -103,6 +109,10 @@ const commandStore = {
         setComp({ commit }, value){
             commit('SETComp',value);
         },
+        setlight({ commit }, value){
+            commit('SETlight',value);
+        },
+
 
         //send msg to server, in Vue file, use dispatch to use this function, in server side, check the JSON content and then change the parameter's value
         // 0- turn off, 1- turn on
@@ -286,6 +296,25 @@ const commandStore = {
 
                  //test on the  UI
                  commit("SETComp",1);
+            }
+        },
+
+
+        SENDLIGHTCONTROL({ state, commit }, value) { 
+            if (value == 0) {
+                //connect to the server
+                let msg = JSON.stringify({"lights":0})
+                state.dataSocket.send(msg);
+
+                //test on the  UI
+                commit("SETlight",0);
+            
+            } else if (value == 1) {
+                let msg = JSON.stringify({"lights":1})
+                state.dataSocket.send(msg);
+
+                 //test on the  UI
+                 commit("SETlight",1);
             }
         },
 

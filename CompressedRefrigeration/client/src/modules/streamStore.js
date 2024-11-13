@@ -10,8 +10,10 @@ const streamStore = {
     streamsObtained: false,
     videoURL: "",
     videoURLObtained: false,
-    videoAltURL: "",
-    videoAltURLObtained: false,
+    videoBURL: "",
+    videoBURLObtained: false,
+    videoCURL: "",
+    videoCURLObtained: false,
     dataURL: " ",
     dataURLObtained: false,
     logURL: "",
@@ -51,13 +53,21 @@ const streamStore = {
       state.videoURL = "";
       state.videoURLObtained = false;
     },
-    SET_VIDEO_ALT_URL(state, url) {
-      state.videoAltURL = url;
-      state.videoAltURLObtained = true;
+    SET_VIDEO_B_URL(state, url) {
+      state.videoBURL = url;
+      state.videoBURLObtained = true;
     },
-    DELETE_VIDEO_ALT_URL(state) {
-      state.videoAltURL = "";
-      state.videoAltURLObtained = false;
+    DELETE_VIDEO_B_URL(state) {
+      state.videoBURL = "";
+      state.videoBURLObtained = false;
+    },
+    SET_VIDEO_C_URL(state, url) {
+      state.videoCURL = url;
+      state.videoCURLObtained = true;
+    },
+    DELETE_VIDEO_C_URL(state) {
+      state.videoCURL = "";
+      state.videoCURLObtained = false;
     },
     SET_DATA_URL(state, url) {
       state.dataURL = url;
@@ -119,11 +129,17 @@ const streamStore = {
     deleteVideoURL(context) {
       context.commit("DELETE_VIDEO_URL");
     },
-    setVideoAltURL(context, url) {
-      context.commit("SET_VIDEO_ALT_URL", url);
+    setVideoBURL(context, url) {
+      context.commit("SET_VIDEO_B_URL", url);
     },
-    deleteVideoAltURL(context) {
-      context.commit("DELETE_VIDEO_ALT_URL");
+    deleteVideoBURL(context) {
+      context.commit("DELETE_VIDEO_B_URL");
+    },
+    setVideoCURL(context, url) {
+      context.commit("SET_VIDEO_C_URL", url);
+    },
+    deleteVideoCURL(context) {
+      context.commit("DELETE_VIDEO_C_URL");
     },
     setDataURL(context, url) {
       context.commit("SET_DATA_URL", url);
@@ -187,11 +203,17 @@ const streamStore = {
     getVideoURLObtained(state) {
       return state.videoURLObtained;
     },
-    getVideoAltURL(state) {
-      return state.videoAltURL;
+    getVideoBURL(state) {
+      return state.videoBURL;
     },
-    getVideoAltURLObtained(state) {
-      return state.videoAltURL;
+    getVideoBURLObtained(state) {
+      return state.videoBURL;
+    },
+    getVideoCURL(state) {
+      return state.videoCURL;
+    },
+    getVideoCURLObtained(state) {
+      return state.videoCURL;
     },
     getDataURL(state) {
       return state.dataURL;

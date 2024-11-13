@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- test svg dispaly  -->
-        <PID_SVG/>
+        <PID_SVG style="max-width: 100%; width: auto;"/>
     </div>
     <!-- <div>
         <InteractiveChart/>
