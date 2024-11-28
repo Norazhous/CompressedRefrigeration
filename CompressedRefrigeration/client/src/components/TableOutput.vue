@@ -29,24 +29,26 @@
                     <td>{{ row.theta.toFixed(2) }}</td>
                     <td>{{ row.omega.toFixed(2) }}</td>
                 </tr> -->
-                <tr v-for="row in tableData" :id="row.id" :key="row.id"
-                    v-bind:class="[row.id == selected_row_id ? 'selected-row' : '']" @click="changeSelected(row.id)">
-                    <!-- <td>{{ row.id + 1 }}</td> -->
-                    <td>{{ row.t }}</td>
-                    <td>{{ row.T1 }}</td>
-                    <td>{{ row.T2 }}</td>
-                    <td>{{ row.T3 }}</td>
-                    <td>{{ row.T4 }}</td>
-                    <td>{{ row.T5 }}</td>
-                    <td>{{ row.P1 }}</td>
-                    <td>{{ row.P2 }}</td>
-                    <td>{{ row.P3 }}</td>
-                    <td>{{ row.Flow }}</td>
-                    <td>{{ row.Power }}</td>
-                    <td>{{ row.TSA }}</td>
-                    <td>{{ row.PSA }}</td>
-                    <td>{{ row.HSA }}</td>
-                    <!-- <td>{{ T3 }}</td>
+                <tbody>
+                    <tr v-for="row in tableData" :id="row.id" :key="row.id"
+                        v-bind:class="[row.id == selected_row_id ? 'selected-row' : '']"
+                        @click="changeSelected(row.id)">
+                        <!-- <td>{{ row.id + 1 }}</td> -->
+                        <td>{{ row.t }}</td>
+                        <td>{{ row.T1 }}</td>
+                        <td>{{ row.T2 }}</td>
+                        <td>{{ row.T3 }}</td>
+                        <td>{{ row.T4 }}</td>
+                        <td>{{ row.T5 }}</td>
+                        <td>{{ row.P1 }}</td>
+                        <td>{{ row.P2 }}</td>
+                        <td>{{ row.P3 }}</td>
+                        <td>{{ row.Flow }}</td>
+                        <td>{{ row.Power }}</td>
+                        <td>{{ row.TSA }}</td>
+                        <td>{{ row.PSA }}</td>
+                        <td>{{ row.HSA }}</td>
+                        <!-- <td>{{ T3 }}</td>
                     <td>{{ T4 }}</td>
                     <td>{{ T5 }}</td>
                     <td>{{ P1 }}</td>
@@ -54,8 +56,8 @@
                     <td>{{ P3 }}</td>
                     <td>{{ F }}</td>
                     <td>{{ E }}</td> -->
-                </tr>
-
+                    </tr>
+                </tbody>
             </table>
 
         </div>

@@ -9,6 +9,7 @@ import 'es6-promise/auto'
 
 // Load CSS style sheets for main components
 import '@/styles/app.css'
+import '@/styles/theme-default.css'
 
 const app = createApp(App)
 app.use(store)

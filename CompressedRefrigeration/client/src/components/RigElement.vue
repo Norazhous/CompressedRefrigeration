@@ -8,9 +8,7 @@
         alt="ET-411C-Compression-refrigeration-system">
       <!-- <button >{{ highlightedPositions }}</button> -->
     </div>
-    <div class="col-12 background-white" id="realTimeTable">
-				<realtimetable/>
-			</div>
+    
 
   </div>
 </template>

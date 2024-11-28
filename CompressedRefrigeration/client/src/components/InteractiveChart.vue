@@ -405,7 +405,7 @@ export default {
         },
         getLocalStorage() {
             if (localStorage.getItem('datasetTS1') == null) {
-                alert("There is no data in the localStorage!")
+                console.log("There is no data in the localStorage")
             } else {
                 const TS1Local = JSON.parse(localStorage.getItem('datasetTS1'));
                 const TS2Local = JSON.parse(localStorage.getItem('datasetTS2'));
@@ -522,7 +522,7 @@ export default {
             }else{
                 console.log(typeof(localStorage.getItem('datasetTS1'))+localStorage.getItem('datasetTS1'));
                 var con;
-                con = confirm(" The Local storage is exist. Do you need to use it ?")
+                con = confirm("You have saved data, Would you like to load it ?")
                 if (con==true) {
                     this.getLocalStorage();
                 }else{

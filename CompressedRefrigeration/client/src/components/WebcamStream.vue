@@ -16,16 +16,7 @@
 				<span>Sight glass and Valve leds</span>
 				<video-element3 :url="url3" />
 			</div>
-			
 		</div>
-
-
-		<!-- 
-<div class='row' id="video">
-	<div class='col-12'>
-		<video-element :url="url" />
-	</div>
-</div> -->
 
 	</div>
 </template>
@@ -35,8 +26,7 @@ import axios from "axios";
 import VideoElement1 from "./VideoElement1.vue";
 import VideoElement2 from "./VideoElement2.vue";
 import VideoElement3 from "./VideoElement3.vue";
-// import RigElement from "./RigElement.vue";
-import realtimetable from "./RealtimeTable.vue"
+
 
 export default {
 	name: "WebcamStream",
@@ -44,8 +34,7 @@ export default {
 		VideoElement1,
 		VideoElement2,
 		VideoElement3,
-		// RigElement,
-		// realtimetable,
+
 	},
 	data() {
 		return {
@@ -56,12 +45,7 @@ export default {
 		}
 	},
 	computed: {
-		// url1OK() {
-		// 	return this.$store.getters.getVideoURLObtained;
-		// },
-		// url2OK() {
-		// 	return this.$store.getters.videoAltURLObtained;
-		// },
+
 		streamOK1() {
 			return this.$store.getters.getStream("video");
 		},
@@ -83,10 +67,7 @@ export default {
 			return this.$store.getters.getVideoCURL;
 
 		},
-		// url2() {
-		// 	return this.$store.getters.getVideoAltURL;
 
-		// },
 
 	},
 	mounted() {
@@ -108,11 +89,11 @@ export default {
 			var store = this.$store;
 			store.dispatch("deleteVideoURL");		////THIS HAS BEEN ADDED
 			axios
-			.post(accessURL1, {}, { headers: { Authorization: token1 } })
-			.then((response) => {
+				.post(accessURL1, {}, { headers: { Authorization: token1 } })
+				.then((response) => {
 					store.dispatch("setVideoURL", response.data.uri);
 				})
-			.catch((err) => console.log(err))	
+				.catch((err) => console.log(err))
 		},
 		// CheckURL1() {
 		// 	console.log(this.$store.getters.getVideoURL);
@@ -125,11 +106,11 @@ export default {
 			var store = this.$store;
 			store.dispatch("deleteVideoBURL");		////THIS HAS BEEN ADDED
 			axios
-			.post(accessURL2, {}, { headers: { Authorization: token2 } })
-			.then((response) => {
+				.post(accessURL2, {}, { headers: { Authorization: token2 } })
+				.then((response) => {
 					store.dispatch("setVideoBURL", response.data.uri);
 				})
-			.catch((err) => console.log(err))	
+				.catch((err) => console.log(err))
 		},
 		// CheckURL2() {
 		// 	console.log(this.$store.getters.getVideoBURL);
@@ -142,11 +123,11 @@ export default {
 			var store = this.$store;
 			store.dispatch("deleteVideoCURL");		////THIS HAS BEEN ADDED
 			axios
-			.post(accessURL3, {}, { headers: { Authorization: token3 } })
-			.then((response) => {
+				.post(accessURL3, {}, { headers: { Authorization: token3 } })
+				.then((response) => {
 					store.dispatch("setVideoCURL", response.data.uri);
 				})
-			.catch((err) => console.log(err))	
+				.catch((err) => console.log(err))
 		},
 		// CheckURL3() {
 		// 	console.log(this.$store.getters.getVideoCURL);
@@ -174,11 +155,7 @@ export default {
 				console.log("no video-c stream");
 			}
 		},
-		// urlOK(is) {
-		// 	if (is) {
-		// 		console.log("get videoURL", this.urlOK, this.url);
-		// 	}
-		// },
+
 	},
 
 }
