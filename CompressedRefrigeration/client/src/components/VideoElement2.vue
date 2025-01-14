@@ -1,6 +1,6 @@
 <template>
 
-<div v-if='getSessionExpired' class='row'>
+<div id="videoElement2" v-if='getSessionExpired' class='row'>
   <div class='col-12'>
         <img id='session-end-image' src='https://app.practable.io/ed0/static/images/common/thank-you-screen.svg' alt='session ended'>
     </div>

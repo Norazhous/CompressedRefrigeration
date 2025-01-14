@@ -19,13 +19,26 @@
         <p class='m-1'>Recorded: {{ getNumData }}/{{ max_data_points }} data points</p>
       </div>
     </div>
-
+    <toolbar parentCanvasID="DataRecorder-div" parentComponentName="DataRecorder" parentDivID="DataRecorder-div"
+      :showDownload='false' :showPopupHelp="true" :showOptions="false" id="DataRecorder_help">
+      <template v-slot:popup id='DataRecorder-popup'>
+        <div class='row mb-2'>
+          <div class='col'>
+            <h3> Data Recorder </h3>
+            <p> Click ‘Record’ to start collecting data. Data recording continues until you click ‘Stop’. View recorded
+              data points and times. Click ‘Download’ to save the data as a .csv file. Click ‘Reset’ to clear collected
+              data and reset the recorder.</p>
+          </div>
+        </div>
+      </template>
+    </toolbar>
   </div>
 </template>
 
 <script>
 
 import { mapGetters, mapActions } from 'vuex';
+import Toolbar from './elements/Toolbar.vue';
 
 export default {
 
@@ -41,6 +54,7 @@ export default {
     }
   },
   components: {
+    Toolbar,
 
   },
   mounted() {

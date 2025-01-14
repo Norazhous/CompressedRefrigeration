@@ -21,13 +21,12 @@
                                 <SessionItem :sessionList="getSessions" />
                                 <!-- @delete="deleteSession" -->
 
-
                             </div>
                             <!-- details in one session -->
                             <div class="message-panel" >
                                 <div class="header">
                                     <div class="front">
-                                        <div class="title">Session 1</div>
+                                        <div class="title">Session</div>
                                         <!-- <div v-if="isEdit" class="title">
 
                                         </div> -->
@@ -115,10 +114,17 @@ export default {
         ...mapActions([
             'addSession',
             'addActiveSessionMessage',
+            'setSessionTopic',
         ]),
 
         handleMessageSent(message) {
             this.addActiveSessionMessage(message);
+
+            if (this.getNumActiveSessionMessages ==3 ){
+                var topic = this.getActiveSessionMessages[2].text.substring(0,10);
+                this.setSessionTopic(topic);
+            };
+            console.log(topic);
             console.log(message);
             console.log(this.getActiveSessionMessages);
         },

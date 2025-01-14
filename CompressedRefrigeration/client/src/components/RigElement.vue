@@ -1,20 +1,129 @@
 <template>
-  <div class="row">
+  <div class="row" id="RigElement-div">
+    <h2> Real Equipment and Real-Time Table </h2>
     <div class="col-12 background-white" id="rigImage">
       <!-- <div v-for="(position, index) in highlightedPositions" :key="index" class="highlight"
         :style="{ left: position.x, top: position.y }"></div> -->
       <!-- <img src="/images/ET-411C-Compression-refrigeration-system-gunt-206-foto_totale.jpg" alt=""> -->
-      <img src="/images/ET-411C-Compression-refrigeration-system2.jpg" id="mainImage"
+      <img src="/images/ET-411C-Compression-refrigeration-system2.jpg" id="mainFigImage"
         alt="ET-411C-Compression-refrigeration-system">
       <!-- <button >{{ highlightedPositions }}</button> -->
+      <div class="col-12 background-white" id="realTimeTable" style="margin-top: 10px;">
+        <realtimetable />
+      </div>
     </div>
-    
 
+    <toolbar parentCanvasID="RealtimeChart-div" parentComponentName="RealtimeChart" parentDivID="RealtimeChart-div"
+      :showDownload='false' :showPopupHelp="true" :showOptions="false" id="RealtimeChart_help">
+      <template v-slot:popup id='RealtimeChart-popup'>
+        <div class='row mb-2'>
+          <div class='col'>
+            <h3> Real Equipment and Real-Time Table </h3>
+            <p> <b>Real Equipment Image:</b> A static image of the real equipment. Corresponding to the components in the
+              schematic, to learn more about the kit in the device, click on the symbol section (gray) in the schematic
+              and a red blinking square will be displayed for the corresponding part in the equipment image. </p>
+            <p> <b>Real-Time Table: </b> Monitor parameter changes in real-time on a table. The Nomenclature of the parameters is included in the table. </p>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Symbol</th>
+                  <th scope="col">Definition</th>
+                  <th scope="col">Units</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>T1</td>
+                  <td>Compressor Inlet Temperature</td>
+                  <td>℃</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>T2</td>
+                  <td>Compressor Outlet Temperature</td>
+                  <td>℃</td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td>T3</td>
+                  <td>Condenser Outlet Temperature</td>
+                  <td>℃</td>
+                </tr>
+                <tr>
+                  <th scope="row">4</th>
+                  <td>T4</td>
+                  <td>Evaporator Inlet Temperature</td>
+                  <td>℃</td>
+                </tr>
+                <tr>
+                  <th scope="row">5</th>
+                  <td>T5</td>
+                  <td>Evaporator Outlet Temperature</td>
+                  <td>℃</td>
+                </tr>
+                <tr>
+                  <th scope="row">6</th>
+                  <td>P1</td>
+                  <td>Evaporation Pressure</td>
+                  <td>Bar</td>
+                </tr>
+                <tr>
+                  <th scope="row">7</th>
+                  <td>P2</td>
+                  <td>Compressor Outlet Pressure</td>
+                  <td>Bar</td>
+                </tr>
+                <tr>
+                  <th scope="row">8</th>
+                  <td>P3</td>
+                  <td>Condensation Pressure</td>
+                  <td>Bar</td>
+                </tr>
+                <tr>
+                  <th scope="row">9</th>
+                  <td>F</td>
+                  <td>Flowrate of Refrigerant</td>
+                  <td>L/h</td>
+                </tr>
+                <tr>
+                  <th scope="row">10</th>
+                  <td>E</td>
+                  <td>Electric Power of Compressor</td>
+                  <td>W</td>
+                </tr>
+                <tr>
+                  <th scope="row">11</th>
+                  <td>TSA</td>
+                  <td>Ambient temperature</td>
+                  <td>℃</td>
+                </tr>
+                <tr>
+                  <th scope="row">12</th>
+                  <td>PSA</td>
+                  <td>Ambient pressure</td>
+                  <td>mBar</td>
+                </tr>
+                <tr>
+                  <th scope="row">13</th>
+                  <td>HSA</td>
+                  <td>Ambient humidity</td>
+                  <td>%rh</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </template>
+    </toolbar>
   </div>
 </template>
 
 <script>
 import realtimetable from "./RealtimeTable.vue";
+import Toolbar from './elements/Toolbar.vue';
+
 export default {
 
   name: "RigElement",
@@ -27,6 +136,8 @@ export default {
   },
   components: {
     realtimetable,
+    Toolbar,
+
 
   },
   computed: {
@@ -60,7 +171,7 @@ export default {
     //   this.highlightPosition(this.xPercentage, this.yPercentage);
     // },
 
-    highlightPosition(xPercentage, yPercentage,highlightwidth, highlightheight) {
+    highlightPosition(xPercentage, yPercentage, highlightwidth, highlightheight) {
       // Get the image element
       var image = document.getElementById('mainImage');
 
@@ -97,7 +208,7 @@ export default {
 
     },
 
-    removeHighlightPosition(){
+    removeHighlightPosition() {
       document.getElementById('mainImage').parentNode.removeChild(highlightDiv);
     },
 

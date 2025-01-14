@@ -29,7 +29,8 @@
                     </svg>
                 </button>
                 <button type="button" class="btn-close" aria-label="Close" @click="closeChatWidget"></button>
-                <FullChatbox ref="fullwindow" />
+                <!-- fullchat box has been disable until prompt has been tested -->
+                <!-- <FullChatbox ref="fullwindow" /> -->
             </div>
             <div class="toast-body">
                 <div id="message-wrapper">

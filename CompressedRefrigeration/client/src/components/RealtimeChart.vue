@@ -1,6 +1,9 @@
 <template>
-    <div id="chart">
-        <canvas id="smoothie-chart" style="width:100%;height:400px"></canvas>
+    <div id="RealtimeChart-div">
+        <h2> Real-Time Line Chart </h2>
+        <div id="smoothie-chart-container" style="position: relative;">
+            <canvas id="smoothie-chart" style="width:100%;height:100%"></canvas>
+        </div>
         <div id="legend" style="max-width: 100%; width: auto;resize: both;overflow: auto;">
             <svg id="legend-title" height="30" width="80">
                 <text x="0" y="18" fill="rgb(0, 0, 0)">Legend:</text>
@@ -28,11 +31,113 @@
                 <text x="70" y="55" fill="rgb(255, 140, 0)" font-style="italic">E(W)</text> -->
             </svg>
         </div>
+        <toolbar parentCanvasID="RealtimeChart-div" parentComponentName="RealtimeChart" parentDivID="RealtimeChart-div"
+            :showDownload='false' :showPopupHelp="true" :showOptions="false" id="RealtimeChart_help">
+            <template v-slot:popup id='RealtimeChart-popup'>
+                <div class='row mb-2'>
+                    <div class='col'>
+                        <h3> Real-Time Line Chart </h3>
+                        <p> Monitor parameter changes in real-time on a line chart. Hover over the chart to see current
+                            values. The Nomenclature of the parameters is as follows:</p>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Symbol</th>
+                                    <th scope="col">Definition</th>
+                                    <th scope="col">Units</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>T1</td>
+                                    <td>Compressor Inlet Temperature</td>
+                                    <td>℃</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>T2</td>
+                                    <td>Compressor Outlet Temperature</td>
+                                    <td>℃</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td>T3</td>
+                                    <td>Condenser Outlet Temperature</td>
+                                    <td>℃</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">4</th>
+                                    <td>T4</td>
+                                    <td>Evaporator Inlet Temperature</td>
+                                    <td>℃</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">5</th>
+                                    <td>T5</td>
+                                    <td>Evaporator Outlet Temperature</td>
+                                    <td>℃</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">6</th>
+                                    <td>P1</td>
+                                    <td>Evaporation Pressure</td>
+                                    <td>Bar</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">7</th>
+                                    <td>P2</td>
+                                    <td>Compressor Outlet Pressure</td>
+                                    <td>Bar</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">8</th>
+                                    <td>P3</td>
+                                    <td>Condensation Pressure</td>
+                                    <td>Bar</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">9</th>
+                                    <td>F</td>
+                                    <td>Flowrate of Refrigerant</td>
+                                    <td>L/h</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">10</th>
+                                    <td>E</td>
+                                    <td>Electric Power of Compressor</td>
+                                    <td>W</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">11</th>
+                                    <td>TSA</td>
+                                    <td>Ambient temperature</td>
+                                    <td>℃</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">12</th>
+                                    <td>PSA</td>
+                                    <td>Ambient pressure</td>
+                                    <td>mBar</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">13</th>
+                                    <td>HSA</td>
+                                    <td>Ambient humidity</td>
+                                    <td>%rh</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </template>
+        </toolbar>
     </div>
 
-    <div class="col-12 background-white" id="realTimeTable" style="margin-top: 10px;">
+    <!-- <div class="col-12 background-white" id="realTimeTable" style="margin-top: 10px;">
         <realtimetable />
-    </div>
+    </div> -->
 </template>
 
 
@@ -43,11 +148,16 @@ import { mapActions, mapGetters } from 'vuex'
 import { SmoothieChart } from 'smoothie';
 import { TimeSeries } from 'smoothie';
 import realtimetable from './RealtimeTable.vue';
+import Toolbar from './elements/Toolbar.vue';
+
+
 
 export default {
     name: "RealtimeChart",
     components: {
         realtimetable,
+        Toolbar,
+
     },
 
     computed: {

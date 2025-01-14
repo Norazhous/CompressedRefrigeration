@@ -8,7 +8,7 @@ const chatStore = {
       // messages: [{UUID:"UUID", sessionID:0, sender: 'admin', time: Date.now(), text: 'Messages from the hardware, admin team and collaborators will appear here' }, { sender: 'user', time: Date.now(), text: 'This is the message from user' }],
       messageIndex: null,
       //sessions feature, every session include {username:"UUID1",sessionId:1, topic:"session 1", messages:[], updateAt:Date.now()},sessions number/count get by length
-      sessions: [{ id: Date.now(), username: 'this.getLogUUID', topic: "session", messages: [{ sender: "system", time: new Date().getTime(), text: 'This is chat box, and my name is atomic hydrogen.I can help you understand and navigate the Single Tube Condenser User Interface (UI). If you need assistance with any specific features of the UI, how to operate the experiment, or have questions about the theory behind the experiment, feel free to ask!' }], updateAt: Date.now() }],
+      sessions: [{ id: Date.now(), username: 'this.getLogUUID', topic: "session", messages: [{ sender: "system", time: new Date().getTime(), text: 'This is chat box, and it is under testing, will be updated later!' }], updateAt: Date.now() }],
       activeSessionIndex: 0,
 
    }),

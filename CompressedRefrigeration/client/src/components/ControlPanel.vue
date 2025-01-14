@@ -1,79 +1,246 @@
 <template>
-	<div class='container-fluid m-2 background-white border rounded'>
+	<div id="ControlPanel-div">
+		<h2> Experiment Control Panel and Schematic </h2>
+		<div class='container-fluid m-2 background-white border rounded'>
 
-		<div>
-			<PID />
+			<div>
+				<PID />
+			</div>
+			<div id="buttons" class="row">
+
+				<div class="col-3 offset-2">
+					<!-- <button id="V1" class="button-lg button-primary" > V1 </button>  -->
+					<!-- id="flexSwitchCheckDefault" in the input, and  for="flexSwitchCheckDefault" in the label-->
+					<div class="form-check form-switch">
+						<input class="form-check-input" type="checkbox" :checked="V1SwitchControllor"
+							:disabled="V1SwitchDisabled" @click="valve1ColorChange()">
+						<label class="form-check-label" :style="{ color: valve1Color }">V1 {{ V1state }}</label>
+					</div>
+					<div class="form-check form-switch">
+						<input class="form-check-input" type="checkbox" :checked="V2SwitchControllor"
+							:disabled="V2SwitchDisabled" @click="valve2ColorChange()">
+						<label class="form-check-label" :style="{ color: valve2Color }">V2 {{ V2state }}</label>
+					</div>
+					<div class="form-check form-switch">
+						<input class="form-check-input" type="checkbox" :checked="V3SwitchControllor"
+							:disabled="V3SwitchDisabled" @click="valve3ColorChange()">
+						<label class="form-check-label" :style="{ color: valve3Color }">V3 {{ V3state }}</label>
+					</div>
+					<div class="form-check form-switch">
+						<input class="form-check-input" type="checkbox" :checked="V4SwitchControllor"
+							:disabled="V4SwitchDisabled" @click="valve4ColorChange()">
+						<label class="form-check-label" :style="{ color: valve4Color }">V4 {{ V4state }}</label>
+					</div>
+				</div>
+
+				<div class="col-3">
+					<div class="form-check form-switch">
+						<input class="form-check-input" type="checkbox" :checked="V5SwitchControllor"
+							:disabled="V5SwitchDisabled" @click="valve5ColorChange()">
+						<label class="form-check-label" :style="{ color: valve5Color }">V5 {{ V5state }}</label>
+					</div>
+					<div class="form-check form-switch">
+						<input class="form-check-input" type="checkbox" :checked="V6SwitchControllor"
+							:disabled="V6SwitchDisabled" @click="valve6ColorChange()">
+						<label class="form-check-label" :style="{ color: valve6Color }">V6 {{ V6state }}</label>
+					</div>
+					<div class="form-check form-switch">
+						<input class="form-check-input" type="checkbox" :checked="V7SwitchControllor"
+							:disabled="V7SwitchDisabled" @click="valve7ColorChange()">
+						<label class="form-check-label" :style="{ color: valve7Color }"> V7 {{ V7state }}</label>
+					</div>
+
+				</div>
+
+
+				<div class="col-3">
+					<div class="form-check form-switch">
+						<input class="form-check-input" type="checkbox" :checked="W1SwitchControllor"
+							:disabled="W1SwitchDisabled" @click="w1ColorChange()">
+						<label class="form-check-label" :style="{ color: w1color }"> Fans {{ W1state }} </label>
+					</div>
+					<div class="form-check form-switch">
+						<input class="form-check-input" type="checkbox" :checked="COMPSwitchControllor"
+							:disabled="COMPSwitchDisabled" @click="compColorChange()">
+						<label class="form-check-label" :style="{ color: compcolor }"> Compressor {{ COMPstate
+							}}</label>
+					</div>
+					<div class="form-check form-switch">
+						<input class="form-check-input" type="checkbox" :checked="lightSwitchControllor"
+							:disabled="lightSwitchDisabled" @click="lightColorChange()">
+						<label class="form-check-label" :style="{ color: lightcolor }"> Lights {{ lightstate }}</label>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div id="buttons" class="row">
+		<toolbar parentCanvasID="ControlPanel-div" parentComponentName="ControlPanel" parentDivID="ControlPanel-div"
+			:showDownload='false' :showPopupHelp="true" :showOptions="false" id="ControlPanel_help">
+			<template v-slot:popup id='ControlPanel-popup'>
+				<div class='row mb-2'>
+					<div class='col'>
+						<h3> Experiment Control Panel and Schematic </h3>
+						<p> Control the experiment using the Control Panel and view the schematic diagram of the
+							equipment. </p>
+						<p> <b>Schematic:</b> The Nomenclature of the equipment is included in Table.</p>
+						<table class="table">
+							<thead>
+								<tr>
+									<th scope="col">#</th>
+									<th scope="col">Symbol</th>
+									<th scope="col">Definition</th>
+									<th scope="col">Property</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th scope="row">1</th>
+									<td>V1</td>
+									<td>Shut-off Valve Thermostatic Expansion Valve</td>
+									<td>Control</td>
+								</tr>
+								<tr>
+									<th scope="row">2</th>
+									<td>V2</td>
+									<td>Shut-off Valve Capillary Tube 1.5m</td>
+									<td>Control</td>
+								</tr>
+								<tr>
+									<th scope="row">3</th>
+									<td>V3</td>
+									<td>Shut-off Valve Capillary Tube 3m</td>
+									<td>Control</td>
+								</tr>
+								<tr>
+									<th scope="row">4</th>
+									<td>V4</td>
+									<td>Shut-off Valve Capillary Tube 6m</td>
+									<td>Control</td>
+								</tr>
+								<tr>
+									<th scope="row">5</th>
+									<td>V5</td>
+									<td>Shut-off Valve Receiver Outlet</td>
+									<td>Control</td>
+								</tr>
+								<tr>
+									<th scope="row">6</th>
+									<td>V6</td>
+									<td>Shut-off Valve Receiver Inlet</td>
+									<td>Control</td>
+								</tr>
+								<tr>
+									<th scope="row">7</th>
+									<td>V7</td>
+									<td>Shut-off Valve Receiver Bypass</td>
+									<td>Control</td>
+								</tr>
+								<tr>
+									<th scope="row">8</th>
+									<td>T-01</td>
+									<td>Compressor Inlet Temperature</td>
+									<td>Monitor</td>
+								</tr>
+								<tr>
+									<th scope="row">9</th>
+									<td>T-02</td>
+									<td>Compressor Outlet Temperature</td>
+									<td>Monitor</td>
+								</tr>
+								<tr>
+									<th scope="row">10</th>
+									<td>T-03</td>
+									<td>Condenser Outlet Temperature</td>
+									<td>Monitor</td>
+								</tr>
+								<tr>
+									<th scope="row">11</th>
+									<td>T-04</td>
+									<td>Evaporator Inlet Temperature</td>
+									<td>Monitor</td>
+								</tr>
+								<tr>
+									<th scope="row">12</th>
+									<td>T-05</td>
+									<td>Evaporator Outlet Temperature</td>
+									<td>Monitor</td>
+								</tr>
+								<tr>
+									<th scope="row">13</th>
+									<td>P-01</td>
+									<td>Evaporation Pressure</td>
+									<td>Monitor</td>
+								</tr>
+								<tr>
+									<th scope="row">14</th>
+									<td>P-02</td>
+									<td>Compressor Outlet Pressure</td>
+									<td>Monitor</td>
+								</tr>
+								<tr>
+									<th scope="row">15</th>
+									<td>P-03</td>
+									<td>Condensation Pressure</td>
+									<td>Monitor</td>
+								</tr>
+								<tr>
+									<th scope="row">16</th>
+									<td>F</td>
+									<td>Flowrate of Refrigerant</td>
+									<td>Monitor</td>
+								</tr>
+								<tr>
+									<th scope="row">17</th>
+									<td>E</td>
+									<td>Electric Power of Compressor</td>
+									<td>Monitor</td>
+								</tr>
+							</tbody>
+						</table>
+						<p> The operation of the schematic is as follows:</p>
+						<p>a. <b>Hover:</b> Hover the mouse pointer on the schematic symbols for 1 second to show the
+							names of
+							symbols.</p>
+						<p>b. <b>Click: </b>To learn more about the kit in the real equipment, click on the symbol
+							section
+							(gray) in the schematic and a red blinking square will be displayed for the corresponding
+							part in the equipment image.</p>
 
-			<div class="col-3 offset-2">
-				<!-- <button id="V1" class="button-lg button-primary" > V1 </button>  -->
-				<!-- id="flexSwitchCheckDefault" in the input, and  for="flexSwitchCheckDefault" in the label-->
-				<div class="form-check form-switch">
-					<input class="form-check-input" type="checkbox" :checked="V1SwitchControllor"
-						:disabled="V1SwitchDisabled" @click="valve1ColorChange()">
-					<label class="form-check-label" :style="{ color: valve1Color }">V1 {{ V1state }}</label>
+						<p><b>Control Panel: </b>The status of the control panel is included in Table C. </p>
+						<table class="table">
+							<thead>
+								<tr>
+									<th scope="col">#</th>
+									<th scope="col">Status of valve</th>
+									<th scope="col">Description</th>									
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th scope="row">1</th>
+									<td>OFF</td>
+									<td>The current state of the valve or switch is OFF</td>									
+								</tr>
+								<tr>
+									<th scope="row">2</th>
+									<td>ON</td>
+									<td>The current state of the valve or switch is ON</td>									
+								</tr>
+								<tr>
+									<th scope="row">3</th>
+									<td>Opening/Turning on</td>
+									<td>The current state of the valve or switch is Opening/Turning on, which may need 2-3 seconds.</td>									
+								</tr>
+								<tr>
+									<th scope="row">4</th>
+									<td>Closing/Turning off</td>
+									<td>The current state of the valve or switch is Closing/Turning off, which may need 2-3 seconds.</td>									
+								</tr>						
+							</tbody>
+						</table>
+					</div>
 				</div>
-				<div class="form-check form-switch">
-					<input class="form-check-input" type="checkbox" :checked="V2SwitchControllor"
-						:disabled="V2SwitchDisabled" @click="valve2ColorChange()">
-					<label class="form-check-label" :style="{ color: valve2Color }">V2 {{ V2state }}</label>
-				</div>
-				<div class="form-check form-switch">
-					<input class="form-check-input" type="checkbox" :checked="V3SwitchControllor"
-						:disabled="V3SwitchDisabled" @click="valve3ColorChange()">
-					<label class="form-check-label" :style="{ color: valve3Color }">V3 {{ V3state }}</label>
-				</div>
-				<div class="form-check form-switch">
-					<input class="form-check-input" type="checkbox" :checked="V4SwitchControllor"
-						:disabled="V4SwitchDisabled" @click="valve4ColorChange()">
-					<label class="form-check-label" :style="{ color: valve4Color }">V4 {{ V4state }}</label>
-				</div>
-			</div>
-
-			<div class="col-3">
-				<div class="form-check form-switch">
-					<input class="form-check-input" type="checkbox" :checked="V5SwitchControllor"
-						:disabled="V5SwitchDisabled" @click="valve5ColorChange()">
-					<label class="form-check-label" :style="{ color: valve5Color }">V5 {{ V5state }}</label>
-				</div>
-				<div class="form-check form-switch">
-					<input class="form-check-input" type="checkbox" :checked="V6SwitchControllor"
-						:disabled="V6SwitchDisabled" @click="valve6ColorChange()">
-					<label class="form-check-label" :style="{ color: valve6Color }">V6 {{ V6state }}</label>
-				</div>
-				<div class="form-check form-switch">
-					<input class="form-check-input" type="checkbox" :checked="V7SwitchControllor"
-						:disabled="V7SwitchDisabled" @click="valve7ColorChange()">
-					<label class="form-check-label" :style="{ color: valve7Color }"> V7 {{ V7state }}</label>
-				</div>
-
-			</div>
-
-
-			<div class="col-3">
-				<div class="form-check form-switch">
-					<input class="form-check-input" type="checkbox" :checked="W1SwitchControllor"
-						:disabled="W1SwitchDisabled" @click="w1ColorChange()">
-					<label class="form-check-label" :style="{ color: w1color }"> Fans {{ W1state }} </label>
-				</div>
-				<div class="form-check form-switch">
-					<input class="form-check-input" type="checkbox" :checked="COMPSwitchControllor"
-						:disabled="COMPSwitchDisabled" @click="compColorChange()">
-					<label class="form-check-label" :style="{ color: compcolor }"> Compressor {{ COMPstate }}</label>
-				</div>
-				<div class="form-check form-switch">
-					<input class="form-check-input" type="checkbox" :checked="lightSwitchControllor"
-						:disabled="lightSwitchDisabled" @click="lightColorChange()">
-					<label class="form-check-label" :style="{ color: lightcolor }"> Lights {{ lightstate }}</label>
-				</div>
-			</div>
-
-
-
-		</div>
-
-
+			</template>
+		</toolbar>
 	</div>
 </template>
 
@@ -82,12 +249,14 @@ import PID from "./PID.vue"
 // import dataTestStore from "../modules/ACON_dataTestStore"
 //import Tooltip from "./Tooltip.vue";
 import { mapGetters, mapMutations, mapActions } from 'vuex';
+import Toolbar from './elements/Toolbar.vue';
 
 export default {
 	name: "ControlPanel",
 	components: {
 		//Tooltip,
 		PID,
+		Toolbar,
 
 	},
 	props: {
@@ -1205,7 +1374,7 @@ export default {
 					this.setHSA_value(HSA);
 					// console.log(this.$store.state.rawData.PS1_value)
 
-					
+
 					//dispatch controllers value in store: rawdatastore_controllers
 					this.setV1(V1);
 					this.setV2(V2);

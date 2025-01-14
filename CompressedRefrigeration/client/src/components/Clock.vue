@@ -87,9 +87,9 @@ export default {
 </script>
 
 <style scoped>
-#sessionTime{
+/* #sessionTime{
     font-style: italic;
     color: rgb(0, 0, 0);
-}
+} */
 
 </style>

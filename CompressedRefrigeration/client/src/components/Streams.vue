@@ -60,7 +60,9 @@ export default {
       //add the streams data to the store
       let streams = query.get('streams');
       let decodedStreams = JSON.parse(decodeURIComponent(String(streams)));
-
+      let lh = query.get('lh');
+      console.log(lh);
+      
       this.$store.dispatch("setStreams", decodedStreams);
       //add expiry time data to store
       let expire_time = query.get('exp');

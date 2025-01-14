@@ -1,6 +1,8 @@
 <template>
-    <div style="width: 200; height: 200;">
-        <canvas class="background-white" id="realTimeChart" width="600" height="400"></canvas>
+    <div style="width: 200; height: 200;" id="InteractiveChart-div">
+        <h2> Data Chart </h2>
+        <canvas class="background-white" id="realTimeChart" width="600" height="400"
+            style="background-color: white;"></canvas>
         <!-- <button @click="updateChartData()">update the chart</button>
         <button @click="removeChartData()">remove</button>
         <button @click="clearChartData()">clear</button> -->
@@ -8,6 +10,22 @@
         <!-- <button @click="setLocalStorage">localstoragetest</button> -->
         <!-- <button @click="getLocalStorage">getLocalStorage</button> -->
         <!-- <button @click="updatechartbyLocal">updatechartbyLocal</button> -->
+
+        <toolbar style="margin-top: 10px;" parentCanvasID="InteractiveChart-div" parentComponentName="InteractiveChart"
+            parentDivID="InteractiveChart-div" :showDownload='false' :showPopupHelp="true" :showOptions="false"
+            id="InteractiveChart_help">
+            <template v-slot:popup id='InteractiveChart-popup'>
+                <div class='row mb-2'>
+                    <div class='col'>
+                        <h3> Data Chart </h3>
+                        <p> Visualize data in the table of Data Recorder. Click the label that includes the color bar and
+                            parameter name at the top of the chart (e.g. ‘(green bar) T1 data’) to hide/show the
+                            corresponding data.</p>
+                    </div>
+                </div>
+            </template>
+        </toolbar>
+
     </div>
 
 </template>
@@ -19,6 +37,7 @@ import 'chartjs-adapter-luxon';
 import 'chartjs-plugin-streaming';
 import 'luxon';
 // import { shallowRef } from 'vue';
+import Toolbar from './elements/Toolbar.vue';
 
 import { mapGetters, mapActions } from 'vuex'
 
@@ -30,6 +49,7 @@ export default {
     emits: ['updateChartData'],
     components: {
         Snapshot,
+        Toolbar,
     },
     computed: {
         ...mapGetters([
@@ -519,15 +539,15 @@ export default {
 
             if (localStorage.getItem('datasetTS1') == null || JSON.parse(localStorage.getItem('datasetTS1')).length == 0) {
                 console.log(localStorage.getItem('datasetTS1'));
-            }else{
-                console.log(typeof(localStorage.getItem('datasetTS1'))+localStorage.getItem('datasetTS1'));
+            } else {
+                console.log(typeof (localStorage.getItem('datasetTS1')) + localStorage.getItem('datasetTS1'));
                 var con;
                 con = confirm("You have saved data, Would you like to load it ?")
-                if (con==true) {
+                if (con == true) {
                     this.getLocalStorage();
-                }else{
+                } else {
                     localStorage.clear();
-                }  
+                }
             }
 
             // test() {

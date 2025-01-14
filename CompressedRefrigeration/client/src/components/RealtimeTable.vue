@@ -1,9 +1,7 @@
 <template>
-
-
-    <table class="table table-bordered" style=" font-size:small;">
+    <table id="realTimeTable" class="table table-bordered" style=" font-size:small;">
         <thead>
-            <tr>
+            <tr id="realTimeTable-thead">
                 <th scope="col">T1(°C)</th>
                 <th scope="col">T2(°C)</th>
                 <th scope="col">T3(°C)</th>
@@ -20,7 +18,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
+            <tr id="realTimeTable-tboday">
                 <td>{{ T1 }}</td>
                 <td>{{ T2 }}</td>
                 <td>{{ T3 }}</td>
@@ -37,7 +35,7 @@
             </tr>
         </tbody>
         <thead>
-            <tr>
+            <tr id="realTimeTable-thead">
                 <!-- <th scope="col">T1(°C)</th>
                 <th scope="col">T2(°C)</th>
                 <th scope="col">T3(°C)</th>
@@ -49,12 +47,13 @@
                 <th scope="col">F(L/h)</th>
                 <th scope="col">E(W)</th>
                 <th scope="col">TSA(°C)</th>
-                <th scope="col">PSA(Pa)</th>
+                <th scope="col">PSA(mBar)</th>
                 <th scope="col">HSA(%rh)</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
-            <tr>
+            <tr id="realTimeTable-tboday">
                 <!-- <td>{{ T1 }}</td>
                 <td>{{ T2 }}</td>
                 <td>{{ T3 }}</td>
@@ -68,6 +67,7 @@
                 <td>{{ TSA }}</td>
                 <td>{{ PSA }}</td>
                 <td>{{ HSA }}</td>
+                <td></td>
             </tr>
         </tbody>
     </table>

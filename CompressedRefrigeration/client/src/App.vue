@@ -1,13 +1,13 @@
 <template>
 
-  <div id="app" class='container-fluid-sm m-0 background-grey'>
+  <div id="app" class='container-fluid-sm m-0'>
 
     <!-- <div class="row">
           <div class="col-lg-6" style="background-color: aqua; height: 10px; width: auto;"></div>
           <div class="col-lg-6" style="background-color: aqua; height: 10px; width: auto;"></div>
         </div> -->
     <navigation-bar @toggleconsent="showConsentModal = true" @togglesnapshot="toggleSnapshot" @togglegraph="toggleGraph"
-      @togglestopwatch="toggleStopwatch" @toggletable="toggleTable" />
+      @togglestopwatch="toggleStopwatch" @toggleR134aChart="toggleR134aChart" @toggletable="toggleTable" />
 
     <!-- <consent v-if='showConsentModal && getIsLoggingOn' @consentset="closeConsentModal"/> -->
 
@@ -30,15 +30,15 @@
           @drop='dropComponent' @dragover.prevent @dragenter.prevent>
           <RealtimeChart id='RealtimeChart' />
         </div>
-        <div class='col drop-area' id='drop_3_0' :draggable='getDraggable' @dragstart="dragComponent"
-          @drop='dropComponent' @dragover.prevent @dragenter.prevent><data-recorder id='data-recorder' /></div>
+        <!-- <div class='col drop-area' id='drop_3_0' :draggable='getDraggable' @dragstart="dragComponent"
+          @drop='dropComponent' @dragover.prevent @dragenter.prevent><data-recorder id='data-recorder' /></div> -->
         <!-- <div class='col drop-area' id='drop_2_0' :draggable='getDraggable' @dragstart="dragComponent" @drop='dropComponent' @dragover.prevent @dragenter.prevent><table-output v-if='isTableOn' id='table' :selected_point="selected_graph_point"/></div> -->
-        <div class='col drop-area' id='drop_4_0' :draggable='getDraggable' @dragstart="dragComponent"
+        <!-- <div class='col drop-area' id='drop_4_0' :draggable='getDraggable' @dragstart="dragComponent"
           @drop='dropComponent' @dragover.prevent @dragenter.prevent><table-output id='table'
-            :selected_point="selected_graph_point" /></div>
-        <div class='col drop-area' id='drop_5_0' :draggable='getDraggable' @dragstart="dragComponent"
+            :selected_point="selected_graph_point" /></div> -->
+        <div class='col drop-area' id='drop_3_0' :draggable='getDraggable' @dragstart="dragComponent"
           @drop='dropComponent' @dragover.prevent @dragenter.prevent>
-          <R134aChart id="R134aChart" />
+          <R134aChart v-if='isR134achartOn' id="R134aChart" />
         </div>
       </div>
 
@@ -112,6 +112,7 @@ export default {
       isTableOn: false,
       isGraphOn: false,
       isStopwatchOn: false,
+      isR134achartOn: false,
       isSnapshotOn: true,
       selected_graph_point: null,
       protractorAdded: false,
@@ -206,6 +207,10 @@ export default {
     toggleStopwatch() {
       this.isStopwatchOn = !this.isStopwatchOn;
       this.$store.dispatch('logComponent', { log: 'component', name: 'stopwatch', open: this.isStopwatchOn });
+    },
+    toggleR134aChart() {
+      this.isR134achartOn = !this.isR134achartOn;
+      this.$store.dispatch('logComponent', { log: 'component', name: 'R134aChart', open: this.isR134achartOn });
     },
     // toggleAutoCommands(){
     //   this.isAutoCommandOn = !this.isAutoCommandOn;

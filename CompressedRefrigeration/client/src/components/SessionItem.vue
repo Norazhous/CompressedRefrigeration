@@ -99,13 +99,13 @@ export default {
             // this.activeSessionIndex = this.activeSessionIndex === index ? null : index;
             this.activeSessionIndex = index;
             this.setActiveSessionIndex(this.activeSessionIndex);
-            console.log(this.activeSessionIndex);
-            console.log(this.getActiveSessionIndex);
-            console.log(this.getActiveSessionMessages);
+            // console.log(this.activeSessionIndex);
+            // console.log(this.getActiveSessionIndex);
+            // console.log(this.getActiveSessionMessages);
         },
         handleCreateSession() {
             this.idNewSession = Date.now();
-            let newSession = { id: this.idNewSession, username: this.getLogUUID, topic: "session", messages: [{ sender: "system", time: new Date().getTime(), text: 'This is chat box, and my name is atomic hydrogen.I can help you understand and navigate the Single Tube Condenser User Interface (UI). If you need assistance with any specific features of the UI, how to operate the experiment, or have questions about the theory behind the experiment, feel free to ask!' }], updateAt: Date.now() };
+            let newSession = { id: this.idNewSession, username: this.getLogUUID, topic: "New session", messages: [{ sender: "Welcome", time: new Date().getTime(), text: 'This is chat box, and my name is atomic hydrogen.I can help you understand and navigate the Single Tube Condenser experiment. If you need assistance with any specific features of the user interface (UI), how to operate the experiment, or have questions about the theory behind the experiment, feel free to ask!' }, { sender: "Reminder", time: new Date().getTime(), text: 'You are not talking to a human - Please be aware that due to the nature of this technology, responses may include inaccurate, fictitious or completely wrong information. Please refer to our AI Guidance (https://information-services.ed.ac.uk/computing/comms-and-collab/elm/guidance-for-working-with-generative-ai)' }], updateAt: Date.now() };
             this.addSession(newSession);
         },
 

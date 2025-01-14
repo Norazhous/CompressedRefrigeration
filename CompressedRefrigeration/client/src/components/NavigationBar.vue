@@ -1,18 +1,22 @@
 <template>
 
-  <nav class="navbar fixed-top navbar-expand-lg navbar-dark background-primary" id='navbar'>
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-        <img src="/images/practable-icon.png" width="30" height="30" alt="">
-        Remote Lab: Compression Refrigeration System
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <nav
+    :class="getDarkTheme ? 'navbar navbar-light fixed-top navbar-expand-lg navbar-background' : 'navbar navbar-dark fixed-top navbar-expand-lg  navbar-background'"
+    id='navbar'>
+    <div id="navbar-container" class="container-fluid">
+      <div id="navbar-brand" class="navbar-brand">
+        <img id="navbar-experiment-name" src="/images/practable-icon.png" width="30" height="30"
+          alt="practable.io logo">
+        Remote Lab: Compression Refrigeration
+      </div>
+      <button id="navbar-toggler" class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <ul class="navbar-nav me-auto">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
               aria-expanded="false">
@@ -20,6 +24,7 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><a class="dropdown-item" href="#" @click='toggleComponent("stopwatch")'>Stopwatch</a></li>
+              <li><a class="dropdown-item" href="#" @click='toggleComponent("R134aChart")'>R134a p-h Diagram</a></li>
               <!-- <li><a class="dropdown-item" href="#" @click='toggleComponent("snapshot")'>Snapshot</a></li> -->
             </ul>
           </li>
@@ -77,19 +82,19 @@
                 <p></p>
 
                 <h2>Data Collection and Download</h2>
-                <p>Use the ‘Snapshot Recorder’ (record Snapshot data at regular intervals) or ‘Data Recorder’ for data
-                  collection. Click ‘Download’ on respective components to save data.</p>
+                <p>Use the ‘Data Recorder’ (record data manually). Click the ‘Download Data’ button in the Data Recorder
+                  component to save the data as a .csv file to the local computer for analysis.</p>
                 <p></p>
 
                 <h2>Data Analysis</h2>
-                <p>Data analysis should be conducted based on the collected data. Excel might be used as the main tool
-                  for data analysis. In the meantime, the Chat Box can assist with any issues encountered during
-                  analysis. </p>
+                <p>Analysis can be performed in the Data Analysis Dashboard (access through the booking page) or outside
+                  of the UI using the downloaded .csv file. Possible analysis tools include Excel and MATLAB. In the
+                  meantime, the Chat Box can assist with any issues encountered during analysis.</p>
               </template>
             </toolbar>
           </li>
 
-          <li class="nav-item me-1">
+          <!-- <li class="nav-item me-1">
             <button type='button' class='button-toolbar button-secondary' id='toggle-theme-button'
               aria-label='toggle dark theme' @click='toggleTheme' :disabled="disableThemeButton">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -97,7 +102,7 @@
                 <path d="M8 15A7 7 0 1 0 8 1zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16" />
               </svg>
             </button>
-          </li>
+          </li> -->
 
         </ul>
 
@@ -117,7 +122,7 @@ import Chat from './Chat.vue'
 export default {
 
   name: 'NavigationBar',
-  emits: ['togglestopwatch', 'togglesnapshot'],
+  emits: ['togglestopwatch', 'toggleR134aChart', 'toggleSnapshot'],
   data() {
     return {
 

@@ -1,12 +1,12 @@
 //Vue3 update
 
 <template>
-    <div class='d-flex flex-row'>
-        
+    <div>
+
         <download-image-button v-if='showDownload' :parentComponentName="getParentComponentName" :parentCanvasID="getCanvasID"/>
        
-        <popup-help v-if='showPopupHelp' :parentDivID="getParentDivID"> 
-                <slot name='popup'></slot> 
+        <popup-help v-if='showPopupHelp' :parentDivID="getParentDivID" :id="id" popup_help_id = "popup_help"> 
+                <slot name='popup' :id="slotID"></slot> 
         </popup-help>
         
         <options-tool v-if='showOptions'>
@@ -30,7 +30,9 @@ export default {
       'parentDivID': String,
       'showDownload': Boolean,
       'showPopupHelp': Boolean,
-      'showOptions': Boolean
+      'showOptions': Boolean,
+      'id':String,
+      'slotID':String,
   },
   data () {
     return {

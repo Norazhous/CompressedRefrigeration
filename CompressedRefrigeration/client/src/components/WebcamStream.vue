@@ -1,5 +1,6 @@
 <template>
-	<div class='container-fluid m-2 background-white border rounded'>
+	<div id="webcamStream" class='container-fluid m-2 background-white border rounded'>
+		<h2> Camera Live Streaming </h2>
 		<div class="row">
 			<!-- <div class="col-12" id="rigImage">
 				<RigElement />
@@ -13,10 +14,24 @@
 				<video-element2 :url="url2" />
 			</div>
 			<div class="col-12" id="video3" style="margin: auto;">
-				<span>Sight glass and Valve leds</span>
+				<span>Sight glass and valves signal panel</span>
 				<video-element3 :url="url3" />
 			</div>
 		</div>
+
+		<toolbar parentCanvasID="InteractiveChart-div" parentComponentName="InteractiveChart"
+				parentDivID="InteractiveChart-div" :showDownload='false' :showPopupHelp="true" :showOptions="false" id="InteractiveChart_help">
+				<template v-slot:popup id='InteractiveChart-popup'>
+					<div class='row mb-2'>
+						<div class='col'>
+							<h3> Camera Live Streaming</h3>
+							<p>Camera 1: Evaporator live stream.</p>
+							<p>Camera 2: Condenser live stream.</p>
+							<p>Camera 3: Sight glass and Valve signal panel live stream.</p>
+						</div>
+					</div>
+				</template>
+			</toolbar>
 
 	</div>
 </template>
@@ -26,6 +41,8 @@ import axios from "axios";
 import VideoElement1 from "./VideoElement1.vue";
 import VideoElement2 from "./VideoElement2.vue";
 import VideoElement3 from "./VideoElement3.vue";
+import Toolbar from './elements/Toolbar.vue';
+
 
 
 export default {
@@ -34,6 +51,7 @@ export default {
 		VideoElement1,
 		VideoElement2,
 		VideoElement3,
+		Toolbar,
 
 	},
 	data() {

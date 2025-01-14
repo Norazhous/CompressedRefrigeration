@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div id="P&ID">
         <!-- test svg dispaly  -->
-        <PID_SVG style="max-width: 100%; width: auto;"/>
+        <PID_SVG style="background-color: white; width: auto; height: auto; max-width: 100%; max-height: 100%;" id="Schematic Figure" alt="Experiment Schematic Figure"/>
     </div>
     <!-- <div>
         <InteractiveChart/>
