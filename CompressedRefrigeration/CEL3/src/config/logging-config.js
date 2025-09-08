@@ -2,7 +2,7 @@ const config = {
 
 
     //UPDATE this with your remote lab version
-    remote_lab_ui: 'fridge-etm2-1.0',
+    remote_lab_ui: 'fridge-cel3-1.0',
     hardware_code_prefix: 'frig',   //the short code for hardware that is used for each experiment code, e.g. spin in spin30
 
     click_logs_on: true,

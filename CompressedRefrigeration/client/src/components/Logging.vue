@@ -106,6 +106,11 @@ export default {
       if(config.mouse_enter_logs_on){
         this.AddMouseEnterListeners();
       }
+
+      //listen for chartdatahover events coming form the chartjs canvas
+      window.addEventListener('chartdatahover', (event) => {
+        this.createAndSendChartHoverLog(event);
+      })
         
       
       this.AddNewInputListeners();
@@ -250,6 +255,10 @@ export default {
     let log = this.createSessionStartLog();
     this.sendLog(log);
   },
+  createAndSendChartHoverLog(event){
+    let log = this.createChartHoverLog(event);
+    this.sendLog(log);
+  },
   createAndSendComponentOpenedLog(element){
     let log = this.createComponentOpenLog(element);
     this.sendLog(log);
@@ -263,6 +272,7 @@ export default {
         "timestamp": new Date().getTime(), 
         "level": "INFO",
         "type": "analytics", 
+        "version": config.version,
         "actor":
           {
             "id": this.getLogUUID,
@@ -280,7 +290,7 @@ export default {
           },
         "context": 
           {
-            
+            "session-expired": this.getSessionExpired
           }
       }
 
@@ -291,6 +301,7 @@ export default {
         "timestamp": new Date().getTime(), 
         "level": "INFO",
         "type": "analytics", 
+        "version": config.version,
         "actor":
           {
             "id": this.getLogUUID,
@@ -313,7 +324,8 @@ export default {
             "event_timestamp": event.timeStamp,
             "x": event.clientX, 
             "y": event.clientY,
-            "exp_id": this.getExperiment
+            "exp_id": this.getExperiment,
+            "session-expired": this.getSessionExpired
           }
       }
       
@@ -324,11 +336,51 @@ export default {
 
       return log;
     },
+    createChartHoverLog(event){
+      let log = {
+        "timestamp": new Date().getTime(), 
+        "level": "INFO",
+        "type": "analytics", 
+        "version": config.version,
+        "actor":
+          {
+            "id": this.getLogUUID,
+            "course": this.getCourse
+          },
+        "verb": 
+          {
+            "name": "data-hovered", 
+            //"definition": `${this.instance_path}${config.definitions_path}/clicked`
+          }, 
+        "object": 
+          {
+            "id": 'chart-canvas',
+            "ui": config.remote_lab_ui
+          },
+        "context": 
+          {
+            "event_type": event.type,
+            "event_timestamp": event.timeStamp,
+            "dataset": event.detail.dataset,
+            "data": {x: event.detail.x, y: event.detail.y}, 
+            "exp_id": this.getExperiment,
+            "session-expired": this.getSessionExpired
+          }
+      }
+      
+      //IF the clicked target is associated with a graph node for TaskCompare, then add that information to context
+      // if(event.target.id in config.graph_nodes){
+      //   log.context['graph_node'] = config.graph_nodes[event.target.id]
+      // }
+
+      return log;
+    },
     createMouseEnterLog(event){
       let log = {
         "timestamp": new Date().getTime(), 
         "level": "INFO",
         "type": "analytics", 
+        "version": config.version,
         "actor":
           {
             "id": this.getLogUUID,
@@ -350,7 +402,8 @@ export default {
             "event_type": event.type,
             "event_timestamp": event.timeStamp,
             "mouse-left": event.relatedTarget != null ? event.relatedTarget.id : '',
-            "exp_id": this.getExperiment
+            "exp_id": this.getExperiment,
+            "session-expired": this.getSessionExpired
           }
       }
 
@@ -361,6 +414,7 @@ export default {
         "timestamp": new Date().getTime(), 
         "level": "INFO",
         "type": "analytics", 
+        "version": config.version,
         "actor":
           {
             "id": this.getLogUUID,
@@ -382,7 +436,8 @@ export default {
           {
             "event_type": event.type,
             "event_timestamp": event.timeStamp,
-            "exp_id": this.getExperiment
+            "exp_id": this.getExperiment,
+            "session-expired": this.getSessionExpired
           }
       }
 
@@ -398,6 +453,7 @@ export default {
         "timestamp": new Date().getTime(), 
         "level": "INFO",
         "type": "analytics", 
+        "version": config.version,
         "actor":
           {
             "id": this.getLogUUID,
@@ -418,7 +474,8 @@ export default {
             "event_type": event.type,
             "event_timestamp": event.timeStamp,
             "previous_click": event.originalTarget.id,
-            "exp_id": this.getExperiment
+            "exp_id": this.getExperiment,
+            "session-expired": this.getSessionExpired
           }
       }
 
@@ -434,6 +491,7 @@ export default {
         "timestamp": new Date().getTime(), 
         "level": "INFO",
         "type": "analytics", 
+        "version": config.version,
         "actor":
           {
             "id": this.getLogUUID,
@@ -453,7 +511,8 @@ export default {
           {
             "event_type": event.type,
             "event_timestamp": event.timeStamp,
-            "exp_id": this.getExperiment
+            "exp_id": this.getExperiment,
+            "session-expired": this.getSessionExpired
           }
       }
 
@@ -464,6 +523,7 @@ export default {
         "timestamp": new Date().getTime(), 
         "level": "INFO",
         "type": "analytics", 
+        "version": config.version,
         "actor":
           {
             "id": this.getLogUUID,
@@ -483,7 +543,8 @@ export default {
           {
             "event_type": event.type,
             "event_timestamp": event.timeStamp,
-            "exp_id": this.getExperiment
+            "exp_id": this.getExperiment,
+            "session-expired": this.getSessionExpired
           }
       }
 
@@ -495,6 +556,7 @@ export default {
         "timestamp": new Date().getTime(), 
         "level": "INFO",
         "type": "analytics", 
+        "version": config.version,
         "actor":
           {
             "id": "system",
@@ -512,7 +574,7 @@ export default {
           },
         "context": 
           {
-            
+            "session-expired": this.getSessionExpired
           }
       }
 
@@ -523,6 +585,7 @@ export default {
         "timestamp": new Date().getTime(), 
         "level": message.level,
         "type": "experiment", 
+        "version": config.version,
         "actor":
           {
             "id": this.getExperiment,
@@ -541,7 +604,8 @@ export default {
           },
         "context": 
           {
-            "msg": message.text
+            "msg": message.text,
+            "session-expired": this.getSessionExpired
           }
       }
 
@@ -552,6 +616,7 @@ export default {
         "timestamp": new Date().getTime(), 
         "level": "INFO",
         "type": "analytics", 
+        "version": config.version,
         "actor":
           {
             "id": this.getLogUUID,
@@ -569,7 +634,8 @@ export default {
           },
         "context": 
           {
-            "exp_id": this.getExperiment
+            "exp_id": this.getExperiment,
+            "session-expired": this.getSessionExpired
           }
       }
 
@@ -580,6 +646,7 @@ export default {
         "timestamp": new Date().getTime(), 
         "level": "INFO",
         "type": "analytics", 
+        "version": config.version,
         "actor":
           {
             "id": this.getLogUUID,
@@ -597,7 +664,8 @@ export default {
           },
         "context": 
           {
-            "exp_id": this.getExperiment
+            "exp_id": this.getExperiment,
+            "session-expired": this.getSessionExpired
           }
       }
 
