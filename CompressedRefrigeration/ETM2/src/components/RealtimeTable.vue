@@ -7,8 +7,8 @@
                 <th scope="col">T3(°C)</th>
                 <th scope="col">T4(°C)</th>
                 <th scope="col">T5(°C)</th>
-                <th scope="col">P1(bar)</th>
-                <th scope="col">P2(bar)</th>
+                <th scope="col">P1(gauge,bar)</th>
+                <th scope="col">P2(gauge,bar)</th>
                 <!-- <th scope="col">P3(bar)</th>
                 <th scope="col">F(L/h)</th>
                 <th scope="col">E(W)</th>
@@ -43,7 +43,7 @@
                 <th scope="col">T5(°C)</th>
                 <th scope="col">P1(bar)</th>
                 <th scope="col">P2(bar)</th> -->
-                <th scope="col">P3(bar)</th>
+                <th scope="col">P3(gauge,bar)</th>
                 <th scope="col">F(L/h)</th>
                 <th scope="col">E(W)</th>
                 <th scope="col">TSA(°C)</th>

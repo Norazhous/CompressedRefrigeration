@@ -96,7 +96,6 @@
                             <h5 class="modal-title">Reset Data</h5>
                             <button id="resetComfirmModalButton" type="button" class="btn btn-close"
                                 data-bs-dismiss="modal" aria-label="Close" @click='toggleResetModal'>
-
                             </button>
                         </div>
                         <div class="modal-body">
@@ -109,7 +108,6 @@
                                 data-dismiss="modal" data-bs-dismiss="modal" @click="toggleResetModal">Cancel</button>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -245,17 +243,17 @@ export default {
 
             filename = 'SNAPSHOTs_' + date.getDate().toString() + (date.getMonth() + 1).toString() + date.getFullYear().toString();
            
-            csv = "UUID,"+uuid+"\n",
+            // csv = "UUID,"+uuid+"\n",
 
-            csv += 'Date,Time,Snapshot Time/s,T1/C,T2/C,T3/C,T4/C,T5/C,P1/bar,P2/bar,P3/bar,Flowrate/(L/h),Power/W,TSA/C,PSA/hPa,HSA/%rh\n';
+            csv += 'Snapshot Time/s,T1/C,T2/C,T3/C,T4/C,T5/C,P1/(bar),P2/(bar),P3/(bar),Flowrate/(L/h),Power/W,TSA/C,PSA/hPa,HSA/%rh,UUID:' + uuid + ',timestamp:' + date.getTime() + '\n';
 
             data.forEach(function (d) {
-                csv += d.date.toString();
-                csv += ",";
+                // csv += d.date.toString();
+                // csv += ",";
                 csv += d.t.toString();
                 csv += ",";
                 csv += d.T1.toString();
-                csv += ',';
+                csv += ",";
                 csv += d.T2.toString();
                 csv += ",";
                 csv += d.T3.toString();
@@ -265,7 +263,7 @@ export default {
                 csv += d.T5.toString();
                 csv += ",";
                 csv += d.P1.toString();
-                csv += ',';
+                csv += ",";
                 csv += d.P2.toString();
                 csv += ",";
                 csv += d.P3.toString();
@@ -278,7 +276,7 @@ export default {
                 csv += ",";
                 csv += d.PSA.toString();
                 csv += ",";
-                csv += d.HSA.toString();
+                csv += d.HSA.toString();       
                 csv += "\n";
             });
 
