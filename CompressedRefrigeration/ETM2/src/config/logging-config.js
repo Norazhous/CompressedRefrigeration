@@ -1,5 +1,7 @@
 const config = {
-
+    //Most likely leave the below as is:
+    logging_path: '/addLog',
+    definitions_path: '/verbs',
 
     //UPDATE this with your remote lab version
     remote_lab_ui: 'fridge-etm2-1.0',
@@ -11,7 +13,13 @@ const config = {
     //For generating graphs in the analytics system, you need to map the appropriate buttons (that send hardware commands to the lab) with the 
     // names of the nodes that will appear on the graph (or a coded name)
     graph_nodes: {
-       
+      "valve1-button-input": 'valveOne',
+      "valve5-button-input": 'valveFive',
+      "valve6-button-input": 'valveSix',
+      "fans-button-input": 'fans',
+      "compressor-button-input": 'compressor',
+      "snapshot-record-button": 'record',
+      "download_snaps-button": 'download'
     },
     
     //Add any hotkeys that you want to log
@@ -22,11 +30,7 @@ const config = {
     interval_logs: [
       //{"interval": 5000, "payload": {"msg": "5 second health check", 'state': 6}},
       // {"interval": 30000, "payload": {"msg": "30 second health check"}}
-    ],
-
-    version: import.meta.env.VITE_APP_VERSION,
-    logging_path: '/addLog',
-    definitions_path: '/verbs',
+    ]
 }
 
 export default config;
